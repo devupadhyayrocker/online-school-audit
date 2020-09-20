@@ -5,10 +5,10 @@ const apiRoutes = require('./api');
 // All routes used in application
 const useRoutes = function(app) {
 	app.use('/api/user', apiRoutes.userRoutes);
-	/*app.use('/api/admin', apiRoutes.adminRoutes);
-	app.use('/api/broadcast',apiRoutes.broadcastRoutes);
-	app.use('/api/teacher',apiRoutes.teacherRoutes);
-	app.use('/api/common',apiRoutes.commonRoutes);*/
+	app.use('/api/commonList', apiRoutes.commonListRoutes);
+	app.use('/api/school',apiRoutes.schoolRoutes);
+	// app.use('/api/teacher',apiRoutes.teacherRoutes);
+	// app.use('/api/common',apiRoutes.commonRoutes);
 };
 
 module.exports = {

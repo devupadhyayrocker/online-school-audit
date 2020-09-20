@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AdminSchema = new Schema({
+const UserSchema = new Schema({
     username: {
         type: String,
         required: true
@@ -23,4 +23,4 @@ const AdminSchema = new Schema({
 });
 
 // Export the model
-module.exports = mongoose.model('Admin', AdminSchema);
+module.exports = mongoose.model('user', UserSchema);
