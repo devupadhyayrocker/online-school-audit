@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New
+      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#principalmodal">Add New
         Principal</a>
     </div>
   </div>
@@ -20,86 +20,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>The Jaipuria School, Farrukhabad
+      <tr *ngFor="let princial of principalData; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{school.school}}</td>
+        <td>{{school.staffEmail}}</td>
+        <td>{{school.location}}</td>
+        <td>
+          <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#principalmodal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+            <i class="far fa-edit"></i>
+          </a>
+          <a class="btn btn-sm btn-outline-lightning rounded-0">
+            <i class="far fa-trash-alt"></i>
+          </a>
         </td>
-        <td>Rajiv</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Farrukhabad</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Seth Anandram Jaipuria School, Unnao
-        </td>
-        <td>Anjali Bajpai</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Unnao</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)
-        </td>
-        <td>Krishna Kumar</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Lucknow (Alambagh Extn)</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Seth Anandram Jaipuria School, Varanasi
-        </td>
-        <td>Shweta Tiwari</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Varanasi</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Seth Anandram Jaipuria School, Sitarganj
-        </td>
-        <td>Pushpa (V.P.)</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Sitarganj</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>Seth Anandram Jaipuria School, Satna
-        </td>
-        <td>Kajal</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Satna</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>Seth Anandram Jaipuria School, Raebareli
-        </td>
-        <td>John Elibeth</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Raebareli</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>Seth Anandram Jaipuria School, Mirzapur
-        </td>
-        <td>Anandi Singh</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Mirzapur</td>
-      </tr>
-      <tr>
-        <th scope="row">9</th>
-        <td>Seth Anandram Jaipuria School, Dibiyapur
-        </td>
-        <td>Pankaj Sharma</td>
-        <td>principalname@jaipuria.edu.in</td>
-        <td>9898989898</td>
-        <td>Dibiyapur</td>
       </tr>
     </tbody>
   </table>

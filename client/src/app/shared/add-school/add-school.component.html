@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New School</a>
+            <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#schoolModal">Add New School</a>
         </div>
     </div>
 </div>
@@ -17,100 +17,56 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>The Jaipuria School, Farrukhabad        </td>
-        <td>schoolname@jaipuriaschools.com
+      <tr *ngFor="let school of schoolData; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{school.schoolName}}</td>
+        <td>{{school.staffEmail}}</td>
+        <td>{{school.location}}</td>
+        <td>
+          <a (click)="openUpdateModal(school)" data-toggle="modal" data-backdrop="static" data-target="#schoolModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+            <i class="far fa-edit"></i>
+          </a>
+          <a class="btn btn-sm btn-outline-lightning rounded-0">
+            <i class="far fa-trash-alt"></i>
+          </a>
         </td>
-        <td>Farrukhabad</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Seth Anandram Jaipuria School, Unnao
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Unnao</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Lucknow (Alambagh Extn)</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Seth Anandram Jaipuria School, Varanasi
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Varanasi</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Seth Anandram Jaipuria School, Sitarganj
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Sitarganj</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>Seth Anandram Jaipuria School, Satna
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Satna</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>Seth Anandram Jaipuria School, Raebareli
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Raebareli</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>Seth Anandram Jaipuria School, Mirzapur
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Mirzapur</td>
-      </tr>
-      <tr>
-        <th scope="row">9</th>
-        <td>Seth Anandram Jaipuria School, Dibiyapur
-        </td>
-        <td>schoolname@jaipuriaschools.com
-        </td>
-        <td>Dibiyapur</td>
       </tr>
     </tbody>
   </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="schoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">School Details</h5>
+        <h5 class="modal-title" id="schoolModalLabel">School Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <div class="row">
+        <form #scForm='ngForm'>
+        <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <input type="text" class="form-control" id="schoolname" placeholder="Enter School Name">
+              <input type="text" class="form-control" #schoolName='ngModel' name="schoolName"
+              [(ngModel)]="schoolForm.schoolName" placeholder="Enter School Name" id="scname" required>
+            <div *ngIf="schoolName.invalid && (schoolName.dirty || schoolName.touched)" class="text-danger">
+              <div *ngIf="schoolName.errors.required">
+                School Name is required
+              </div>
+            </div>
             </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                        <input type="text" class="form-control" id="location" placeholder="Enter School Location">
+                  <input type="text" class="form-control" #location='ngModel' name="location"
+                  [(ngModel)]="schoolForm.location" placeholder="Enter School Location" id="location" required>
+                <div *ngIf="location.invalid && (location.dirty || location.touched)" class="text-danger">
+                  <div *ngIf="location.errors.required">
+                    Location is required
+                  </div>
+                </div>
                 </div>
                 </div>
                 <div class="col-md-6">
@@ -120,17 +76,26 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                          <input type="email" class="form-control" id="schoolemail" placeholder="Enter email">
+                          <input type="text" #staffEmail='ngModel' name="staffEmail" [(ngModel)]="schoolForm.staffEmail" [pattern]="emailPattern"
+                class="form-control" id="e-Mail" placeholder="Enter School Email" required >
+              <div *ngIf="staffEmail.invalid && (staffEmail.dirty || staffEmail.touched)" class="text-danger">
+                <div *ngIf="staffEmail.errors.required">
+                  Email is required
+                </div>
+                <div *ngIf="staffEmail.errors.pattern">
+                  Enter valid Email
+                </div>
+              </div>
                         </div>
                         </div>
             </div>
                   
             
-          
+          </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid" (click)="addSchool(scForm)">Add School</button>
       </div>
     </div>
   </div>

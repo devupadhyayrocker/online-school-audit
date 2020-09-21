@@ -22,7 +22,7 @@ import { AddUserComponent } from './auth/add-user/add-user.component';
 import { AddAssessmentComponent } from './shared/add-assessment/add-assessment.component';
 import { PrincipalAssessmentComponent } from './shared/principal-assessment/principal-assessment.component';
 import { TeacherAcademicAssessmentComponent } from './shared/teacher-academic-assessment/teacher-academic-assessment.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,8 @@ import { TeacherAcademicAssessmentComponent } from './shared/teacher-academic-as
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

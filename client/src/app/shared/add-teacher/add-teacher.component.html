@@ -11,18 +11,24 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">S. No.</th>
-        <th scope="col">Principal Name</th>
-        <th scope="col">Teacher Name</th>
-        <th scope="col">Contact Number</th>
-        <th scope="col">E-mail</th>
+        <th scope="col">School Name</th>
+        <th scope="col">Staff Type</th>
+        <th scope="col">Non Teaching Area</th>
+        <th scope="col">Teacher Type</th>
+        <th scope="col">Teacher Category</th>
+        <th scope="col">Class Teacher</th>
         <th scope="col">Subject</th>
         <th scope="col">Class</th>
+        <th scope="col">Section</th>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Staff E-mail</th>
+        <th scope="col">Contact No.</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let teacher of teacherData; let i=index">
         <th scope="row">{{i+1}}</th>
-        <td>{{staff.schoolName}}</td>
+        <td>{{staff.school}}</td>
         <td>{{staff.staffType}}</td>
         <td>{{staff.nonteachingArea}}</td>
         <td>{{staff.teacherType}}</td>
@@ -58,7 +64,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #sform='ngForm'>
+        <form #stForm='ngForm'>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -111,7 +117,10 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teachersubject">
+              <ng-multiselect-dropdown  placeholder="Select Subject" [data]="dropdownList"
+                [(ngModel)]="selectedItems" name="selectedItems" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect($event)" (onSelect)="onItemSelect($event)">
+              </ng-multiselect-dropdown>
+              <!-- <select class="form-control" id="teachersubject">
                 <option>Select Subject</option>
                 <option>English</option>
                 <option>E.V.S.</option>
@@ -134,7 +143,7 @@
                 <option>French</option>
                 <option>Gurmukhi</option>
                 <option>German</option>
-              </select>
+              </select> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -174,19 +183,42 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" id="teachername" placeholder="Staff Name">
+              <input type="text" class="form-control" #staffName='ngModel' name="staffName"
+                [(ngModel)]="staffForm.firstName" id="stname" required>
+              <div *ngIf="staffName.invalid && (staffName.dirty || staffName.touched)" class="text-danger">
+                <div *ngIf="staffName.errors.required">
+                  Staff Name is required
+                </div>
+              </div>
             </div>
           </div>
           
           <div class="col-md-6">
             <div class="form-group">
-              <input type="email" class="form-control" id="principalemail" placeholder="Enter email">
+              <input type="text" #email='ngModel' name="email" [(ngModel)]="staffForm.email" [pattern]="emailPattern"
+                class="form-control" id="e-Mail" required>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                <div *ngIf="email.errors.required">
+                  Email is required
+                </div>
+                <div *ngIf="email.errors.pattern">
+                  Enter valid Email
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="tel" id="principalphone" name="principalphone" class="form-control"
-                placeholder="Contact Number">
+              <input type="number" class="form-control" #mobileNo='ngModel' [pattern]="mobilePattern" name="mobileNo"
+              [(ngModel)]="staffForm.mobileNo" id="mNo" required>
+            <div *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)" class="text-danger">
+              <div *ngIf="mobileNo.errors.required">
+                Mobile No is required
+              </div>
+              <div *ngIf="mobileNo.errors.pattern">
+                Enter valid Mobile No
+              </div>
+            </div>
             </div>
           </div>
           <div class="col-md-12 my-3">
@@ -207,8 +239,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="stForm.invalid" (click)="addStaff(stForm)">Add Staff</button>
       </div>
     </div>
   </div>

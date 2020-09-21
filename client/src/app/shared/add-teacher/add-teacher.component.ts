@@ -1,4 +1,7 @@
+
+
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from "../config/app.config";
 
 @Component({
   selector: 'app-add-teacher',
@@ -7,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTeacherComponent implements OnInit {
 
+  selectedItems = [];
+  dropdownSettings = {};
+  dropdownList = AppConfig.Subjects;
     staffForm = {
     school: '',
     staffType: '',
@@ -27,6 +33,20 @@ export class AddTeacherComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.dropdownList = AppConfig.Subjects;
+    this.dropdownSettings = {
+      idField: 'item_id',
+      textField: 'item_text',
+      enableCheckAll: false
+    }
+
   }
+
+  onItemSelect(event){
+console.log("yy",event)
+  }
+  OnItemDeSelect(event){
+    console.log("yy",event)
+      }
 
 }
