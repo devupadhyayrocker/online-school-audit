@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New
-        Staff</a>
-    </div>
+      <button type="button" (click)="isEdit=false" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#staffModal">Add New Staff</button>
+      </div>
   </div>
 </div>
 
@@ -21,183 +20,92 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Anjali Bajpai
+      <tr *ngFor="let teacher of teacherData; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{staff.schoolName}}</td>
+        <td>{{staff.staffType}}</td>
+        <td>{{staff.nonteachingArea}}</td>
+        <td>{{staff.teacherType}}</td>
+        <td>{{staff.teacherCategory}}</td>
+        <td>{{staff.classTeacher}}</td>
+        <td>{{staff.subject}}</td>
+        <td>{{staff.class}}</td>
+        <td>{{staff.section}}</td>
+        <td>{{staff.staffName}}</td>
+        <td>{{staff.staffEmail}}</td>
+        <td>{{staff.staffContact}}</td>
+        <td>
+          <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#staffModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+            <i class="far fa-edit"></i>
+          </a>
+          <a class="btn btn-sm btn-outline-lightning rounded-0">
+            <i class="far fa-trash-alt"></i>
+          </a>
         </td>
-        <td>Ms. Seema Singh
-        </td>
-
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Hindi</td>
-        <td>Class 4</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-
-        <td>Krishna Kumar
-        </td>
-        <td>Ms. Shalini Sharma
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>English</td>
-        <td>Class 6</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-
-        <td>Shweta Tiwari
-        </td>
-        <td>Ms. Rekha Singh
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Mathematics</td>
-        <td>Class 5</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-
-        <td>Pushpa (V.P.)
-        </td>
-        <td>Ms. Parul Gupta
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Science</td>
-        <td>Class 8</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-
-        <td>Kajal
-        </td>
-        <td>Ms. Bindu Tuteja
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Social Studies</td>
-        <td>Class 9</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-
-        <td>John Elibeth
-        </td>
-        <td>Ms. Puja Raj
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Sanskrit</td>
-        <td>Class 8</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-
-        <td>Anandi Singh
-        </td>
-        <td>Ms. Priyanka Mahajan
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Geography</td>
-        <td>Class 6</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-
-        <td>Pankaj Sharma
-        </td>
-        <td>Ms. Alka Rani
-        </td>
-        <td>9898989898</td>
-        <td>teachername@jaipuria.edu.in</td>
-        <td>Computer</td>
-        <td>Class 11</td>
       </tr>
     </tbody>
   </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="staffModal"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Staff Details</h5>
+        <h5 class="modal-title" id="staffModal">Staff Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form #sform='ngForm'>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="selectschool">
-                <option>Select School</option>
-                <option>The Jaipuria School, Farrukhabad</option>
-                <option>Seth Anandram Jaipuria School, Unnao</option>
-                <option>Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)</option>
-                <option>Seth Anandram Jaipuria School, Varanasi</option>
-                <option>Seth Anandram Jaipuria School, Sitarganj</option>
-                <option>Seth Anandram Jaipuria School, Satna</option>
-                <option>Seth Anandram Jaipuria School, Raebareli</option>
-                <option>Seth Anandram Jaipuria School, Mirzapur</option>
-                <option>Seth Anandram Jaipuria School, Dibiyapur</option>
+              <select class="form-control" [(ngModel)]="staffForm.school" name="school" required>
+                <option class="dropdown-item" value="" disabled selected>Select School</option>
+                <option *ngFor="let school of schoolArr" class="dropdown-item"  value="{{school.name}}">{{school.name}}</option>
               </select>
             </div>
           </div> 
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Select Staff</option>
-                <option>Teaching Staff</option>
-                <option>Non-Teaching Staff</option>
+              <select class="form-control" [(ngModel)]="staffForm.staffType" name="staffType" required>
+                <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+                <option *ngFor="let staffType of schoolArr" class="dropdown-item"  value="{{staffType.name}}">{{staffType.name}}</option>
+              </select>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" [(ngModel)]="staffForm.nonteachingArea" name="nonteachingArea" required>
+                <option class="dropdown-item" value="" disabled selected>Staff Area</option>
+                <option *ngFor="let nonteachingArea of schoolArr" class="dropdown-item"  value="{{nonteachingArea.name}}">{{nonteachingArea.name}}</option>
+              </select>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" [(ngModel)]="staffForm.teacherType" name="teacherType" required>
+                <option class="dropdown-item" value="" disabled selected>Type of Teacher</option>
+                <option *ngFor="let teacherType of schoolArr" class="dropdown-item"  value="{{teacherType.name}}">{{teacherType.name}}</option>
               </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Select Area</option>
-                <option>Admin</option>
-                <option>Transportation</option>
-                <option>Maintenance</option>
-                <option>Counsellor</option>
-                <option>B.O. Executive</option>
-                <option>M.E.</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Type of Teacher</option>
-                <option>Scholastic</option>
-                <option>Co-Scholastic</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <select class="form-control" id="teachersubject">
-                <option>Teaching Category</option>
-                <option>N.T.</option>
-                <option>P.R.T.</option>
-                <option>T.G.T.</option>
-                <option>P.G.T.</option>
+              <select class="form-control" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
+                <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
+                <option *ngFor="let teacherCategory of schoolArr" class="dropdown-item"  value="{{teacherCategory.name}}">{{teacherCategory.name}}</option>
               </select>
             </div>
           </div>
           
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Class Teacher</option>
-                <option>Yes</option>
-                <option>No</option>
+              <select class="form-control" [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
+                <option class="dropdown-item" value="" disabled selected>Class Teacher</option>
+                <option *ngFor="let classTeacher of schoolArr" class="dropdown-item"  value="{{classTeacher.name}}">{{classTeacher.name}}</option>
               </select>
             </div>
           </div>
@@ -295,7 +203,7 @@
           </div>
         </div>
       </div>
-
+    </form>
 
       </div>
       <div class="modal-footer">

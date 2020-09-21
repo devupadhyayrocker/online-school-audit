@@ -7,6 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTeacherComponent implements OnInit {
 
+    staffForm = {
+    school: '',
+    staffType: '',
+    nonteachingArea: '',
+    teacherType: '',
+    teacherCategory: '',
+    classTeacher: '',
+    subject: '',
+    class: '',
+    section: '',
+    staffName: '',
+    staffEmail:'',
+    staffContact:''
+  }
+
+
+
   constructor() { }
 
   ngOnInit() {
