@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12 mt-5">
       <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New
-        Teacher</a>
+        Staff</a>
     </div>
   </div>
 </div>
@@ -126,7 +126,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Teacher Details</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Staff Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -135,37 +135,51 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="selectprincipal">
-                <option>Select Principal</option>
-                <option>Rajiv</option>
-                  <option>Anjali Bajpai</option>
-                    <option>Krishna Kumar</option>
-                      <option>Shweta Tiwari</option>
-                        <option>Pushpa (V.P.)</option>
-                          <option>Kajal</option>
-                            <option>John Elibeth</option>
-                              <option>Anandi Singh</option>
-                                <option>Pankaj Sharma</option>
+              <select class="form-control" id="selectschool">
+                <option>Select School</option>
+                <option>The Jaipuria School, Farrukhabad</option>
+                <option>Seth Anandram Jaipuria School, Unnao</option>
+                <option>Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)</option>
+                <option>Seth Anandram Jaipuria School, Varanasi</option>
+                <option>Seth Anandram Jaipuria School, Sitarganj</option>
+                <option>Seth Anandram Jaipuria School, Satna</option>
+                <option>Seth Anandram Jaipuria School, Raebareli</option>
+                <option>Seth Anandram Jaipuria School, Mirzapur</option>
+                <option>Seth Anandram Jaipuria School, Dibiyapur</option>
+              </select>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" id="teacherclass">
+                <option>Select Staff</option>
+                <option>Teaching Staff</option>
+                <option>Non-Teaching Staff</option>
               </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" id="teachername" placeholder="Teacher Name">
+              <select class="form-control" id="teacherclass">
+                <option>Select Area</option>
+                <option>Admin</option>
+                <option>Transportation</option>
+                <option>Maintenance</option>
+                <option>Counsellor</option>
+                <option>B.O. Executive</option>
+                <option>M.E.</option>
+              </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="tel" id="principalphone" name="principalphone" class="form-control"
-                placeholder="Contact Number">
+              <select class="form-control" id="teacherclass">
+                <option>Type of Teacher</option>
+                <option>Scholastic</option>
+                <option>Co-Scholastic</option>
+              </select>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="email" class="form-control" id="principalemail" placeholder="Enter email">
-            </div>
-          </div>
-
           <div class="col-md-6">
             <div class="form-group">
               <select class="form-control" id="teachersubject">
@@ -174,19 +188,19 @@
                 <option>P.R.T.</option>
                 <option>T.G.T.</option>
                 <option>P.G.T.</option>
-                </select>
+              </select>
             </div>
           </div>
+          
           <div class="col-md-6">
             <div class="form-group">
               <select class="form-control" id="teacherclass">
                 <option>Class Teacher</option>
                 <option>Yes</option>
                 <option>No</option>
-                </select>
+              </select>
             </div>
           </div>
-
           <div class="col-md-6">
             <div class="form-group">
               <select class="form-control" id="teachersubject">
@@ -239,23 +253,54 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <select class="form-control" id="teacherclass">
+                <option>Select Section</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+              </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <button type="button" class="btn btn-primary d-block mx-auto w-100">Save changes</button>
+              <input type="text" class="form-control" id="teachername" placeholder="Staff Name">
             </div>
           </div>
-
+          
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="email" class="form-control" id="principalemail" placeholder="Enter email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="tel" id="principalphone" name="principalphone" class="form-control"
+                placeholder="Contact Number">
+            </div>
+          </div>
+          <div class="col-md-12 my-3">
+            <h4 class="text-center">FOR BULK UPLOADING</h4>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <p class="text-right text-danger font-weight-bold">Upload Excel Only (.xlsx)</p>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+          </div>
         </div>
-
+      </div>
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
