@@ -12,73 +12,14 @@
       <tr>
         <th scope="col">S.No</th>
         <th scope="col">Name of the staff member</th>
-        <th scope="col">Name of the peer 1</th>
-        <th scope="col">Name of the peer 2</th>
+        <th scope="col">Name of the peer</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Ms. Seema Singh
-        </td>
-        <td>Ms. Alka Rani
-        </td>
-        <td>Ms. Bindu Tuteja</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Ms. Shalini Sharma
-</td>
-        <td>Ms. Priyanka Mahajan
-        </td>
-        <td>Ms. Alka Rani</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Ms. Rekha Singh
-        </td>
-        <td>Ms. Puja Raj
-        </td>
-        <td>Ms. Priyanka Mahajan</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Ms. Parul Gupta
-        </td>
-        <td>Ms. Bindu Tuteja
-        </td>
-        <td>Ms. Puja Raj</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Ms. Puja Raj
-        </td>
-        <td>Ms. Parul Gupta
-        </td>
-        <td>Ms. Alka Rani</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>Ms. Priyanka Mahajan
-        </td>
-        <td>Ms. Rekha Singh
-        </td>
-        <td>Ms. Bindu Tuteja</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>Ms. Alka Rani
-        </td>
-        <td>Ms. Shalini Sharma
-        </td>
-        <td>Ms. Rekha Singh</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>Ms. Bindu Tuteja</td>
-        <td>Ms. Seema Singh
-        </td>
-        <td>Ms. Priyanka Mahajan</td>
+      <tr *ngFor="let peerStaff of peerStaffData; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{peerStaff.teacherWhoPeer}}</td>
+        <td>{{peerStaff.teacherToPeer}}</td>
       </tr>
     </tbody>
   </table>
@@ -117,6 +58,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <form #asteForm='ngForm'>
           <div class="row mx-5">
 
             <!-- Table  -->
@@ -131,8 +73,7 @@
           <label class="custom-control-label" for="tableDefaultCheck">Name of the staff member</label>
         </div>
       </th>
-      <th>Name of the peer 1</th>
-      <th>Name of the peer 2</th>
+      <th>Name of the peer</th>
     </tr>
   </thead>
   <!-- Table head -->
@@ -143,227 +84,26 @@
       <th scope="row">
         <!-- Default unchecked -->
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck1">
+          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck1" >
           <label class="custom-control-label" for="tableDefaultCheck1">Prateek Malik</label>
         </div>
       </th>
       <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
+        <select class="form-control" [(ngModel)]="peeredStaffForm.teacherToPeer" name="teacherToPeer" required>
+          <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+          <option *ngFor="let teacherToPeer of peerStaffArr" class="dropdown-item"  value="{{teacherToPeer}}">{{teacherToPeer}}</option>
         </select>
       </div>
     </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck2">
-          <label class="custom-control-label" for="tableDefaultCheck2">Asha Bhardwaj</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck3">
-          <label class="custom-control-label" for="tableDefaultCheck3">Nikhil Arora</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck4">
-          <label class="custom-control-label" for="tableDefaultCheck4">Prateek Malik</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck5">
-          <label class="custom-control-label" for="tableDefaultCheck5">Prateek Malik</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck6">
-          <label class="custom-control-label" for="tableDefaultCheck6">Prateek Malik</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        <!-- Default unchecked -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="tableDefaultCheck7">
-          <label class="custom-control-label" for="tableDefaultCheck7">Asha Bhardwaj</label>
-        </div>
-      </th>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 1</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-      <td><div class="form-group mb-0">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Select Peer 2</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-          <option>Prateek Malik</option>
-          <option>Asha Bhardwaj</option>
-          <option>Ashutosh Singh</option>
-        </select>
-      </div>
-    </td>
-    </tr>
+      </tr>
   </tbody>
 </table>
 </div>
-          
+</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Assign Now</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="asteForm.invalid" (click)="addpeeredStaff(asteForm)">Add Staff</button>
       </div>
     </div>
   </div>

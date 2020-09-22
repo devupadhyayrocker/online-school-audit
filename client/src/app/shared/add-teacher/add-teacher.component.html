@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <button type="button" (click)="isEdit=false" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#staffModal">Add New Staff</button>
+      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#staffModal">Add New
+        Staff</a>
       </div>
   </div>
 </div>
@@ -23,19 +24,20 @@
         <th scope="col">Staff Name</th>
         <th scope="col">Staff E-mail</th>
         <th scope="col">Contact No.</th>
+        <th scope="col">Edit/Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let teacher of teacherData; let i=index">
+      <tr *ngFor="let staff of staffData; let i=index">
         <th scope="row">{{i+1}}</th>
-        <td>{{staff.school}}</td>
+        <td>{{staff.schools}}</td>
         <td>{{staff.staffType}}</td>
         <td>{{staff.nonteachingArea}}</td>
         <td>{{staff.teacherType}}</td>
         <td>{{staff.teacherCategory}}</td>
         <td>{{staff.classTeacher}}</td>
-        <td>{{staff.subject}}</td>
-        <td>{{staff.class}}</td>
+        <td>{{staff.Subjects}}</td>
+        <td>{{staff.classList}}</td>
         <td>{{staff.section}}</td>
         <td>{{staff.staffName}}</td>
         <td>{{staff.staffEmail}}</td>
@@ -55,7 +57,7 @@
 <!-- Modal -->
 <div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="staffModal"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staffModal">Staff Details</h5>
@@ -68,9 +70,9 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="staffForm.school" name="school" required>
+              <select class="form-control" [(ngModel)]="staffForm.schools" name="schools" required>
                 <option class="dropdown-item" value="" disabled selected>Select School</option>
-                <option *ngFor="let school of schoolArr" class="dropdown-item"  value="{{school.name}}">{{school.name}}</option>
+                <option *ngFor="let schools of schoolArr" class="dropdown-item"  value="{{schools}}">{{schools}}</option>
               </select>
             </div>
           </div> 
@@ -78,7 +80,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.staffType" name="staffType" required>
                 <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
-                <option *ngFor="let staffType of schoolArr" class="dropdown-item"  value="{{staffType.name}}">{{staffType.name}}</option>
+                <option *ngFor="let staffType of staffTypeArr" class="dropdown-item"  value="{{staffType}}">{{staffType}}</option>
               </select>
               </div>
           </div>
@@ -86,7 +88,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.nonteachingArea" name="nonteachingArea" required>
                 <option class="dropdown-item" value="" disabled selected>Staff Area</option>
-                <option *ngFor="let nonteachingArea of schoolArr" class="dropdown-item"  value="{{nonteachingArea.name}}">{{nonteachingArea.name}}</option>
+                <option *ngFor="let nonteachingArea of nonteachingAreaArr" class="dropdown-item"  value="{{nonteachingArea}}">{{nonteachingArea}}</option>
               </select>
               </div>
           </div>
@@ -94,7 +96,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.teacherType" name="teacherType" required>
                 <option class="dropdown-item" value="" disabled selected>Type of Teacher</option>
-                <option *ngFor="let teacherType of schoolArr" class="dropdown-item"  value="{{teacherType.name}}">{{teacherType.name}}</option>
+                <option *ngFor="let teacherType of teacherTypeArr" class="dropdown-item"  value="{{teacherType}}">{{teacherType}}</option>
               </select>
             </div>
           </div>
@@ -102,7 +104,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
                 <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
-                <option *ngFor="let teacherCategory of schoolArr" class="dropdown-item"  value="{{teacherCategory.name}}">{{teacherCategory.name}}</option>
+                <option *ngFor="let teacherCategory of teacherCategoryArr" class="dropdown-item"  value="{{teacherCategory}}">{{teacherCategory}}</option>
               </select>
             </div>
           </div>
@@ -111,7 +113,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
                 <option class="dropdown-item" value="" disabled selected>Class Teacher</option>
-                <option *ngFor="let classTeacher of schoolArr" class="dropdown-item"  value="{{classTeacher.name}}">{{classTeacher.name}}</option>
+                <option *ngFor="let classTeacher of classTeacherArr" class="dropdown-item"  value="{{classTeacher}}">{{classTeacher}}</option>
               </select>
             </div>
           </div>
@@ -120,71 +122,26 @@
               <ng-multiselect-dropdown  placeholder="Select Subject" [data]="dropdownList"
                 [(ngModel)]="selectedItems" name="selectedItems" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect($event)" (onSelect)="onItemSelect($event)">
               </ng-multiselect-dropdown>
-              <!-- <select class="form-control" id="teachersubject">
-                <option>Select Subject</option>
-                <option>English</option>
-                <option>E.V.S.</option>
-                <option>Social Studies</option>
-                <option>Hindi</option>
-                <option>Mathematics</option>
-                <option>Computer</option>
-                <option>G.K.</option>
-                <option>Physics</option>
-                <option>Chemistry</option>
-                <option>Biology</option>
-                <option>Music</option>
-                <option>Physical Education</option>
-                <option>Geography</option>
-                <option>Sanskrit</option>
-                <option>Political Science</option>
-                <option>History</option>
-                <option>Dance</option>
-                <option>Art & Craft</option>
-                <option>French</option>
-                <option>Gurmukhi</option>
-                <option>German</option>
-              </select> -->
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Select Class</option>
-                <option>Nursery</option>
-                <option>L.K.G.</option>
-                <option>U.K.G.</option>
-                <option>Class 1</option>
-                <option>Class 2</option>
-                <option>Class 3</option>
-                <option>Class 4</option>
-                <option>Class 5</option>
-                <option>Class 6</option>
-                <option>Class 7</option>
-                <option>Class 8</option>
-                <option>Class 9</option>
-                <option>Class 10</option>
-                <option>Class 11</option>
-                <option>Class 12</option>
-              </select>
+              <ng-multiselect-dropdown  placeholder="Select Class" [data]="classList"
+                  [(ngModel)]="selectedItems2" name="selectedItems2" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect2($event)" (onSelect)="onItemSelect2($event)">
+                </ng-multiselect-dropdown>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="teacherclass">
-                <option>Select Section</option>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
-                <option>E</option>
-                <option>F</option>
-              </select>
+              <ng-multiselect-dropdown placeholder="Select Section" [data]="section"
+                  [(ngModel)]="selectedItems3" name="selectedItems3" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect3($event)" (onSelect)="onItemSelect3($event)">
+                </ng-multiselect-dropdown>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" class="form-control" #staffName='ngModel' name="staffName"
-                [(ngModel)]="staffForm.firstName" id="stname" required>
+                [(ngModel)]="staffForm.firstName" placeholder="Staff Name" id="stname" required>
               <div *ngIf="staffName.invalid && (staffName.dirty || staffName.touched)" class="text-danger">
                 <div *ngIf="staffName.errors.required">
                   Staff Name is required
@@ -195,13 +152,13 @@
           
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" #email='ngModel' name="email" [(ngModel)]="staffForm.email" [pattern]="emailPattern"
-                class="form-control" id="e-Mail" required>
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                <div *ngIf="email.errors.required">
+              <input type="text" #staffEmail='ngModel' name="staffEmail" [(ngModel)]="staffForm.staffEmail" [pattern]="emailPattern"
+                class="form-control" placeholder="Staff Email" id="e-Mail" required>
+              <div *ngIf="staffEmail.invalid && (staffEmail.dirty || staffEmail.touched)" class="text-danger">
+                <div *ngIf="staffEmail.errors.required">
                   Email is required
                 </div>
-                <div *ngIf="email.errors.pattern">
+                <div *ngIf="staffEmail.errors.pattern">
                   Enter valid Email
                 </div>
               </div>
@@ -209,13 +166,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="number" class="form-control" #mobileNo='ngModel' [pattern]="mobilePattern" name="mobileNo"
-              [(ngModel)]="staffForm.mobileNo" id="mNo" required>
-            <div *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)" class="text-danger">
-              <div *ngIf="mobileNo.errors.required">
+              <input type="number" class="form-control" #staffContact='ngModel' [pattern]="mobilePattern" name="staffContact"
+              [(ngModel)]="staffForm.staffContact" placeholder="Staff Mobile" id="mNo" required>
+            <div *ngIf="staffContact.invalid && (staffContact.dirty || staffContact.touched)" class="text-danger">
+              <div *ngIf="staffContact.errors.required">
                 Mobile No is required
               </div>
-              <div *ngIf="mobileNo.errors.pattern">
+              <div *ngIf="staffContact.errors.pattern">
                 Enter valid Mobile No
               </div>
             </div>

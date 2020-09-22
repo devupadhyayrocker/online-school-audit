@@ -17,16 +17,19 @@
         <th scope="col">E-mail</th>
         <th scope="col">Contact Number</th>
         <th scope="col">Location</th>
+        <th scope="col">Edit/Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let princial of principalData; let i=index">
+      <tr *ngFor="let principal of principalData; let i=index">
         <th scope="row">{{i+1}}</th>
-        <td>{{school.school}}</td>
-        <td>{{school.staffEmail}}</td>
-        <td>{{school.location}}</td>
+        <td>{{principal.schools}}</td>
+        <td>{{principal.principalName}}</td>
+        <td>{{principal.principalEmail}}</td>
+        <td>{{principal.principalContact}}</td>
+        <td>{{principal.location}}</td>
         <td>
-          <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#principalmodal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+          <a data-toggle="modal" data-backdrop="static" data-target="#principalmodal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
             <i class="far fa-edit"></i>
           </a>
           <a class="btn btn-sm btn-outline-lightning rounded-0">
@@ -38,32 +41,26 @@
   </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="principalmodal" tabindex="-1" role="dialog" aria-labelledby="principalmodal"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Principal Details</h5>
+        <h5 class="modal-title" id="principalmodallabel">Principal Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form #prForm='ngForm'>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" id="selectschool">
-                <option>Select School</option>
-                <option>The Jaipuria School, Farrukhabad</option>
-                <option>Seth Anandram Jaipuria School, Unnao</option>
-                <option>Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)</option>
-                <option>Seth Anandram Jaipuria School, Varanasi</option>
-                <option>Seth Anandram Jaipuria School, Sitarganj</option>
-                <option>Seth Anandram Jaipuria School, Satna</option>
-                <option>Seth Anandram Jaipuria School, Raebareli</option>
-                <option>Seth Anandram Jaipuria School, Mirzapur</option>
-                <option>Seth Anandram Jaipuria School, Dibiyapur</option>
+              <select class="form-control" [(ngModel)]="principalForm.schools" name="schools" required>
+                <option class="dropdown-item" value="" disabled selected>Select School</option>
+                <option *ngFor="let schools of schoolArr" class="dropdown-item"  value="{{schools}}">{{schools}}</option>
               </select>
+              
             </div>
           </div>
           <div class="col-md-6">
@@ -73,12 +70,27 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" id="principalname" placeholder="Principal Name">
+              <input type="text" class="form-control" #principalName='ngModel' name="principalName"
+              [(ngModel)]="principalForm.principalName" placeholder="Enter Principal Name" id="prname" required>
+            <div *ngIf="principalName.invalid && (principalName.dirty || principalName.touched)" class="text-danger">
+              <div *ngIf="principalName.errors.required">
+                Principal Name is required
+              </div>
+            </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="email" class="form-control" id="principalemail" placeholder="Enter email">
+              <input type="text" #principalEmail='ngModel' name="principalEmail" [(ngModel)]="principalForm.principalEmail"
+                [pattern]="emailPattern" class="form-control" id="e-Mail" placeholder="Enter Principal Email" required>
+              <div *ngIf="principalEmail.invalid && (principalEmail.dirty || principalEmail.touched)" class="text-danger">
+                <div *ngIf="principalEmail.errors.required">
+                  Email is required
+                </div>
+                <div *ngIf="principalEmail.errors.pattern">
+                  Enter valid Email
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -88,18 +100,26 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="tel" id="principalphone" name="principalphone" class="form-control"
-                placeholder="Contact Number">
+              <input type="number" class="form-control" #principalContact='ngModel' [pattern]="mobilePattern" name="principalContact"
+              [(ngModel)]="principalForm.principalContact" placeholder="Enter Principal Mobile" id="prNo" required>
+            <div *ngIf="principalContact.invalid && (principalContact.dirty || principalContact.touched)" class="text-danger">
+              <div *ngIf="principalContact.errors.required">
+                Mobile No is required
+              </div>
+              <div *ngIf="principalContact.errors.pattern">
+                Enter valid Mobile No
+              </div>
+            </div>
             </div>
           </div>
         </div>
 
-
+</form>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="prForm.invalid" (click)="addPrincipal(prForm)">Add Principal</button>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@
             <a href="#" class="mx-auto d-block btn btn-success" routerLink="/add_user">Email Password</a>
         </div>
         <div class="col-md-3 mt-5">
-            <a href="#" class="mx-auto d-block btn btn-primary" routerLink="/add_user">Download Users</a>
+            <a href="#" class="mx-auto d-block btn btn-primary" (click)="exportTable()">Download Users</a>
         </div>
     </div>
 </div>
@@ -28,130 +28,38 @@
             <tr>
                 <th scope="col">
                     <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck">
-                        <label class="custom-control-label" for="tableDefaultCheck">S. No.</label>
-                    </div>
+                        <input type="checkbox" (click)="CheckAllOptions('customCheck')" class="custom-control-input"
+                          id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">S. No.</label>
+                      </div>
                 </th>
                 <th scope="col">Full Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
                 <th scope="col">Password</th>
-                <th scope="col">View Password</th>
+                <th scope="col">View/Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck1">
-                        <label class="custom-control-label" for="tableDefaultCheck1">1</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck2">
-                        <label class="custom-control-label" for="tableDefaultCheck2">2</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck3">
-                        <label class="custom-control-label" for="tableDefaultCheck3">3</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck4">
-                        <label class="custom-control-label" for="tableDefaultCheck4">4</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck5">
-                        <label class="custom-control-label" for="tableDefaultCheck5">5</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck6">
-                        <label class="custom-control-label" for="tableDefaultCheck6">6</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck7">
-                        <label class="custom-control-label" for="tableDefaultCheck7">7</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    <div class="custom-control custom-checkbox text-left">
-                        <input type="checkbox" class="custom-control-input" id="tableDefaultCheck8">
-                        <label class="custom-control-label" for="tableDefaultCheck8">8</label>
-                    </div>
-                </th>
-                <td>Dev upadhyay</td>
-                <td>devupadhyay200@gmail.com</td>
-                <td>Devupadhyay200</td>
-                <td><input type="password" readonly class="form-control-plaintext text-center" id="staticPassword"
-                        value="jaipuria@123"></td>
-                <td><a href="#" class="mx-auto d-block btn btn-info" routerLink="/add_user">View</a></td>
-            </tr>
+            <tr *ngFor="let user of userData; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{user.fullName}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.userName}}</td>
+                <td><div class="form-group"><input [type]="password" readonly class="form-control-plaintext text-center" value="jaipuria@123"></div></td>
+                <td> 
+                    <a class="btn btn-sm btn-outline-lightning rounded-0">
+                        <i (click)="onClick()" class="fa fa-eye" aria-hidden="true" ></i>
+                      </a>
+                  <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
+                    class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+                    <i class="far fa-edit"></i>
+                  </a>
+                  <a class="btn btn-sm btn-outline-lightning rounded-0">
+                    <i  class="far fa-trash-alt"></i>
+                  </a>
+                </td> 
+              </tr>
         </tbody>
     </table>
     
