@@ -6,24 +6,24 @@
        <h2>Login</h2>
        <p>Please enter your email and password</p>
        </div>
-        <form id="Login">
+        <form #logForm="ngForm" id="Login">
     
             <div class="form-group">
     
     
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+                <input [(ngModel)]="loginForm.username" name="username" type="text" class="form-control" id="username" placeholder="Email Username">
     
             </div>
     
             <div class="form-group">
     
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <input [(ngModel)]="loginForm.password" name="password" type="password" class="form-control" id="password" placeholder="Password">
     
             </div>
             <!--div class="forgot">
             <a href="reset.html">Forgot password?</a>
     </div-->
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" (click)="doLogin(logForm)">Login</button>
     
         </form>
         </div>

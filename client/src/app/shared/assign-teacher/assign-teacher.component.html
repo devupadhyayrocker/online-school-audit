@@ -45,12 +45,9 @@
       <div class="modal-header">
         <h5 class="modal-title mr-5" id="exampleModalLabel">Teacher Assessment</h5>
         <div class="form-group mb-0">
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Teaching Category</option>
-                <option>N.T.</option>
-                <option>P.R.T.</option>
-                <option>T.G.T.</option>
-                <option>P.G.T.</option>
+          <select class="form-control" [(ngModel)]="peeredStaffForm.teacherCategory" name="teacherCategory" required>
+            <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
+            <option *ngFor="let teacherCategory of teacherCategoryArr" class="dropdown-item"  value="{{teacherCategory}}">{{teacherCategory}}</option>
           </select>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

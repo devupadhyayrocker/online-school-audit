@@ -12,7 +12,7 @@ commonUrl = AppConfig.commonurl
   ) { }
 
   getloginData(loginDetails){
-    return this.http.post(this.commonUrl + 'login', loginDetails)
+    return this.http.post(this.commonUrl + 'user/login', loginDetails)
   }
 }
 
