@@ -3,7 +3,7 @@
         <div class="col-md-3 mt-5">
             <div class="float-left form-group  mx-auto">
                 <select class="form-control" id="selectuser">
-                    <option>Select User</option>
+                    <option>Type of Staff</option>
                     <option>Principal</option>
                     <option>Teachers</option>
                     <option>Non-Teaching Staff</option>
@@ -28,31 +28,48 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="font-weight-bold mt-3">SELF EVALUATION FORM</h3>
+            <h2 class="font-weight-bold mt-3 text-center mb-5">SELF EVALUATION FORM</h2>
         </div>
     </div>
+
+
+    
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <button (click)="addTitle()" class="btn btn-primary">Add Title</button>
+            </div>
+            <div class="col-md-3">
+                <button (click)="addQuestion()" class="btn btn-primary">Add Question</button>
+                </div>
+    </div>
+    <!-- <div class="row" #addquesForm='ngForm'>
+        <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" #questionTitle='ngModel' name="questionTitle"
+                [(ngModel)]="questionTitle" placeholder="Enter Title" id="qTitle" required>
+              <div *ngIf="questionTitle.invalid && (questionTitle.dirty || questionTitle.touched)" class="text-danger">
+                <div *ngIf="questionTitle.errors.required">
+                  Question Title is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="text" class="form-control" #formQuestion='ngModel' name="formQuestion"
+                [(ngModel)]="formQuestion" placeholder="Enter Title" id="qTitle" required>
+              <div *ngIf="formQuestion.invalid && (formQuestion.dirty || formQuestion.touched)" class="text-danger">
+                <div *ngIf="formQuestion.errors.required">
+                  Question is required
+                </div>
+              </div>
+            </div>
+          </div>
+    </div> -->
     <div class="row">
         <div class="col-md-12">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 1">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 2">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 3">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 4">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 5">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 6">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 7">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 8">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 9">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 10">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 11">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 12">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 13">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 14">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 15">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 16">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 17">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 18">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 19">
-            <input class="form-group form-control" type="text" placeholder="Enter Question 20">
             <a href="#" class="btn btn-primary float-right my-3" id="savequestions">Save Changes</a>
         </div>
     </div>

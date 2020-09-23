@@ -14,6 +14,15 @@ commonUrl = AppConfig.commonurl
   getloginData(loginDetails){
     return this.http.post(this.commonUrl + 'user/login', loginDetails)
   }
+
+  getCurrentRole(){
+    if(localStorage.getItem('role')){
+      const role = localStorage.getItem('role');
+      // const tokenPayload = decode(token);
+       return role
+    }
+     }
+
 }
 
 
