@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppConfig } from "../config/app.config";
 @Component({
   selector: 'app-add-assessment',
   templateUrl: './add-assessment.component.html',
@@ -7,28 +7,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAssessmentComponent implements OnInit {
 
-  selfAssessment = [{
-    id:"",
-    question:""
-  }]
+onselStaff = "";
 
+onselAssessment = "";
 
+formTitle="";
+
+  assessmentObj :{
+    title:'',
+    questions:[],
+    staffType:'',
+    assessmentType:''
+  }
+
+  selectStaffArr = AppConfig.selectStaff;
+  selectAssessmentArr = AppConfig.selectAssessment;
+  formConfigArr = AppConfig.formConfig;
+
+  question: any = "";
 
   constructor() { }
 
   ngOnInit() {
+
+    this.assessmentObj = {
+      title:'',
+      questions:[],
+      staffType:'',
+      assessmentType:''
+        
+    }
+    console.log("sel staff",this.selectStaffArr);
+
   }
 
 
-  // addQuestion(addquesForm) {
-  //   let selfAssessment = {
-  //   id:addquesForm.form.value.schools,
-  //   staffEmail:addquesForm.form.value.staffEmail
-  //   }
+  OnSelectStaff(event){
+    this.onselStaff=event;
+    console.log("staff Val",event);
+  }
 
-  //   this.selfAssessment.push(selfAssessment);
-  //   addquesForm.reset();
-  //   console.log("test",this.selfAssessment);
-  // }
 
+  OnSelectAssessment(event){
+
+    this.onselAssessment=event;
+    let matrixkey = this.onselStaff + this.onselAssessment;
+    let formObj = this.formConfigArr.filter(item=>{
+      return item.matrixValue === matrixkey
+    })
+    this.formTitle = formObj[0]['formName'];
+    console.log("mat Val",event,formObj[0]);
+  }
+  
 }
