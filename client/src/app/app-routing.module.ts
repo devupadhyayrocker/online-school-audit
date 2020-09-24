@@ -1,3 +1,4 @@
+import { NonTeachingComponent } from './shared/non-teaching/non-teaching.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddUserComponent } from './auth/add-user/add-user.component';
@@ -15,25 +16,42 @@ import { TeacherDashboardComponent } from './shared/teacher-dashboard/teacher-da
 import { TeacherOtherAssessmentComponent } from './shared/teacher-other-assessment/teacher-other-assessment.component';
 import { TeacherPeerAssessmentComponent } from './shared/teacher-peer-assessment/teacher-peer-assessment.component';
 import { TeacherSelfAssessmentComponent } from './shared/teacher-self-assessment/teacher-self-assessment.component';
-
+import { RoleGuard } from '../app/shared/services/guard/role-guard.guard';
 
 const routes: Routes = [
-  {path: '',   redirectTo: '/login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'add_user', component: AddUserComponent},
-  {path: 'add_assessment', component: AddAssessmentComponent},
-  {path: 'add_principal', component: AddPrincipalComponent},
-  {path: 'add_school', component: AddSchoolComponent},
-  {path: 'add_teacher', component: AddTeacherComponent},
-  {path: 'admin_dashboard', component: AdminDashboardComponent},
-  {path: 'assign_teacher', component: AssignTeacherComponent},
-  {path: 'principal_dashboard', component: PrincipalDashboardComponent},
-  {path: 'principal_assessment', component: PrincipalAssessmentComponent},
-  {path: 'teacher_dashboard', component: TeacherDashboardComponent},
-  {path: 'teacher_self_assessment', component: TeacherSelfAssessmentComponent},
-  {path: 'teacher_peer_assessment', component: TeacherPeerAssessmentComponent},
-  {path: 'teacher_other_assessment', component: TeacherOtherAssessmentComponent},
-  {path: 'teacher_academic_assessment', component: TeacherAcademicAssessmentComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'add_user', component: AddUserComponent },
+  { path: 'add_assessment', component: AddAssessmentComponent },
+  { path: 'add_principal', component: AddPrincipalComponent },
+  { path: 'add_school', component: AddSchoolComponent },
+  { path: 'add_teacher', component: AddTeacherComponent },
+  {
+    path: 'admin_dashboard', component: AdminDashboardComponent,
+    data: { roles: ['admin'] },
+    canActivate: [RoleGuard]
+  },
+  { path: 'assign_teacher', component: AssignTeacherComponent },
+  {
+    path: 'principal_dashboard', component: PrincipalDashboardComponent,
+    data: { roles: ['principal'] },
+    canActivate: [RoleGuard]
+  },
+  { path: 'principal_assessment', component: PrincipalAssessmentComponent },
+  {
+    path: 'teacher_dashboard', component: TeacherDashboardComponent,
+    data: { roles: ['teaching'] },
+    canActivate: [RoleGuard]
+  },
+  {
+    path: 'nonteaching_dashboard', component: NonTeachingComponent,
+    data: { roles: ['nonteaching'] },
+    canActivate: [RoleGuard]
+  },
+  { path: 'teacher_self_assessment', component: TeacherSelfAssessmentComponent },
+  { path: 'teacher_peer_assessment', component: TeacherPeerAssessmentComponent },
+  { path: 'teacher_other_assessment', component: TeacherOtherAssessmentComponent },
+  { path: 'teacher_academic_assessment', component: TeacherAcademicAssessmentComponent },
 ];
 
 @NgModule({

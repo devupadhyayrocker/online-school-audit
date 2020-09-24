@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/auth/authentication.service';
 
@@ -9,8 +10,17 @@ import { AuthenticationService } from '../services/auth/authentication.service';
 })
 export class SidebarComponent implements OnInit {
   currentRole: string = "";
-  constructor(private authService: AuthenticationService) {
+  currentUrl: string = "";
+  constructor(private authService: AuthenticationService, private router:Router) {
     this.currentRole = this.authService.getCurrentRole();
+    
+    this.router.events.subscribe(event=>{
+      if(event.constructor.name === "NavigationEnd"){
+        this.currentUrl = event['url']
+        console.log("tttyt",event['url']);
+      }
+   
+    })
   }
 
   ngOnInit() {

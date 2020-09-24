@@ -26,9 +26,11 @@ export class LoginComponent implements OnInit {
     if(isLogin){
       this.router.navigate(['/admin_dashboard'])
     }
+   
    }
 
   ngOnInit() {
+    
   }
 
   doLogin(logForm) {
@@ -41,7 +43,27 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", res['token']);
         localStorage.setItem("userId", res['data'][0]._id);
         localStorage.setItem("role",res['data'][0].role);
-        this.router.navigate(['/admin_dashboard'])
+        if (res['data'][0].role=='admin'){
+          this.router.navigate(['/admin_dashboard']);
+        }
+
+        else if (res['data'][0].role=='editor'){
+          this.router.navigate(['/editor_dashboard']);
+        }
+        
+        else if (res['data'][0].role=='principal'){
+          this.router.navigate(['/principal_dashboard']);
+        }
+
+        else if (res['data'][0].role=='teaching'){
+          this.router.navigate(['/teacher_dashboard']);
+        }
+
+        else if (res['data'][0].role=='nonteaching'){
+          this.router.navigate(['/nonteaching_dashboard']);
+        }
+
+
       }
       console.log("res", res);
     }, err => {

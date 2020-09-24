@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ import { AddAssessmentComponent } from './shared/add-assessment/add-assessment.c
 import { PrincipalAssessmentComponent } from './shared/principal-assessment/principal-assessment.component';
 import { TeacherAcademicAssessmentComponent } from './shared/teacher-academic-assessment/teacher-academic-assessment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NonTeachingComponent } from './shared/non-teaching/non-teaching.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +45,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AddUserComponent,
     AddAssessmentComponent,
     PrincipalAssessmentComponent,
-    TeacherAcademicAssessmentComponent
+    TeacherAcademicAssessmentComponent,
+    NonTeachingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],

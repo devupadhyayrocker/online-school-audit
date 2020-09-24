@@ -1,66 +1,67 @@
-<div class="h-100 navbar navbar-dark bg-dark d-block">
+<div class="row vh-100"><nav [ngClass]=" currentUrl === '/login' || '/' ? 'd-none' : 'd-block'" class="col-md-2 h-100 navbar navbar-dark bg-dark">
+
+    <ul *ngIf="currentRole=='admin'" class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/admin_dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/add_school">Add-School</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/add_principal">Add-Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/add_teacher">Add-Staff</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/add_assessment">Add-Assessment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/add_user">User Management</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='principal'" class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/principal_dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/assign_teacher">Assign Teacher</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/principal_assessment">Teachers Assessment</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='teaching'" class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_other_assessment">Document Assessment</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='nonteaching'" class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
+      </li>
+    </ul>
+  </nav>
 
 
-
-
-  <ul *ngIf="currentRole=='admin'" class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/admin_dashboard">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/add_school">Add-School</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/add_principal">Add-Principal</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/add_teacher">Add-Staff</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/add_assessment">Add-Assessment</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/add_user">User Management</a>
-  </li>
-  </ul>
-
-<ul *ngIf="currentRole=='principal'" class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/principal_dashboard">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/assign_teacher">Assign Teacher</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/principal_assessment">Teachers Assessment</a>
-  </li>
-  </ul>
-
-
-<ul *ngIf="currentRole=='teaching'" class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_other_assessment">Document Assessment</a>
-  </li>
-</ul>
-
-<ul *ngIf="currentRole=='nonteaching'" class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
-  </li>
-</ul>
-</div>
+  <div [ngClass]=" currentUrl === '/login' || '/' ? 'col-md-12' : 'col-md-10'">
+<router-outlet></router-outlet>
+  </div></div>
