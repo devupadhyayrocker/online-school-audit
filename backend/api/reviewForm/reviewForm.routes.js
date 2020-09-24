@@ -1,0 +1,39 @@
+var express = require('express');
+const formController = require('./reviewForm.controller');
+// const auth = require('../../middleware/authorization');
+const router = express.Router();
+
+//  add review form
+router.post('/addReviewForm', (req, res, next) => {
+    const formDetails = req.body;
+    try {
+        formController.addForm(formDetails).then(result => {
+            return res.status(201).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+// get review form details
+router.post('/getReviewFormByStaffId', (req, res, next) => {
+    const formDetails = req.body;
+    try {
+        formController.getFormDetails(formDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+
+module.exports = router;

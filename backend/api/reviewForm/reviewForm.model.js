@@ -14,13 +14,24 @@ const ReviewFormSchema = new Schema({
     quesArr: [{
         type: String
     }],
+    options: [{
+        id: String,
+        text: String,
+    }],
+    answers: [{
+        id: String,
+    }],
     totalMarks: {
         type: Number
     },
     marksObtained: {
         type: Number
     },
-    staffId: {
+    staffIdFor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "staff"
+    },
+    staffIdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "staff"
     },
@@ -31,7 +42,13 @@ const ReviewFormSchema = new Schema({
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"
+    },
+    role: {
+        type: String
     }
+
+}, {
+    timestamps: true
 });
 
 // Export the model

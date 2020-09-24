@@ -1,0 +1,50 @@
+
+const ReviewForm = require('./reviewForm.model');
+const config = require('../../config/db.config');
+const messageConfig = require('../../config/message.config');
+
+module.exports = {
+
+    addForm: (formDetails) => {
+        return new Promise((resolve, reject) => {
+            let reviewForm = new ReviewForm({
+                type: formDetails.type,
+                title: formDetails.title,
+                quesArr: formDetails.quesArr,
+                options: formDetails.options,
+                answers: formDetails.answers,
+                totalMarks: formDetails.totalMarks,
+                marksObtained: formDetails.marksObtained,
+                staffIdFor: formDetails.staffIdFor,
+                staffIdBy: formDetails.staffIdBy,
+                reviewStatus: formDetails.reviewStatus,
+                schoolId: staffDetails.schoolId,
+                role: staffDetails.role
+            })
+            reviewForm.save().then(data => {
+                return resolve({ success: true, message: 'Form Added Successfully' })
+            }).catch(err => {
+                return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+            })
+
+        })
+    },
+
+    getFormDetails: (reviewDetails) => {
+        return new Promise((resolve, reject) => {
+            if (reviewDetails && reviewDetails.staffId) {
+                ReviewForm.find({ "staffIdFor": reviewDetails.staffId }, (err, data) => {
+                    if (err) {
+                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+                })
+            } else {
+                return reject({ status: 404, message: 'StaffId is required' })
+            }
+        })
+    },
+
+
+}
+
