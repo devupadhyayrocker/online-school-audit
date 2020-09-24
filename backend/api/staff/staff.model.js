@@ -30,7 +30,15 @@ const StaffSchema = new Schema({
     },
     isReviewing: {
         type: Boolean
+    }
+    ,
+    staffArea: {
+        type: String
     },
+    teacherCategory: {  //N.T.  P.R.T.  T.G.T.
+        type: Boolean
+    },
+    // subject, class & section
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"

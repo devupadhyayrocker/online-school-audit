@@ -12,12 +12,12 @@ export class SidebarComponent implements OnInit {
   currentRole: string = "";
   currentUrl: string = "";
   constructor(private authService: AuthenticationService, private router:Router) {
-    this.currentRole = this.authService.getCurrentRole();
+  
     
     this.router.events.subscribe(event=>{
+      this.currentRole = this.authService.getCurrentRole();
       if(event.constructor.name === "NavigationEnd"){
         this.currentUrl = event['url']
-        console.log("tttyt",event['url']);
       }
    
     })

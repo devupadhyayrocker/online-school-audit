@@ -15,11 +15,13 @@ isLoggedIn : boolean = false;
   constructor(
     private router: Router
   ) {
-    
-    let isLogin = localStorage.getItem('token');
-    if(isLogin){
-      this.isLoggedIn = true;
-    }
+    this.router.events.subscribe(event=>{
+      let isLogin = localStorage.getItem('token');
+      if(isLogin){
+        this.isLoggedIn = true;
+      }
+    })
+
     
    }
 
@@ -27,7 +29,7 @@ isLoggedIn : boolean = false;
   }
 
   doLogOut(){
-    
+    this.isLoggedIn = false;
     localStorage.clear();
     this.router.navigate(['/login'])
   }
