@@ -27,6 +27,21 @@ export class AddUserComponent implements OnInit {
     fullName: "Delhi Public School",
     Email: "ghaziabad",
     userName: "delhi@gmail.com"
+  },
+  {
+    fullName: "Delhi Public School",
+    Email: "ghaziabad",
+    userName: "delhi@gmail.com"
+  },
+  {
+    fullName: "Delhi Public School",
+    Email: "ghaziabad",
+    userName: "delhi@gmail.com"
+  },
+  {
+    fullName: "Delhi Public School",
+    Email: "ghaziabad",
+    userName: "delhi@gmail.com"
   }]
 
 

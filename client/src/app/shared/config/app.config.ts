@@ -12,7 +12,7 @@ export class AppConfig {
     public static classList = ["Pre-Nursery/Nursery", "L.K.G./Nursery", "U.K.G./Prep", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"];
     public static section = ["A", "B", "C", "D", "E", "F"];
 
-    public static peerStaffDemo = ["A", "B", "C", "D", "E", "F"];
+    public static peerStaffDemo = ["Dev Upadhyay", "Rishabh Srivastav", "Rahul Singh", "Sagar Verma", "Piyush Sharma", "Sachin Singh","Vivek Mishra", "Mukul Kalra", "Rajinder Kaur", "Deepak Jain", "Khushboo Priya", "Vishanu Kumar"];
 
     
     public static selectStaff = [{

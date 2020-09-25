@@ -16,6 +16,21 @@ export class AddSchoolComponent implements OnInit {
   schoolName:"chabildas public school",
     location:"Patel Nagar",
     staffEmail:"chabildas@gmail.com"
+},
+{
+  schoolName:"chabildas public school",
+    location:"Patel Nagar",
+    staffEmail:"chabildas@gmail.com"
+},
+{
+  schoolName:"chabildas public school",
+    location:"Patel Nagar",
+    staffEmail:"chabildas@gmail.com"
+},
+{
+  schoolName:"chabildas public school",
+    location:"Patel Nagar",
+    staffEmail:"chabildas@gmail.com"
 }]
 
 

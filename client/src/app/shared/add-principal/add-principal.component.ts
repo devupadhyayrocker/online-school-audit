@@ -25,6 +25,22 @@ export class AddPrincipalComponent implements OnInit {
   principalEmail: "dev@dpsf.com",
   principalContact:'9898989898',
   location: "Faridabad"
+},
+
+{
+  schools : "Delhi Public School faridabad",
+  principalName:'principal 2',
+  principalEmail: "dev@dpsf.com",
+  principalContact:'9898989898',
+  location: "Faridabad"
+},
+
+{
+  schools : "Delhi Public School faridabad",
+  principalName:'principal 2',
+  principalEmail: "dev@dpsf.com",
+  principalContact:'9898989898',
+  location: "Faridabad"
 }]
 
 principalForm = {

@@ -23,6 +23,71 @@ export class AddTeacherComponent implements OnInit {
     staffName:"Delhi Public School",
     staffEmail:"ghaziabad",
     staffContact:"delhi@gmail.com"
+  },{
+    schools:"Delhi Public School",
+    staffType:"Delhi Public School",
+    nonteachingArea:"ghaziabad",
+    teacherType:"delhi@gmail.com",
+    teacherCategory:"Delhi Public School",
+    classTeacher:"Delhi Public School",
+    Subjects:"ghaziabad",
+    classList:"delhi@gmail.com",
+    section:"Delhi Public School",
+    staffName:"Delhi Public School",
+    staffEmail:"ghaziabad",
+    staffContact:"delhi@gmail.com"
+  },{
+    schools:"Delhi Public School",
+    staffType:"Delhi Public School",
+    nonteachingArea:"ghaziabad",
+    teacherType:"delhi@gmail.com",
+    teacherCategory:"Delhi Public School",
+    classTeacher:"Delhi Public School",
+    Subjects:"ghaziabad",
+    classList:"delhi@gmail.com",
+    section:"Delhi Public School",
+    staffName:"Delhi Public School",
+    staffEmail:"ghaziabad",
+    staffContact:"delhi@gmail.com"
+  },{
+    schools:"Delhi Public School",
+    staffType:"Delhi Public School",
+    nonteachingArea:"ghaziabad",
+    teacherType:"delhi@gmail.com",
+    teacherCategory:"Delhi Public School",
+    classTeacher:"Delhi Public School",
+    Subjects:"ghaziabad",
+    classList:"delhi@gmail.com",
+    section:"Delhi Public School",
+    staffName:"Delhi Public School",
+    staffEmail:"ghaziabad",
+    staffContact:"delhi@gmail.com"
+  },{
+    schools:"Delhi Public School",
+    staffType:"Delhi Public School",
+    nonteachingArea:"ghaziabad",
+    teacherType:"delhi@gmail.com",
+    teacherCategory:"Delhi Public School",
+    classTeacher:"Delhi Public School",
+    Subjects:"ghaziabad",
+    classList:"delhi@gmail.com",
+    section:"Delhi Public School",
+    staffName:"Delhi Public School",
+    staffEmail:"ghaziabad",
+    staffContact:"delhi@gmail.com"
+  },{
+    schools:"Delhi Public School",
+    staffType:"Delhi Public School",
+    nonteachingArea:"ghaziabad",
+    teacherType:"delhi@gmail.com",
+    teacherCategory:"Delhi Public School",
+    classTeacher:"Delhi Public School",
+    Subjects:"ghaziabad",
+    classList:"delhi@gmail.com",
+    section:"Delhi Public School",
+    staffName:"Delhi Public School",
+    staffEmail:"ghaziabad",
+    staffContact:"delhi@gmail.com"
   }]
 
   selectedItems = [];

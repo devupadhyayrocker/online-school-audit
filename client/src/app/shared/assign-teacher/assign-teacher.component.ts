@@ -9,16 +9,14 @@ import { AppConfig } from "../config/app.config";
 export class AssignTeacherComponent implements OnInit {
 
   peerStaffData = [{
-    teacherWhoPeer:'teacher 11',
-    teacherToPeer:'teacher 22'
+    teacherWhoPeer: 'teacher 11',
+    teacherToPeer: 'teacher 22'
   }]
-
-  
   dropdownSettings = {};
   teacherCategoryArr = AppConfig.teacherCategory;
   peerStaffArr = AppConfig.peerStaffDemo;
   staffTypeArr = AppConfig.staffType;
-  
+
   peeredStaffForm = {
     teacherWhoPeer: '',
     teacherToPeer: '',
@@ -31,10 +29,10 @@ export class AssignTeacherComponent implements OnInit {
   ngOnInit() {
   }
 
-  addpeeredStaff(asteForm){
+  addpeeredStaff(asteForm) {
     let peerStaffData = {
-      teacherWhoPeer:asteForm.form.value.teacherWhoPeer,
-      teacherToPeer:asteForm.form.value.teacherToPeer,
+      teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
+      teacherToPeer: asteForm.form.value.teacherToPeer,
     }
 
     this.peerStaffData.push(peerStaffData);
