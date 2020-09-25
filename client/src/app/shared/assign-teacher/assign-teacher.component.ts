@@ -17,12 +17,13 @@ export class AssignTeacherComponent implements OnInit {
   dropdownSettings = {};
   teacherCategoryArr = AppConfig.teacherCategory;
   peerStaffArr = AppConfig.peerStaffDemo;
-
+  staffTypeArr = AppConfig.staffType;
   
   peeredStaffForm = {
     teacherWhoPeer: '',
     teacherToPeer: '',
-    teacherCategory: ''
+    teacherCategory: '',
+    staffType: ''
   }
 
   constructor() { }

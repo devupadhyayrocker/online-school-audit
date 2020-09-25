@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mt-5">
+    <div class="col-md-12 mt-4 mb-2">
       <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#staffModal">Add New
         Staff</a>
       </div>
   </div>
 </div>
-
-<div class="mx-5">
-  <table class="table mt-5">
-    <thead class="thead-light">
-      <tr>
+<hr>
+<div style="width: 95%;" class="d-block mx-auto table-responsive">
+  <table class="table table-sm table-bordered mt-2">
+    <thead>
+      <tr class="text-center">
         <th scope="col">S. No.</th>
         <th scope="col">School Name</th>
         <th scope="col">Staff Type</th>
@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let staff of staffData; let i=index">
+      <tr *ngFor="let staff of staffData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
         <td>{{staff.schools}}</td>
         <td>{{staff.staffType}}</td>

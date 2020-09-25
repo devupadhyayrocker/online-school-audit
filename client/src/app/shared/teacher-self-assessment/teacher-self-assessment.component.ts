@@ -12,4 +12,9 @@ export class TeacherSelfAssessmentComponent implements OnInit {
   ngOnInit() {
   }
 
+  submitSelfEvaluation(){
+    
+  }
+
+
 }

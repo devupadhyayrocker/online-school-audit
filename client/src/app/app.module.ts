@@ -25,6 +25,8 @@ import { PrincipalAssessmentComponent } from './shared/principal-assessment/prin
 import { TeacherAcademicAssessmentComponent } from './shared/teacher-academic-assessment/teacher-academic-assessment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NonTeachingComponent } from './shared/non-teaching/non-teaching.component';
+import { NonTeachingSelfAssessmentComponent } from './shared/non-teaching-self-assessment/non-teaching-self-assessment.component';
+import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-assessment/non-teaching-peer-assessment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import { NonTeachingComponent } from './shared/non-teaching/non-teaching.compone
     AddAssessmentComponent,
     PrincipalAssessmentComponent,
     TeacherAcademicAssessmentComponent,
-    NonTeachingComponent
+    NonTeachingComponent,
+    NonTeachingSelfAssessmentComponent,
+    NonTeachingPeerAssessmentComponent
   ],
   imports: [
     BrowserModule,

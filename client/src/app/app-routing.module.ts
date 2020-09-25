@@ -17,6 +17,8 @@ import { TeacherOtherAssessmentComponent } from './shared/teacher-other-assessme
 import { TeacherPeerAssessmentComponent } from './shared/teacher-peer-assessment/teacher-peer-assessment.component';
 import { TeacherSelfAssessmentComponent } from './shared/teacher-self-assessment/teacher-self-assessment.component';
 import { RoleGuard } from '../app/shared/services/guard/role-guard.guard';
+import { NonTeachingSelfAssessmentComponent } from './shared/non-teaching-self-assessment/non-teaching-self-assessment.component';
+import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-assessment/non-teaching-peer-assessment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -48,6 +50,8 @@ const routes: Routes = [
     data: { roles: ['nonteaching'] },
     canActivate: [RoleGuard]
   },
+  { path: 'nonteaching_self_assessment', component: NonTeachingSelfAssessmentComponent },
+  { path: 'nonteaching_peer_assessment', component: NonTeachingPeerAssessmentComponent },
   { path: 'teacher_self_assessment', component: TeacherSelfAssessmentComponent },
   { path: 'teacher_peer_assessment', component: TeacherPeerAssessmentComponent },
   { path: 'teacher_other_assessment', component: TeacherOtherAssessmentComponent },

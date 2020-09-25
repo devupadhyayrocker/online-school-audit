@@ -1,67 +1,125 @@
-<div class="row vh-100"><nav  class="col-md-2 h-100 navbar navbar-dark bg-dark d-block">
-
-    <ul *ngIf="currentRole=='admin'" class="nav flex-column">
+<div class="row vh-100"><nav [ngClass]=" currentUrl === '/login' ? 'd-none' : 'd-block'" class="pt-0 col-md-2 h-100 navbar navbar-dark bg-dark pr-0">
+  <hr class="bg-secondary mt-0">
+    <ul *ngIf="currentRole=='admin'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Dev
+            <strong>Upadhyay</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/admin_dashboard">Dashboard</a>
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light" href="#" routerLink="/admin_dashboard"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;Admin Dashboard</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/add_school">Add-School</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_school"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Add School</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/add_principal">Add-Principal</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_principal"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Add Principal</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/add_teacher">Add-Staff</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_teacher"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Add Staff</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/add_assessment">Add-Assessment</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_assessment"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;Add Assessment</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/add_user">User Management</a>
-      </li>
-    </ul>
-
-    <ul *ngIf="currentRole=='principal'" class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/principal_dashboard">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/assign_teacher">Assign Teacher</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/principal_assessment">Teachers Assessment</a>
-      </li>
-    </ul>
-
-    <ul *ngIf="currentRole=='teaching'" class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_other_assessment">Document Assessment</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_user"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;User Management</a><hr class="bg-white my-2">
       </li>
     </ul>
 
-    <ul *ngIf="currentRole=='nonteaching'" class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_dashboard">Dashboard</a>
+    <ul *ngIf="currentRole=='principal'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span class="user-role">Principal</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div><li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light" href="#" routerLink="/principal_dashboard"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Instructions</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_self_assessment">Self Assessment</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/assign_teacher"><i class="fa fa-hand-o-up" aria-hidden="true"></i>&nbsp;Assign Teacher</a><hr class="bg-white my-2">
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="#" routerLink="/teacher_peer_assessment">Peer Assessment</a>
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/principal_assessment"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Teachers Assessment</a><hr class="bg-white my-2">
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='teaching'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span class="user-role">Teacher</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div><li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light" href="#" routerLink="/teacher_dashboard"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;
+  Instructions</a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/teacher_self_assessment"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Self Assessment</a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/teacher_peer_assessment"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Peer Assessment</a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/teacher_other_assessment"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;Document Assessment</a><hr class="bg-white my-2">
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='nonteaching'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span class="user-role">Non Teaching Staff</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div><li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light" href="#" routerLink="/nonteaching_dashboard"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Instructions</a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/nonteaching_self_assessment"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Self Assessment</a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/nonteaching_peer_assessment"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Peer Assessment</a><hr class="bg-white my-2">
       </li>
     </ul>
   </nav>
 
 
-  <div [ngClass]=" currentUrl === '/login' || '/' ? 'col-md-12' : 'col-md-10'">
+  <div [ngClass]=" currentUrl === '/login'  ? 'col-md-12' : 'px-0 col-md-10'">
 <router-outlet></router-outlet>
   </div></div>

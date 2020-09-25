@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor(){
-    console.log("rrt");
   }
   title = 'school-audit';
 }

@@ -1,9 +1,9 @@
 <!-- Just an image -->
-<nav class="navbar navbar-light bg-light">
-        <img src="./assets/img/logo.jpg" width="230" height="auto" alt="">
-        <span *ngIf="isLoggedIn" class="text-secondary mr-4 font-weight-bold text-decoration-none"
+<diV [ngClass]=" currentUrl === '/login' ? 'd-none' : 'd-block'">
+<nav class="navbar navbar-dark bg-dark py-3">
+        <img src="./assets/img/logo.jpg" width="225" height="auto" alt="">
+        <span class="h4 text-white font-weight-light">D-196, D Block, Sector 63, Noida, Uttar Pradesh 201307</span>
+        <span  *ngIf="isLoggedIn" class="h5 pointer text-white mr-3 font-weight-bold text-decoration-none"
                 (click)="doLogOut()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;LOG OUT</span>
-                <span class="navbar-text">
-                        Navbar text with an inline element
-                      </span>
-        </nav>
+                
+        </nav></diV>

@@ -1,22 +1,22 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 mt-5">
+        <div class="col-md-12 mt-4 mb-2">
           <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Assign Teacher</a>
         </div>
     </div>
 </div>
-
-<div class="mx-5">
-  <table class="table mt-5">
-    <thead class="thead-light">
-      <tr>
+<hr>
+<div class="w-50 d-block mx-auto">
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr class="text-center">
         <th scope="col">S.No</th>
         <th scope="col">Name of the staff member</th>
         <th scope="col">Name of the peer</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let peerStaff of peerStaffData; let i=index">
+      <tr *ngFor="let peerStaff of peerStaffData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
         <td>{{peerStaff.teacherWhoPeer}}</td>
         <td>{{peerStaff.teacherToPeer}}</td>
@@ -44,9 +44,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title mr-5" id="exampleModalLabel">Teacher Assessment</h5>
+        <div class="form-group mb-0 mr-4 ">
+          <select class="form-control" [(ngModel)]="peeredStaffForm.staffType" name="staffType" required>
+            <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+            <option *ngFor="let staffType of staffTypeArr" class="dropdown-item"  value="{{staffType}}">{{staffType}}</option>
+          </select>
+        </div>
         <div class="form-group mb-0">
           <select class="form-control" [(ngModel)]="peeredStaffForm.teacherCategory" name="teacherCategory" required>
-            <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
+            <option class="dropdown-item" value="" disabled selected>Staff Category</option>
             <option *ngFor="let teacherCategory of teacherCategoryArr" class="dropdown-item"  value="{{teacherCategory}}">{{teacherCategory}}</option>
           </select>
         </div>

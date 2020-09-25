@@ -24,7 +24,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("dev",this.currentRole);
   }
 
 

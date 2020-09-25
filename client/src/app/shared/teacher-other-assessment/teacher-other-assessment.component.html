@@ -1,29 +1,34 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1 class="text-center font-weight-bold mt-5">TEACHERS SUBJECT KNOWLEDGE ASSESSMENT</h1>
-    </div>
+	<div class="col-md-12">
+		<h2 class="text-center my-4">STATEMENTS FOR THE DOCUMENT EVALUATION</h2>
+	</div>
 </div>
-<div class="privew mt-5 mx-4">
-    <div class="questionsBox">
-        <div class="questions">Which of the following is correct about data-keyboard Data attribute of Modal Plugin?</div>
-        <ul class="answerList">
-            <li>
-                <label>
-                    <input type="radio" name="answerGroup" value="0" id="answerGroup_0"> It specifies static for a backdrop, if you don't want the modal to be closed when the user clicks outside of the modal.</label>
-            </li>
-            <li>
-                <label>
-                    <input type="radio" name="answerGroup" value="1" id="answerGroup_1"> It closes the modal when escape key is pressed; set to false to disable.</label>
-            </li>
-            <li>
-                <label>
-                    <input type="radio" name="answerGroup" value="2" id="answerGroup_2"> It shows the modal when initialized.</label>
-            </li>
-            <li>
-                <label>
-                    <input type="radio" name="answerGroup" value="3" id="answerGroup_3"> Using the jQuery .load method, injects content into the modal body. If an href with a valid URL is added, it will load that content.</label>
-            </li>
-        </ul>
-        <div class="questionsRow"><a href="#" class="button" id="prevquestions">Prev</a> <a href="#" class="button" id="nextquestions">Next</a><span>2 of 20</span></div>
-    </div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12"><h3 class="text-uppercase font-eweight-bold mb-3 bg-info d-block py-1 pl-2 text-white w-25">my duties</h3></div>
+		<div class="col-md-12 form-group">
+			<label class="labeltext text-secondary h4 pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in advance.</label>
+			<div class="form-check-inline float-right">
+				<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+					<input type="radio" checked="checked" name="radio">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+					<input type="radio" name="radio">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+					<input type="radio" checked="checked" name="radio">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+					<input type="radio" name="radio">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 mt-3">
+		<button class="btn btn-success float-right" (click)="submitSelfEvaluation()" type="button">Submit Now</button>
+	</div>
 </div>

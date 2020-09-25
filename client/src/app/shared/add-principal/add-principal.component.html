@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mt-5">
+    <div class="col-md-12 mt-4 mb-2">
       <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#principalmodal">Add New
         Principal</a>
     </div>
   </div>
 </div>
-
+<hr>
 <div class="mx-5">
-  <table class="table mt-5">
-    <thead class="thead-light">
-      <tr>
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr class="text-center">
         <th scope="col">S. No.</th>
         <th scope="col">School Name</th>
         <th scope="col">Principal Name</th>
@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let principal of principalData; let i=index">
+      <tr *ngFor="let principal of principalData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
         <td>{{principal.schools}}</td>
         <td>{{principal.principalName}}</td>
