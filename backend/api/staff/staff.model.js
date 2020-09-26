@@ -8,9 +8,14 @@ const StaffSchema = new Schema({
         type: String,
         required: true
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+    staffEmail: {
+        type: String
+    },
+    username: {
+        type: String
+    },
+    password: {
+        type: String
     },
     contactNo: {
         type: Number,
@@ -49,7 +54,13 @@ const StaffSchema = new Schema({
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"
-    }
+    },
+    schoolName: {
+        type: String
+    },
+    role: {
+        type: String
+    },
 });
 
 // Export the model

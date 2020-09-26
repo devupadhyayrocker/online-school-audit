@@ -18,7 +18,6 @@ commonUrl = AppConfig.commonurl
   getCurrentRole(){
     if(localStorage.getItem('role')){
       const role = localStorage.getItem('role');
-      // const tokenPayload = decode(token);
        return role
     }
      }

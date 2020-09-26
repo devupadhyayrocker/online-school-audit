@@ -11,7 +11,7 @@ const SchoolSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
+    schoolEmail: {
         type: String,
         required: true
     }

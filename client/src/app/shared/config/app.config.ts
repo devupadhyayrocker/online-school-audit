@@ -1,7 +1,7 @@
 export class AppConfig {
     public static commonurl = 'http://localhost:3000/api/';
     public static Subjects = ["English", "E.V.S.", "Social Studies", "Hindi", "Mathematics", "Computer", "G.K.", "Physics", "Chemistry", "Biology", "Music", "Physical Education", "Geography", "Sanskrit", "Political Science", "History", "Dance", "Art & Craft", "French", "Gurmukhi", "German"];
-    public static schools = ["The Jaipuria School, Farrukhabad", "Seth Anandram Jaipuria School, Unnao", "Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)", "Seth Anandram Jaipuria School, Varanasi",
+    public static schools = ["Seth Anandram Jaipuria School, Unnao", "Seth Anandram Jaipuria School, Lucknow (Alambagh Extn)", "Seth Anandram Jaipuria School, Varanasi",
         "Seth Anandram Jaipuria School, Sitarganj", "Seth Anandram Jaipuria School, Satna", "Seth Anandram Jaipuria School, Raebareli", "Seth Anandram Jaipuria School, Mirzapur",
         "Seth Anandram Jaipuria School, Dibiyapur"];
     public static staffType = ["Teaching", "Non-Teaching"];

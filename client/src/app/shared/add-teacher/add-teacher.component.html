@@ -72,7 +72,7 @@
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.schools" name="schools" required>
                 <option class="dropdown-item" value="" disabled selected>Select School</option>
-                <option *ngFor="let schools of schoolArr" class="dropdown-item"  value="{{schools}}">{{schools}}</option>
+                <option *ngFor="let school of schoolData" class="dropdown-item"  value="{{school._id}}">{{school.schoolName}}</option>
               </select>
             </div>
           </div> 

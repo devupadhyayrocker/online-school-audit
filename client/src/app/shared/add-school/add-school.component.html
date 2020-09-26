@@ -22,15 +22,15 @@
       <tr *ngFor="let school of schoolData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
         <td>{{school.schoolName}}</td>
-        <td>{{school.staffEmail}}</td>
+        <td>{{school.schoolEmail}}</td>
         <td>{{school.location}}</td>
         <td>
           <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
             class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
-            <i class="far fa-edit"></i>
+            <i  (click)="openEditForm(school)" class="far fa-edit"></i>
           </a>
           <a class="btn btn-sm btn-outline-lightning rounded-0">
-            <i class="far fa-trash-alt"></i>
+            <i (click)="deleteSchool(school)" class="far fa-trash-alt"></i>
           </a>
         </td>
       </tr>
@@ -44,7 +44,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="schoolModalLabel">School Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="scForm.reset();" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -93,12 +93,12 @@
               </div>
             </div>
           </div>
-
-
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" #closeBtn data-dismiss="modal">Close</button>
+        <button *ngIf="isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
+        (click)="updateSchool(scForm,schoolModal)">Update School</button>
         <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
           (click)="addSchool(scForm)">Add School</button>
       </div>

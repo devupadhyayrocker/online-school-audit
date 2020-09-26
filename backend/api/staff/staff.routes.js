@@ -19,6 +19,69 @@ router.post('/addStaff', (req, res, next) => {
 
 });
 
+//  add principal
+router.post('/addPrincipal', (req, res, next) => {
+    const principalDetails = req.body;
+    try {
+        staffController.addPrincipal(principalDetails).then(result => {
+            return res.status(201).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+// update principal
+router.post('/updatePrincipal', (req, res, next) => {
+    const principalDetails = req.body;
+    try {
+        staffController.updatePrincipal(principalDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+//  delete principal
+router.post('/deletePrincipal', (req, res, next) => {
+    const principalDetails = req.body;
+    try {
+        staffController.deletePrincipal(principalDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+//  add staff
+router.get('/getPrincipalList', (req, res, next) => {
+    try {
+        staffController.getPrincipalList().then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 // get staff details
 router.post('/getStaffById', (req, res, next) => {
     const staffDetails = req.body;

@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from "../config/app.config";
+import { CommonService } from '../services/common/common.service';
 
 @Component({
   selector: 'app-add-teacher',
@@ -9,7 +10,8 @@ import { AppConfig } from "../config/app.config";
   styleUrls: ['./add-teacher.component.css']
 })
 export class AddTeacherComponent implements OnInit {
-  
+  schoolData: any =[];
+
   staffData = [{
     schools:"Delhi Public School",
     staffType:"Delhi Public School",
@@ -124,12 +126,11 @@ export class AddTeacherComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-
+    this.getSchoolList();
   }
-
 
   onItemSelect(selected) {
     const item = selected.item_text;
@@ -164,6 +165,17 @@ export class AddTeacherComponent implements OnInit {
       return item != selected
     })
     console.log("d2",this.section);
+  }
+
+  getSchoolList() {
+    this.commonService.getschoolList().subscribe(res => {
+      if (res['data']) {
+        this.schoolData = res['data'];
+        console.log("tt",this.schoolData);
+      }
+    }, err => {
+      console.log("err", err);
+    })
   }
   
 

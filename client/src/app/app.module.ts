@@ -27,6 +27,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NonTeachingComponent } from './shared/non-teaching/non-teaching.component';
 import { NonTeachingSelfAssessmentComponent } from './shared/non-teaching-self-assessment/non-teaching-self-assessment.component';
 import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-assessment/non-teaching-peer-assessment.component';
+import { CommonService } from './shared/services/common/common.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,7 @@ import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-a
     RouterModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [],
+  providers: [CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
