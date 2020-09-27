@@ -2,16 +2,12 @@
     <div class="row">
         <div class="col-md-3 mt-5">
             <div class="form-group d-block mx-auto">
-                <select class="form-control" id="selectuser">
-                    <option>Select User</option>
-                    <option>Principal</option>
-                    <option>Teachers</option>
-                    <option>Non-Teaching Staff</option>
+                <select (change)="onStaffSelect($event.target.value)" class="form-control" id="selectuser">
+                    <option value="" disabled selected>Select User</option>
+                    <option value="p">Principal</option>
+                    <option value="t">Teachers</option>
                 </select>
             </div>
-        </div>
-        <div class="col-md-3 mt-5">
-            <a href="#" class="mx-auto d-block btn btn-warning" routerLink="/add_user">Generate Password</a>
         </div>
         <div class="col-md-3 mt-5">
             <a href="#" class="mx-auto d-block btn btn-success" routerLink="/add_user">Email Password</a>
@@ -42,14 +38,23 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of userData; let i=index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{user.fullName}}</td>
-                <td>{{user.Email}}</td>
-                <td>{{user.userName}}</td>
-                <td><div class="form-group"><input [type]="password" readonly class="form-control-plaintext text-center" value="jaipuria@123"></div></td>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user,$event)"
+                        [value]="i" class="custom-control-input" id="{{i}}">
+                      <label class="custom-control-label" for="{{i}}">{{i+1}}</label>
+                    </div>
+                  </td>
+                <td>{{user.name}}</td>
+                <td>{{user.staffEmail}}</td>
+                <td>{{user.username}}</td>
+                <td><div class="form-group">
+                    <input *ngIf="i!==rowIndex || !isShow" type="password" readonly class="form-control-plaintext text-center" value="{{user.password}}">
+                    <input *ngIf="i==rowIndex && isShow" type="text" readonly class="form-control-plaintext text-center" value="{{user.password}}">
+                </div></td>
                 <td> 
                     <a class="btn btn-sm btn-outline-lightning rounded-0">
-                        <i (click)="onClick()" class="fa fa-eye" aria-hidden="true" ></i>
+                        <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true" ></i>
                       </a>
                   <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
                     class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">

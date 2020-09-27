@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-add-user',
@@ -8,69 +9,79 @@ import { Component, OnInit } from '@angular/core';
 export class AddUserComponent implements OnInit {
 
 
-  password;
-
+  password = 'password';
+  isShow: boolean = false;
   show = false;
 
 
   combinedArray: any = [];
-
+  rowIndex: number = -1;
   selectedArray: any = [];
+  userData: any = [];
 
-
-  userData = [{
-    fullName: "Delhi Public School",
-    Email: "ghaziabad",
-    userName: "delhi@gmail.com"
-  },
-  {
-    fullName: "Delhi Public School",
-    Email: "ghaziabad",
-    userName: "delhi@gmail.com"
-  },
-  {
-    fullName: "Delhi Public School",
-    Email: "ghaziabad",
-    userName: "delhi@gmail.com"
-  },
-  {
-    fullName: "Delhi Public School",
-    Email: "ghaziabad",
-    userName: "delhi@gmail.com"
-  },
-  {
-    fullName: "Delhi Public School",
-    Email: "ghaziabad",
-    userName: "delhi@gmail.com"
-  }]
-
-
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-    this.password = 'password';
   }
 
-  onClick() {
-    if (this.password === 'password') {
-      this.password = 'text';
-      this.show = true;
+  getPrincipalList() {
+    this.commonService.getPrincipalList().subscribe(res => {
+      if (res['data']) {
+        this.userData = res['data'];
+        console.log("tt", this.userData);
+      }
+    }, err => {
+      console.log("err", err);
+    })
+  }
+
+  getStaffList() {
+    this.commonService.getStaffList().subscribe(res => {
+      if (res['data']) {
+        this.userData = res['data'];
+      }
+    }, err => {
+      console.log("Erere", err);
+    })
+  }
+
+  onStaffSelect(val) {
+    if (val == 'p') {
+      this.getPrincipalList();
     } else {
-      this.password = 'password';
-      this.show = false;
+      this.getStaffList();
     }
+  }
+
+  onClick(index) {
+    if (index !== this.rowIndex) {
+      this.rowIndex = index;
+      this.password = 'text';
+      this.isShow = true;
+    } else {
+      if (this.password === 'password') {
+        this.password = 'text';
+        this.isShow = true;
+      } else {
+        this.password = 'password';
+        this.isShow = false;
+      }
+    }
+
+  }
+
+  onUserSelected(user) {
+    console.log("user", user);
   }
 
 
   CheckAllOptions(optional) {
-    if (this.combinedArray.every(val => val.checked == true)) {
-      this.combinedArray.forEach(val => { val.checked = false });
-      this.selectedArray = [];
+    if (this.userData.every(val => val.checked == true)) {
+      this.userData.forEach(val => { val.checked = false });
     }
 
     else {
-      this.combinedArray.forEach(val => { val.checked = true });
-      this.selectedArray = this.combinedArray.filter(item => item);
+      this.userData.forEach(val => { val.checked = true });
     }
 
   }
