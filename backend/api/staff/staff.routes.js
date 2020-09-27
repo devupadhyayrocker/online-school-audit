@@ -3,6 +3,23 @@ const staffController = require('./staff.controller');
 // const auth = require('../../middleware/authorization');
 const router = express.Router();
 
+// admin Login
+router.post('/login', (req, res, next) => {
+    const staffDetails = req.body;
+    try {
+        staffController.onLogin(staffDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            console.log("adm", err);
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 //  add staff
 router.post('/addStaff', (req, res, next) => {
     const staffDetails = req.body;
@@ -51,11 +68,43 @@ router.post('/updatePrincipal', (req, res, next) => {
 
 });
 
+// update staff
+router.post('/updateStaff', (req, res, next) => {
+    const staffDetails = req.body;
+    try {
+        staffController.updateStaff(staffDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 //  delete principal
 router.post('/deletePrincipal', (req, res, next) => {
     const principalDetails = req.body;
     try {
         staffController.deletePrincipal(principalDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+//  delete staff
+router.post('/deleteStaff', (req, res, next) => {
+    const staffDetails = req.body;
+    try {
+        staffController.deleteStaff(staffDetails).then(result => {
             return res.status(200).send(result);
         }, err => {
             return next(err)

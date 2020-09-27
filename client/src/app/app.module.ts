@@ -12,7 +12,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AdminDashboardComponent } from './shared/admin-dashboard/admin-dashboard.component';
 import { AddSchoolComponent } from './shared/add-school/add-school.component';
 import { AddPrincipalComponent } from './shared/add-principal/add-principal.component';
-import { AddTeacherComponent } from './shared/add-teacher/add-teacher.component';
+import { AddStaffComponent } from './shared/add-staff/add-staff.component';
 import { PrincipalDashboardComponent } from './shared/principal-dashboard/principal-dashboard.component';
 import { AssignTeacherComponent } from './shared/assign-teacher/assign-teacher.component';
 import { TeacherDashboardComponent } from './shared/teacher-dashboard/teacher-dashboard.component';
@@ -38,7 +38,7 @@ import { CommonService } from './shared/services/common/common.service';
     AdminDashboardComponent,
     AddSchoolComponent,
     AddPrincipalComponent,
-    AddTeacherComponent,
+    AddStaffComponent,
     PrincipalDashboardComponent,
     AssignTeacherComponent,
     TeacherDashboardComponent,

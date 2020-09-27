@@ -132,6 +132,36 @@ module.exports = {
             }
         })
     },
+    
+    updateStaff: (staffDetails) => {
+        return new Promise((resolve, reject) => {
+            if (staffDetails && staffDetails.staffId) {
+                Staff.update({ "staffId": staffDetails.staffId }, {
+                    $set: {
+                        name: staffDetails.name,
+                        contactNo: staffDetails.contactNo,
+                        isTeaching: staffDetails.isTeaching,
+                        isClassTeacher: staffDetails.isClassTeacher,
+                        teachingType: staffDetails.teachingType,
+                        staffArea: staffDetails.staffArea,
+                        teacherCategory: staffDetails.teacherCategory,
+                        subjectDetails: staffDetails.subjectDetails,
+                        schoolId: staffDetails.schoolId,
+                        schoolName: staffDetails.schoolName,
+                        staffEmail: staffDetails.staffEmail
+                    }
+                },(error, data) => {
+                    if(error){
+                        return reject({ status: 400, message: errorConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, data:data,  message: 'Staff Updated Successfully' })
+                })
+
+            } else {
+                return reject({ status: 400,message:'Staff Id is required' })
+            }
+        })
+    },
     deletePrincipal: (principalDetails) => {
         return new Promise((resolve, reject) => {
             if (principalDetails && principalDetails.staffId) {
@@ -181,6 +211,20 @@ module.exports = {
         })
     },
 
+    deleteStaff: (staffDetails) => {
+        return new Promise((resolve, reject) => {
+            if (staffDetails && staffDetails.staffId) {
+                Staff.remove({ "_id": staffDetails.staffId }, (err) => {
+                    if (err) {
+                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, message: 'Staff Deleted Scuccessfully' })
+                })
+            } else {
+                return reject({ status: 400, message: 'StaffId is required' })
+            }
+        })
+    },
     getStaffDetails: (staffDetails) => {
         return new Promise((resolve, reject) => {
             if (staffDetails && staffDetails.staffId) {

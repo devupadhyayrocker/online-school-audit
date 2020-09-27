@@ -7,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherSelfAssessmentComponent implements OnInit {
 
+  selfFormDisplay : boolean = true;
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  submitSelfEvaluation(){
-    
+  submitSelfEvaluation(event){
+    this.selfFormDisplay = false;
   }
 
 
