@@ -42,7 +42,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of userData; let i=index">
-                <th scope="row">{{i+1}}</th>
+                <th scope="row"><div class="custom-control custom-checkbox text-left">
+                    <input type="checkbox" class="custom-control-input" id="customCheck" >
+                    <label class="custom-control-label" for="customCheck">{{i+1}}</label>
+                  </div></th>
                 <td>{{user.fullName}}</td>
                 <td>{{user.Email}}</td>
                 <td>{{user.userName}}</td>

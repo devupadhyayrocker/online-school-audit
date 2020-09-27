@@ -94,7 +94,7 @@
       <td><div class="form-group mb-0">
         <select class="form-control" [(ngModel)]="peeredStaffForm.teacherToPeer" name="teacherToPeer" required>
           <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
-          <option *ngFor="let teacherToPeer of peerStaffArr" class="dropdown-item"  value="{{teacherToPeer}}">{{teacherToPeer}}</option>
+          <option *ngFor="let teacherToPeer of staffData" class="dropdown-item"  value="{{teacherToPeer}}">{{teacherToPeer}}</option>
         </select>
       </div>
     </td>

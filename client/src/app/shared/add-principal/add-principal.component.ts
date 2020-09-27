@@ -8,6 +8,9 @@ import { CommonService } from '../services/common/common.service';
   styleUrls: ['./add-principal.component.css']
 })
 export class AddPrincipalComponent implements OnInit {
+
+  schoolName : string = "";
+
   @ViewChild('closeBtn', { static: false }) closeBtn: ElementRef;
   schoolData = [];
   schoolArr = AppConfig.schools;
@@ -63,8 +66,13 @@ export class AddPrincipalComponent implements OnInit {
 
 
   addPrincipal(prForm) {
+   let schoolName = this.schoolData.filter(item=>{
+     return item._id == prForm.form.value.schools
+   })
+console.log("tt",schoolName,this.schoolData);
+
     let principalData = {
-      schoolName: prForm.form.value.schools,
+      schoolName: schoolName[0].schoolName,
       schoolId: this.schoolId,
       name: prForm.form.value.principalName,
       location: this.locationValue,

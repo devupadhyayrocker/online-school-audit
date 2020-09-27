@@ -5,12 +5,15 @@ import { AppConfig } from "../config/app.config";
 import { CommonService } from '../services/common/common.service';
 
 @Component({
-  selector: 'app-add-teacher',
-  templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.css']
+  selector: 'app-add-staff',
+  templateUrl: './add-staff.component.html',
+  styleUrls: ['./add-staff.component.css']
 })
-export class AddTeacherComponent implements OnInit {
+export class AddStaffComponent implements OnInit {
   @ViewChild('closeBtn', { static: false }) closeBtn: ElementRef;
+  
+  staffType : boolean = null;
+
   schoolData: any = [];
   staffSubjectObj = {
     subjectName: '',
@@ -178,4 +181,49 @@ export class AddTeacherComponent implements OnInit {
   }
 
 
+  deleteStaff(staff){
+    let staffData ={
+      staffId: staff._id
+    }
+    this.commonService.deleteStaff(staffData).subscribe(res => {
+      if (res['success']) {
+        this.getStaffList();
+      }
+    }, err => {
+      console.log("err", err);
+    })
+  }
+  
+
+  onstaffTypechange(event){
+ this.staffType = event == 'Teaching' ? true : false
+    console.log("dev staff",event,this.staffType);
+  }
+
+  openUpdateModal(staff){
+
+  }
+
+  // updateStaff(stForm) {
+  //   console.log("sd",staffData);
+  //   this.staffForm ={
+  //     schools: staffData.schoolId,
+  //     staffType: '',
+  //     nonteachingArea: staffData.staffArea,
+  //     teacherType: staffData.isTeaching ? 'Scholastic':'Co-Scholastic',
+  //     teacherCategory: '',
+  //     classTeacher: staffData.isClassTeacher ? 'Yes' : 'No',
+  //     Subjects: staffData.subjectDetails.subjectName,
+  //     classList: staffData.subjectDetails.className,
+  //     section: staffData.subjectDetails.sectionName,
+  //     staffName: staffData.name,
+  //     staffEmail: staffData.staffEmail,
+  //     staffContact: staffData.contactNo
+  //   }
+  //   this.section.push(staffData.subjectDetails.sectionName);
+  //   this.selectedItems3.push(staffData.subjectDetails.sectionName);
+  //   this.isEdit = true;
+  //   console.log("staffForm",this.staffForm);
+  // }
+  
 }

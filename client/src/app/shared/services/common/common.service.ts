@@ -31,6 +31,11 @@ export class CommonService {
     return this.http.post(this.commonUrl + 'staff/updatePrincipal',principalDetails)
   }
 
+  updateStaff(staffDetails){
+    return this.http.post(this.commonUrl + 'staff/updateStaff',staffDetails)
+  }
+
+
   deletePrincipal(principalDetails){
     return this.http.post(this.commonUrl + 'staff/deletePrincipal',principalDetails)
   }
@@ -47,6 +52,8 @@ export class CommonService {
     return this.http.post(this.commonUrl + 'staff/addStaff',staffDetails)
   }
 
-  
+  deleteStaff(staffDetails){
+    return this.http.post(this.commonUrl + 'staff/deleteStaff',staffDetails)
+  }  
 
 }

@@ -35,7 +35,7 @@
         <td>{{staff.staffArea}}</td>
         <td>{{staff.teachingType == 1 ? 'Scholastic':'Co-Scholastic'}}</td>
         <td>{{staff.teacherCategory}}</td>
-        <td>{{staff.isClassTeacher == 1? true: false}}</td>
+        <td>{{staff.isClassTeacher == 1? "YES": "NO"}}</td>
         <td>{{staff.subjectDetails.subjectName}}</td>
         <td>{{staff.subjectDetails.className}}</td>
         <td>{{staff.subjectDetails.sectionName}}</td>
@@ -43,11 +43,11 @@
         <td>{{staff.staffEmail}}</td>
         <td>{{staff.contactNo}}</td>
         <td>
-          <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#staffModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+          <!-- <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#staffModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
             <i (click)="oenEditModal(staff)" class="far fa-edit"></i>
-          </a>
+          </a> -->
           <a class="btn btn-sm btn-outline-lightning rounded-0">
-            <i class="far fa-trash-alt"></i>
+            <i (click)="deleteStaff(staff)" class="far fa-trash-alt"></i>
           </a>
         </td>
       </tr>
@@ -78,13 +78,13 @@
           </div> 
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="staffForm.staffType" name="staffType" required>
+              <select class="form-control" (change)="onstaffTypechange($event.target.value)" [(ngModel)]="staffForm.staffType" name="staffType" required>
                 <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
                 <option *ngFor="let staffType of staffTypeArr" class="dropdown-item"  value="{{staffType}}">{{staffType}}</option>
               </select>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==false">
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.nonteachingArea" name="nonteachingArea" required>
                 <option class="dropdown-item" value="" disabled selected>Staff Area</option>
@@ -92,7 +92,7 @@
               </select>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.teacherType" name="teacherType" required>
                 <option class="dropdown-item" value="" disabled selected>Type of Teacher</option>
@@ -100,7 +100,7 @@
               </select>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <select class="form-control" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
                 <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
@@ -109,7 +109,7 @@
             </div>
           </div>
           
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <select class="form-control"  [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
                 <option class="dropdown-item" value="" disabled selected>Class Teacher</option>
@@ -117,21 +117,21 @@
               </select>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <ng-multiselect-dropdown  placeholder="Select Subject" [data]="dropdownList"
                 [(ngModel)]="selectedItems" name="selectedItems" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect($event)" (onSelect)="onItemSelect($event)">
               </ng-multiselect-dropdown>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <ng-multiselect-dropdown  placeholder="Select Class" [data]="classList"
                   [(ngModel)]="selectedItems2" name="selectedItems2" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect2($event)" (onSelect)="onItemSelect2($event)">
                 </ng-multiselect-dropdown>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
               <ng-multiselect-dropdown placeholder="Select Section" [data]="section"
                   [(ngModel)]="selectedItems3" name="selectedItems3" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect3($event)" (onSelect)="onItemSelect3($event)">

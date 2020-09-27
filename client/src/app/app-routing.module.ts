@@ -6,7 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AddAssessmentComponent } from './shared/add-assessment/add-assessment.component';
 import { AddPrincipalComponent } from './shared/add-principal/add-principal.component';
 import { AddSchoolComponent } from './shared/add-school/add-school.component';
-import { AddTeacherComponent } from './shared/add-teacher/add-teacher.component';
+import { AddStaffComponent } from './shared/add-staff/add-staff.component';
 import { AdminDashboardComponent } from './shared/admin-dashboard/admin-dashboard.component';
 import { AssignTeacherComponent } from './shared/assign-teacher/assign-teacher.component';
 import { PrincipalAssessmentComponent } from './shared/principal-assessment/principal-assessment.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'add_assessment', component: AddAssessmentComponent },
   { path: 'add_principal', component: AddPrincipalComponent },
   { path: 'add_school', component: AddSchoolComponent },
-  { path: 'add_teacher', component: AddTeacherComponent },
+  { path: 'add_staff', component: AddStaffComponent },
   {
     path: 'admin_dashboard', component: AdminDashboardComponent,
     data: { roles: ['admin'] },
