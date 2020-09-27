@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppConfig } from './../../config/app.config';
 import { HttpClient } from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CommonService {
   commonUrl = AppConfig.commonurl
   constructor(private http: HttpClient) { }
