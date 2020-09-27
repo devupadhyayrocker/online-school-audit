@@ -86,6 +86,7 @@
     <tr *ngFor="let staff of staffData; let i=index">
       <td>
         <div class="custom-control custom-checkbox">
+          
           <!-- <input type="checkbox" [(ngModel)]="staff.checked" (change)="onstaffSelected(staff,$event)"
             [value]="i" class="custom-control-input" id="{{i}}"> -->
           <label class="custom-control-label" for="{{i}}">{{staff.name}}</label>
