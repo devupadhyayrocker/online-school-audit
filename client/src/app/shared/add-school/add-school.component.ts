@@ -86,7 +86,6 @@ export class AddSchoolComponent implements OnInit {
       schoolId: school._id
     }
     this.commonService.deleteSchool(schoolData).subscribe(res => {
-      console.log("tees",res);
       if (res['success']) {
         this.getSchoolList();
       }

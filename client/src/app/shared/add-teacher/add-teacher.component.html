@@ -30,21 +30,21 @@
     <tbody>
       <tr *ngFor="let staff of staffData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
-        <td>{{staff.schools}}</td>
-        <td>{{staff.staffType}}</td>
-        <td>{{staff.nonteachingArea}}</td>
-        <td>{{staff.teacherType}}</td>
+        <td>{{staff.schoolName}}</td>
+        <td>{{staff.isTeaching == 1 ? 'Teaching':'Non-Teaching'}}</td>
+        <td>{{staff.staffArea}}</td>
+        <td>{{staff.teachingType == 1 ? 'Scholastic':'Co-Scholastic'}}</td>
         <td>{{staff.teacherCategory}}</td>
-        <td>{{staff.classTeacher}}</td>
-        <td>{{staff.Subjects}}</td>
-        <td>{{staff.classList}}</td>
-        <td>{{staff.section}}</td>
-        <td>{{staff.staffName}}</td>
+        <td>{{staff.isClassTeacher == 1? true: false}}</td>
+        <td>{{staff.subjectDetails.subjectName}}</td>
+        <td>{{staff.subjectDetails.className}}</td>
+        <td>{{staff.subjectDetails.sectionName}}</td>
+        <td>{{staff.name}}</td>
         <td>{{staff.staffEmail}}</td>
-        <td>{{staff.staffContact}}</td>
+        <td>{{staff.contactNo}}</td>
         <td>
           <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#staffModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
-            <i class="far fa-edit"></i>
+            <i (click)="oenEditModal(staff)" class="far fa-edit"></i>
           </a>
           <a class="btn btn-sm btn-outline-lightning rounded-0">
             <i class="far fa-trash-alt"></i>
@@ -70,7 +70,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="staffForm.schools" name="schools" required>
+              <select class="form-control" (change)="OnSchoolChange($event.target.value)" [(ngModel)]="staffForm.schools" name="schools" required>
                 <option class="dropdown-item" value="" disabled selected>Select School</option>
                 <option *ngFor="let school of schoolData" class="dropdown-item"  value="{{school._id}}">{{school.schoolName}}</option>
               </select>
@@ -111,7 +111,7 @@
           
           <div class="col-md-6">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
+              <select class="form-control"  [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
                 <option class="dropdown-item" value="" disabled selected>Class Teacher</option>
                 <option *ngFor="let classTeacher of classTeacherArr" class="dropdown-item"  value="{{classTeacher}}">{{classTeacher}}</option>
               </select>
@@ -141,7 +141,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" class="form-control" #staffName='ngModel' name="staffName"
-                [(ngModel)]="staffForm.firstName" placeholder="Staff Name" id="stname" required>
+                [(ngModel)]="staffForm.staffName" placeholder="Staff Name" id="stname" required>
               <div *ngIf="staffName.invalid && (staffName.dirty || staffName.touched)" class="text-danger">
                 <div *ngIf="staffName.errors.required">
                   Staff Name is required
@@ -196,7 +196,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" #closeBtn data-dismiss="modal">Close</button>
+        <button *ngIf="isEdit" type="button" class="btn btn-primary" [disabled]="stForm.invalid" (click)="updateStaff(stForm)">Update Staff</button>
         <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="stForm.invalid" (click)="addStaff(stForm)">Add Staff</button>
       </div>
     </div>

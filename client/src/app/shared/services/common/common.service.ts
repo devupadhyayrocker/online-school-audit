@@ -41,6 +41,14 @@ export class CommonService {
     return this.http.get(this.commonUrl + 'staff/getPrincipalList')
   }
 
+  getStaffList(){
+    return this.http.get(this.commonUrl + 'staff/getStaffList')
+  }
+
+  addStaff(staffDetails){
+    return this.http.post(this.commonUrl + 'staff/addStaff',staffDetails)
+  }
+
   
 
 }
