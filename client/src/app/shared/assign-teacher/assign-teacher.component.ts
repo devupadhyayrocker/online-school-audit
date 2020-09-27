@@ -14,9 +14,7 @@ export class AssignTeacherComponent implements OnInit {
   staffData: any = [];
 
 
-  dropdownSettings = {};
-
-  peeredStaffForm = {
+   peeredStaffForm = {
     teacherWhoPeer: '',
     teacherToPeer: '',
     nonteachingArea:'',

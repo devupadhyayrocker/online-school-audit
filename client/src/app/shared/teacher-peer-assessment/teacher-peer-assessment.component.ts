@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-peer-assessment.component.css']
 })
 export class TeacherPeerAssessmentComponent implements OnInit {
-
+  peerFormDisplay : boolean = true;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  
+  submitPeerEvaluation(event){
+    this.peerFormDisplay = false;
   }
 
 }
