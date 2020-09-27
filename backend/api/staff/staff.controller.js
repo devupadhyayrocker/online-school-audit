@@ -3,6 +3,7 @@ const Staff = require('./staff.model');
 const config = require('../../config/db.config');
 const messageConfig = require('../../config/message.config');
 const cryptoRandomString = require('crypto-random-string');
+var nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -56,7 +57,7 @@ module.exports = {
                         schoolName: staffDetails.schoolName,
                         staffEmail: staffDetails.staffEmail,
                         username: uname,
-                        password: uname + '@' + cryptoRandomString({length: 4}),
+                        password: uname + '@' + cryptoRandomString({ length: 4 }),
                         role: staffDetails.isTeaching ? 'teaching' : 'nonTeaching'
                     })
                     staff.save().then(data => {
@@ -86,7 +87,7 @@ module.exports = {
                         contactNo: staffDetails.contactNo,
                         isPrincipal: 1,
                         isTeaching: 0,
-                        isClassTeacher:0,
+                        isClassTeacher: 0,
                         teachingType: null,
                         isReviewing: 0,
                         staffArea: null,
@@ -96,7 +97,7 @@ module.exports = {
                         schoolName: staffDetails.schoolName,
                         staffEmail: staffDetails.staffEmail,
                         username: uname,
-                        password: uname + '@' + cryptoRandomString({length: 4}),
+                        password: uname + '@' + cryptoRandomString({ length: 4 }),
                         role: 'principal'
                     })
                     staff.save().then(data => {
@@ -119,15 +120,15 @@ module.exports = {
                         contactNo: principalDetails.contactNo,
                         staffEmail: principalDetails.staffEmail
                     }
-                },(error, data) => {
-                    if(error){
+                }, (error, data) => {
+                    if (error) {
                         return reject({ status: 400, message: errorConfig.BAD_REQUEST })
                     }
-                    return resolve({ success: true, data:data,  message: 'Principal Updated Successfully' })
+                    return resolve({ success: true, data: data, message: 'Principal Updated Successfully' })
                 })
 
             } else {
-                return reject({ status: 400,message:'School Id is required' })
+                return reject({ status: 400, message: 'School Id is required' })
             }
         })
     },
@@ -145,6 +146,40 @@ module.exports = {
             }
         })
     },
+    sendMail: (mailDetails) => {
+        return new Promise((resolve, reject) => {
+            if (mailDetails) {
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    secure: false,
+                    auth: {
+                        user: 'dev.upadhyay@jaipuria.edu.in',
+                        pass: 'aezakmi!@12'
+                    }
+                });
+
+                var mailOptions = {
+                    from: 'dev.upadhyay@jaipuria.edu.in',
+                    to: mailDetails.staffEmail,
+                    subject: `Online School Audit 2020 login credentials:`,
+                    html: `<h1>Your username is ${mailDetails.username} and password is ${mailDetails.password}</h1>`
+                };
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        return reject({ success: false, status: 500, message: error.message })
+                    } else {
+                        return resolve({
+                            success: true,
+                            message: 'Sent Successfully'
+                        })
+                    }
+                });
+
+            } else {
+                return reject({ status: 400, message: 'Mail Details is required' })
+            }
+        })
+    },
 
     getStaffDetails: (staffDetails) => {
         return new Promise((resolve, reject) => {
@@ -153,7 +188,7 @@ module.exports = {
                     if (err) {
                         return reject({ status: 500, message: messageConfig.BAD_REQUEST })
                     }
-                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE})
+                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
                 })
 
 
@@ -164,23 +199,23 @@ module.exports = {
     },
     getStaffList: () => {
         return new Promise((resolve, reject) => {
-                Staff.find({ "isPrincipal": 0 }, (err, data) => {
-                    if (err) {
-                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
-                    }
-                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE})
-                })
+            Staff.find({ "isPrincipal": 0 }, (err, data) => {
+                if (err) {
+                    return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                }
+                return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+            })
         })
     },
 
     getPrincipalList: () => {
         return new Promise((resolve, reject) => {
-                Staff.find({ "isPrincipal": 1 }, (err, data) => {
-                    if (err) {
-                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
-                    }
-                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE})
-                })
+            Staff.find({ "isPrincipal": 1 }, (err, data) => {
+                if (err) {
+                    return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                }
+                return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+            })
         })
     },
 

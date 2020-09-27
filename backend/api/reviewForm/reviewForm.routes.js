@@ -10,10 +10,12 @@ router.post('/addReviewForm', (req, res, next) => {
         formController.addForm(formDetails).then(result => {
             return res.status(201).send(result);
         }, err => {
+            console.log("Erser",err);
             return next(err)
         })
     }
     catch (err) {
+        console.log("Eer",err);
         return next(err)
     }
 

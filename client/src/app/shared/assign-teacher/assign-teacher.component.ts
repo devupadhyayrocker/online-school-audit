@@ -14,7 +14,7 @@ export class AssignTeacherComponent implements OnInit {
   }]
   dropdownSettings = {};
   teacherCategoryArr = AppConfig.teacherCategory;
-  peerStaffArr = AppConfig.peerStaffDemo;
+  peerStaffArr = [];
   staffTypeArr = AppConfig.staffType;
 
   peeredStaffForm = {

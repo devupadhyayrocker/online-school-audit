@@ -8,19 +8,9 @@ const ReviewFormSchema = new Schema({
         type: Number,
         required: true
     },
-    title: {
-        type: String
-    },
-    quesArr: [{
-        type: String
-    }],
-    options: [{
-        id: String,
-        text: String,
-    }],
-    answers: [{
-        id: String,
-    }],
+    quesArr: [],
+    options: [],
+    answers: [],
     totalMarks: {
         type: Number
     },

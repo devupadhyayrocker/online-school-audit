@@ -97,6 +97,22 @@ router.get('/getStaffList', (req, res, next) => {
 
 });
 
+//  send Mail
+router.post('/sendMail', (req, res, next) => {
+    const mailDetails = req.body;
+    try {
+        staffController.sendMail(mailDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 // get staff details
 router.post('/getStaffById', (req, res, next) => {
     const staffDetails = req.body;

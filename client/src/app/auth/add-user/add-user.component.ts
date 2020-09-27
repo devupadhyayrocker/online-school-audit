@@ -12,6 +12,11 @@ export class AddUserComponent implements OnInit {
   password = 'password';
   isShow: boolean = false;
   show = false;
+  staffDetails = {
+    staffEmail: '',
+    username: '',
+    password: ''
+  }
 
 
   combinedArray: any = [];
@@ -71,7 +76,20 @@ export class AddUserComponent implements OnInit {
   }
 
   onUserSelected(user) {
-    console.log("user", user);
+    this.staffDetails = {
+      staffEmail: user.staffEmail,
+      username: user.username,
+      password: user.password
+    }
+  }
+
+
+  sending(){
+    this.commonService.sendMail(this.staffDetails).subscribe(res => {
+      console.log("Tree", res);
+    }, err => {
+      console.log("eer", err);
+    })
   }
 
 

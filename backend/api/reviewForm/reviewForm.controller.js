@@ -15,15 +15,16 @@ module.exports = {
                 answers: formDetails.answers,
                 totalMarks: formDetails.totalMarks,
                 marksObtained: formDetails.marksObtained,
-                staffIdFor: formDetails.staffIdFor,
-                staffIdBy: formDetails.staffIdBy,
+                staffIdFor: "5f6f53379fea0e17ec4e89d8",
+                staffIdBy: "5f6f53379fea0e17ec4e89d8",
                 reviewStatus: formDetails.reviewStatus,
-                schoolId: staffDetails.schoolId,
-                role: staffDetails.role
+                schoolId: formDetails.schoolId,
+                role: formDetails.role
             })
             reviewForm.save().then(data => {
                 return resolve({ success: true, message: 'Form Added Successfully' })
             }).catch(err => {
+                console.log("rwr",err);
                 return reject({ status: 500, message: messageConfig.BAD_REQUEST })
             })
 

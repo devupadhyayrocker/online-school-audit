@@ -19,13 +19,12 @@
           class="form-control" id="assessmentType">
           <option class="dropdown-item" value="" disabled selected>Select Assessment</option>
           <option class="dropdown-item" *ngFor="let selectAssessment of selectAssessmentArr"
-            value="{{selectAssessment.id}}">{{selectAssessment.name}}</option>
+            value="{{selectAssessment}}">{{selectAssessment}}</option>
 
         </select>
       </div>
     </div>
     <div class="col-md-3"></div>
-
   </div>
 </div>
 <hr>
@@ -33,43 +32,44 @@
   <h2 class="font-weight-bold text-center mb-4 mt-3">{{formTitle}}</h2>
   <div class="row mb-3">
     <div class="col-md-2">
-      <button (click)="addTitle()" class="btn btn-info d-block w-100">Add Title</button>
+      <button [disabled]="!enableQuesForm" (click)="addTitle()" class="btn btn-info d-block w-100">Add Title</button>
     </div>
     <div class="col-md-2">
-      <button (click)="addQuestion()" class="btn btn-success d-block w-100">Add Question</button>
+      <button [disabled]="!enableQuesForm" (click)="addQuestion()" class="btn btn-success d-block w-100">Add Question</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4">
-      <div class="form-group">
-        <input type="text" class="form-control" #title='ngModel' name="title" [(ngModel)]="assessmentObj.title"
+      <div class="form-group" *ngIf="showTitle">
+        <input type="text" class="form-control" #title='ngModel' name="title" [(ngModel)]="questionObj.title"
           placeholder="Enter Title" id="qTitle" required>
+          <button [disabled]="!enableQuesForm" (click)="saveTitle()" class="btn btn-success d-block w-100">Add Title</button>
         <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
           <div *ngIf="title.errors.required">
-            Question Title is required
+             Title is required
           </div>
         </div>
       </div>
 
     </div>
-    <div class="col-md-10">
+    <div *ngIf="showQues" class="col-md-10">
       <div class="form-group">
-        <input type="text" class="form-control" #formQuestion='ngModel' name="formQuestion" [(ngModel)]="question"
-          placeholder="Enter Title" id="qTitle" required>
-        <div *ngIf="formQuestion.invalid && (formQuestion.dirty || formQuestion.touched)" class="text-danger">
-          <div *ngIf="formQuestion.errors.required">
+        <input type="text" class="form-control" #question='ngModel' name="question" [(ngModel)]="questionObj.question"
+          placeholder="Enter Question" required>
+        <div *ngIf="question.invalid && (question.dirty || question.touched)" class="text-danger">
+          <!-- <div *ngIf="question.errors.required">
             Question is required
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
     <div class="col-md-2">
-      <a class="btn btn-secondary d-block" id="addquestions">Submit</a>
+      <a class="btn btn-secondary d-block" (click)="addQuestionToArr()" id="addquestions">Submit Form</a>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-3 offset-md-9">
-      <a class="btn btn-primary d-block" id="savequestions">Submit</a>
+      <a class="btn btn-primary d-block" (click)="saveToDB()" id="savequestions">Submit DB</a>
     </div>
   </div>
 </div>

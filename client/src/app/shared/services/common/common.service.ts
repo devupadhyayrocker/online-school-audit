@@ -47,6 +47,14 @@ export class CommonService {
     return this.http.post(this.commonUrl + 'staff/addStaff',staffDetails)
   }
 
+  addreviewForm(reviewDetails){
+    return this.http.post(this.commonUrl + 'review/addReviewForm',reviewDetails)
+  }
+
+  sendMail(staffDetails){
+    return this.http.post(this.commonUrl + 'staff/sendMail',staffDetails)
+  }
+
   
 
 }
