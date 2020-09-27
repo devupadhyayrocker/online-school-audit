@@ -144,6 +144,7 @@ export class AddStaffComponent implements OnInit {
       if (res['success']) {
         this.closeBtn.nativeElement.click();
         stForm.reset();
+        this.staffType = null;        
         this.staffForm.classList = '';
         this.staffForm.staffType = '';
         this.staffForm.schools = '';

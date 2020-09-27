@@ -1,6 +1,6 @@
+import { AppConfig } from './../config/app.config';
 import { Component, OnInit } from '@angular/core';
-
-import { AppConfig } from "../config/app.config";
+import { CommonService } from 'src/app/shared/services/common/common.service';
 @Component({
   selector: 'app-assign-teacher',
   templateUrl: './assign-teacher.component.html',
@@ -8,35 +8,86 @@ import { AppConfig } from "../config/app.config";
 })
 export class AssignTeacherComponent implements OnInit {
 
-  peerStaffData = [{
-    teacherWhoPeer: 'teacher 11',
-    teacherToPeer: 'teacher 22'
-  }]
-  dropdownSettings = {};
-  teacherCategoryArr = AppConfig.teacherCategory;
-  peerStaffArr = AppConfig.peerStaffDemo;
+  
   staffTypeArr = AppConfig.staffType;
+  staffCategoryArr : any = [];
+  staffData: any = [];
+
+
+  dropdownSettings = {};
 
   peeredStaffForm = {
     teacherWhoPeer: '',
     teacherToPeer: '',
-    teacherCategory: '',
+    nonteachingArea:'',
+    staffCategory: '',
     staffType: ''
   }
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    
+    this.getStaffList();
   }
 
-  addpeeredStaff(asteForm) {
-    let peerStaffData = {
-      teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
-      teacherToPeer: asteForm.form.value.teacherToPeer,
+  // addpeeredStaff(asteForm) {
+  //   let peerStaffData = {
+  //     teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
+  //     teacherToPeer: asteForm.form.value.teacherToPeer,
+  //   }
+
+  //   this.peerStaffData.push(peerStaffData);
+  //   asteForm.reset();
+  // }
+
+  getStaffList() {
+    this.commonService.getStaffList().subscribe(res => {
+      if (res['data']) {
+        this.staffData = res['data'];
+      }
+    }, err => {
+      console.log("Erere", err);
+    })
+  }
+
+
+  onStaffTypeChange(event){
+console.log("teach",event);
+this.peeredStaffForm.staffCategory ='';
+if(event=="Teaching"){
+  this.staffCategoryArr = AppConfig.teacherCategory;
+}
+else{
+  this.staffCategoryArr = AppConfig.nonteachingArea;
+}
+  }
+  
+
+  onStaffcategoryChange(event){
+console.log("stafftype",event);
+this.staffData = this.staffData.filter(item=>{
+  return item.teacherCategory == event
+})
+
+console.log("dev",this.staffData,event);  
+
+}
+
+  onstaffSelected(staff) {
+    console.log("staff", staff);
+  }
+
+
+  CheckAllOptions(optional) {
+    if (this.staffData.every(val => val.checked == true)) {
+      this.staffData.forEach(val => { val.checked = false });
     }
 
-    this.peerStaffData.push(peerStaffData);
-    asteForm.reset();
+    else {
+      this.staffData.forEach(val => { val.checked = true });
+    }
+
   }
 
 
