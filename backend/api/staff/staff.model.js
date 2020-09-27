@@ -31,7 +31,7 @@ const StaffSchema = new Schema({
         type: Boolean
     },
     teachingType: {
-        type: String  //scholar/non-scholar
+        type: Boolean  //scholar/non-scholar
     },
     isReviewing: {
         type: Boolean
@@ -42,15 +42,11 @@ const StaffSchema = new Schema({
     teacherCategory: {  //N.T.  P.R.T.  T.G.T.
         type: String
     },
-    subjectDetails: [{
+    subjectDetails: {
         subjectName: { type: String },
-        class: [{
-            className: { type: String },
-            sections: [{
-                sectionName: { type: String }
-            }]
-        }]
-    }],
+        className: { type: String },
+        sectionName: { type: String }
+    },
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"

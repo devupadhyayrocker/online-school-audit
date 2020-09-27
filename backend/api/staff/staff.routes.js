@@ -67,10 +67,25 @@ router.post('/deletePrincipal', (req, res, next) => {
 
 });
 
-//  add staff
+//  get principal list
 router.get('/getPrincipalList', (req, res, next) => {
     try {
         staffController.getPrincipalList().then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
+//  get staff list
+router.get('/getStaffList', (req, res, next) => {
+    try {
+        staffController.getStaffList().then(result => {
             return res.status(200).send(result);
         }, err => {
             return next(err)
@@ -89,7 +104,6 @@ router.post('/getStaffById', (req, res, next) => {
         staffController.getStaffDetails(staffDetails).then(result => {
             return res.status(200).send(result);
         }, err => {
-            console.log("ttrrrt", err);
             return next(err)
         })
     }

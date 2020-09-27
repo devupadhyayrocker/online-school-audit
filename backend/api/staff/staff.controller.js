@@ -40,20 +40,24 @@ module.exports = {
                 if (data) {
                     return reject({ status: 400, message: 'Contact No Already Exist' })
                 } else {
+                    let uname = staffDetails.staffEmail.substring(0, staffDetails.staffEmail.lastIndexOf("@"));
                     let staff = new Staff({
                         name: staffDetails.name,
-                        userId: staffDetails.userId,
                         contactNo: staffDetails.contactNo,
-                        isPrincipal: staffDetails.isPrincipal,
+                        isPrincipal: 0,
                         isTeaching: staffDetails.isTeaching,
                         isClassTeacher: staffDetails.isClassTeacher,
                         teachingType: staffDetails.teachingType,
-                        isReviewing: staffDetails.isReviewing,
+                        isReviewing: 0,
                         staffArea: staffDetails.staffArea,
                         teacherCategory: staffDetails.teacherCategory,
                         subjectDetails: staffDetails.subjectDetails,
                         schoolId: staffDetails.schoolId,
-                        role: staffDetails.role
+                        schoolName: staffDetails.schoolName,
+                        staffEmail: staffDetails.staffEmail,
+                        username: uname,
+                        password: uname + '@' + cryptoRandomString({length: 4}),
+                        role: staffDetails.isTeaching ? 'teaching' : 'nonTeaching'
                     })
                     staff.save().then(data => {
                         return resolve({ success: true, message: 'Staff Added Successfully' })
@@ -87,7 +91,7 @@ module.exports = {
                         isReviewing: 0,
                         staffArea: null,
                         teacherCategory: null,
-                        subjectDetails: [],
+                        subjectDetails: {},
                         schoolId: staffDetails.schoolId,
                         schoolName: staffDetails.schoolName,
                         staffEmail: staffDetails.staffEmail,
@@ -156,6 +160,16 @@ module.exports = {
             } else {
                 return reject({ status: 404, message: 'StaffId is required' })
             }
+        })
+    },
+    getStaffList: () => {
+        return new Promise((resolve, reject) => {
+                Staff.find({ "isPrincipal": 0 }, (err, data) => {
+                    if (err) {
+                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE})
+                })
         })
     },
 
