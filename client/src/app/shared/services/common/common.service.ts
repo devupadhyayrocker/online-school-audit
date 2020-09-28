@@ -11,6 +11,7 @@ export class CommonService {
     return this.http.get(this.commonUrl + 'school/getAllSchool')
   }
 
+
   addSchool(schoolDetails){
     return this.http.post(this.commonUrl + 'school/addSchool',schoolDetails)
   }
@@ -56,6 +57,9 @@ export class CommonService {
     return this.http.post(this.commonUrl + 'review/addReviewForm',reviewDetails)
   }
 
+  getFormDetailsByRole(){
+    return this.http.get(this.commonUrl + 'review/getFormDetailsByRole')
+  }
   sendMail(staffDetails){
     return this.http.post(this.commonUrl + 'staff/sendMail',staffDetails)
   }

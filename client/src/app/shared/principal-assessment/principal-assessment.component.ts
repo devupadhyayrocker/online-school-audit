@@ -7,22 +7,23 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
   styleUrls: ['./principal-assessment.component.css']
 })
 export class PrincipalAssessmentComponent implements OnInit {
-
+  principalFormDisplay: boolean = true;
   staffTypeArr = AppConfig.staffType;
-  staffCategoryArr : any = [];
+  staffCategoryArr: any = [];
   staffData: any = [];
-
+  principalteachingFormDisplay : boolean = true;
   principalAssessment = {
-    nonteachingArea:'',
+    nonteachingArea: '',
     staffCategory: '',
     staffType: '',
-    teacherToAssess:''
+    teacherToAssess: '',
+
   }
 
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-    
+
     this.getStaffList();
   }
 
@@ -38,26 +39,38 @@ export class PrincipalAssessmentComponent implements OnInit {
   }
 
 
-  onStaffTypeChange(event){
-console.log("teach",event);
-this.principalAssessment.staffCategory ='';
-if(event=="Teaching"){
-  this.staffCategoryArr = AppConfig.teacherCategory;
-}
-else{
-  this.staffCategoryArr = AppConfig.nonteachingArea;
-}
+  onStaffTypeChange(event) {
+    console.log("teach", event);
+    this.principalAssessment.staffCategory = '';
+    if (event == "Teaching") {
+      this.staffCategoryArr = AppConfig.teacherCategory;
+      
+    this.principalFormDisplay = true;
+    }
+    else {
+      this.staffCategoryArr = AppConfig.nonteachingArea;
+      
+    this.principalFormDisplay = true;
+    }
   }
-  
 
-  onStaffcategoryChange(event){
-console.log("stafftype",event);
-this.staffData = this.staffData.filter(item=>{
-  return item.teacherCategory == event
-})
 
-console.log("dev",this.staffData,event);  
+  onStaffcategoryChange(event) {
+    console.log("stafftype", event);
+    this.staffData = this.staffData.filter(item => {
+      return item.teacherCategory == event
+    })
 
-}
+    console.log("dev", this.staffData, event);
 
+  }
+
+  onStaffSelect(event){
+    this.principalteachingFormDisplay = false;
+  }
+
+  submitPeerEvaluation(event){
+    this.principalFormDisplay = false;
+    this.principalteachingFormDisplay = true;
+  }
 }

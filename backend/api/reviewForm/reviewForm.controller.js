@@ -45,7 +45,20 @@ module.exports = {
             }
         })
     },
-
+    getFormDetailsByRole: (reviewDetails) => {
+        return new Promise((resolve, reject) => {
+            if (reviewDetails && reviewDetails.role) {
+                ReviewForm.find({ "role": reviewDetails.role }, (err, data) => {
+                    if (err) {
+                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+                })
+            } else {
+                return reject({ status: 404, message: 'Role is required' })
+            }
+        })
+    }
 
 }
 

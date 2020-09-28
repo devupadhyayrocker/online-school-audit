@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./non-teaching-self-assessment.component.css']
 })
 export class NonTeachingSelfAssessmentComponent implements OnInit {
-
+  selfFormDisplay : boolean = true;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  submitSelfEvaluation(event){
+    this.selfFormDisplay = false;
   }
 
 }

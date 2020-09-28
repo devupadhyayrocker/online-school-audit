@@ -128,10 +128,14 @@ export class AddAssessmentComponent implements OnInit {
       schoolId: "5f6f53379fea0e17ec4e89d8"
     }
 
-   this.commonService.addreviewForm(dbObj).subscribe(res=>{
-     console.log("Res",res);
-   },err=>{
-     console.log("Err",err);
-   })
+    this.commonService.addreviewForm(dbObj).subscribe(res => {
+      if (res['success']) {
+        this.questionArray = [];
+        this.quesCounter = [];
+      }
+      console.log("Res", res);
+    }, err => {
+      console.log("Err", err);
+    })
   }
 }

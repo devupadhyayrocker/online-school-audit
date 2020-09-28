@@ -6,7 +6,7 @@ body{
 
 .radiotextsty {
     color: #000;
-    font-size: 18px;
+    font-size: 12px;
   }
   
   .customradio {
@@ -15,7 +15,7 @@ body{
     padding-left: 30px;
     margin-bottom: 0px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 12px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -34,8 +34,8 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width:18px;
     background-color: white;
     border-radius: 50%;
     border:1px solid #BEBEBE;
@@ -66,8 +66,8 @@ body{
   
   /* Style the indicator (dot/circle) */
   .customradio .checkmark:after {
-    top: 2px;
-    left: 2px;
+    top: 0px;
+    left: 0px;
     width: 16px;
     height: 16px;
     border-radius: 50%;

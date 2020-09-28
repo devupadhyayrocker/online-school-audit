@@ -30,20 +30,30 @@
 <hr>
 <div class="container">
   <h2 class="font-weight-bold text-center mb-4 mt-3">{{formTitle}}</h2>
-  <div class="row mb-3">
-    <div class="col-md-2">
-      <button [disabled]="!enableQuesForm" (click)="addTitle()" class="btn btn-info d-block w-100">Add Title</button>
+  <div class="row mb-5">
+    
+    <div class="col-md-3">
     </div>
     <div class="col-md-2">
-      <button [disabled]="!enableQuesForm" (click)="addQuestion()" class="btn btn-success d-block w-100">Add Question</button>
+      <button [disabled]="!enableQuesForm" (click)="addTitle()" class="btn btn-primary d-block w-100">New Title</button>
     </div>
+    <div class="col-md-2">
+      <button [disabled]="!enableQuesForm" (click)="addQuestion()" class="btn btn-success d-block w-100">New Question</button>
+    </div>
+    <div class="col-md-2">
+      <button [disabled]="!enableQuesForm" class="btn btn-danger d-block" (click)="saveToDB()"  id="savequestions">Add Form</button>
+    </div>
+    <div class="col-md-3">
+    </div>
+    
   </div>
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group" *ngIf="showTitle">
-        <input type="text" class="form-control" #title='ngModel' name="title" [(ngModel)]="questionObj.title"
-          placeholder="Enter Title" id="qTitle" required>
-          <button [disabled]="!enableQuesForm" (click)="saveTitle()" class="btn btn-success d-block w-100">Add Title</button>
+    <div class="col-md-8">
+      <div class="form-group d-flex mb-1" *ngIf="showTitle">
+        <div class="col-md-3 pl-0"><span class="d-inline-flex p-2 h5 font-weight-bold">Enter Title</span></div>
+          <div class="col-md-6 pl-0"><input type="text" class="ml-1 form-control d-inline" #title='ngModel' name="title" [(ngModel)]="questionObj.title"
+          placeholder="Enter Title" id="qTitle" required></div>
+          <div class="col-md-3 pl-0"><button [disabled]="!enableQuesForm" (click)="saveTitle()" class="btn btn-info w-100">Add Title</button></div>
         <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
           <div *ngIf="title.errors.required">
              Title is required
@@ -52,24 +62,18 @@
       </div>
 
     </div>
-    <div *ngIf="showQues" class="col-md-10">
-      <div class="form-group">
-        <input type="text" class="form-control" #question='ngModel' name="question" [(ngModel)]="questionObj.question"
-          placeholder="Enter Question" required>
+    <div *ngIf="showQues" class="col-md-12">
+      <div class="form-group d-flex mb-0">
+        <div class="col-md-2 pl-0"><span class="d-inline-flex p-2 h5 font-weight-bold">Enter Question</span></div>
+        <div class="col-md-8 pl-0"><input type="text" class="form-control d-inline" #question='ngModel' name="question" [(ngModel)]="questionObj.question"
+          placeholder="Enter Question" required></div>
+          <div class="col-md-2 pl-0"><a class="btn btn-secondary w-100" (click)="addQuestionToArr()" id="addquestions">Add Question</a></div>
         <div *ngIf="question.invalid && (question.dirty || question.touched)" class="text-danger">
           <!-- <div *ngIf="question.errors.required">
             Question is required
           </div> -->
         </div>
       </div>
-    </div>
-    <div class="col-md-2">
-      <a class="btn btn-secondary d-block" (click)="addQuestionToArr()" id="addquestions">Submit Form</a>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-md-3 offset-md-9">
-      <a class="btn btn-primary d-block" (click)="saveToDB()" id="savequestions">Submit DB</a>
     </div>
   </div>
 </div>

@@ -55,7 +55,7 @@ export class AppConfig {
         totalMarks: 80,
         QuesNo: 20,
         maxMarks: 4,
-        for: "teaching",
+        for: ["teaching"],
         values: [1, 2, 3, 4],
         key: 1,
         matrixValue:"21"
@@ -66,7 +66,7 @@ export class AppConfig {
         totalMarks: 40,
         QuesNo: 10,
         maxMarks: 4,
-        for: "teaching",
+        for: ["teaching"],
         values: [1, 2, 3, 4],
         key: 2,
         matrixValue:"22"

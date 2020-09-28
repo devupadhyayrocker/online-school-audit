@@ -37,5 +37,21 @@ router.post('/getReviewFormByStaffId', (req, res, next) => {
 
 });
 
+// get slef review details
+router.post('/getFormDetailsByRole', (req, res, next) => {
+    const formDetails = req.body;
+    try {
+        formController.getFormDetailsByRole(formDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 
 module.exports = router;

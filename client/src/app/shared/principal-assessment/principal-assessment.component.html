@@ -12,7 +12,7 @@
 
         <div class="col-md-3 mt-3">
         <div class="form-group d-block mx-auto">
-            <select class="form-control" (change)="onStaffcategoryChange($event.target.value)" [(ngModel)]="principalAssessment.staffCategory" name="staffCategory" required>
+            <select class="form-control"  [(ngModel)]="principalAssessment.staffCategory" name="staffCategory" required>
                 <option class="dropdown-item" value="" disabled selected>Staff Category</option>
                 <option *ngFor="let staffCategory of staffCategoryArr" class="dropdown-item"  value="{{staffCategory}}">{{staffCategory}}</option>
               </select>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-3 mt-3">
             <div class="d-block form-group  mx-auto">
-                <select class="form-control" [(ngModel)]="principalAssessment.teacherToPeer" name="teacherToAssess" required>
+                <select class="form-control" (change)="onStaffSelect($event.target.value)" [(ngModel)]="principalAssessment.teacherToAssess" name="teacherToAssess" required>
                     <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
                     <option *ngFor="let staff of staffData" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
                   </select>
@@ -29,3 +29,210 @@
     </div>
 </div>
 <hr>
+
+<div class="container" *ngIf="!principalteachingFormDisplay">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="text-center my-4">PRINCIPAL EVALUATION FORM</h2>
+		</div>
+	</div>
+	<div class="row mb-5">
+		
+		<div class="ques_group col-md-12">
+			<div class="col-md-12">
+				<h5 class="text-uppercase">my duties</h5>
+			</div>
+			<div class="col-md-12 form-group">
+				<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+					advance.</label>
+				<div class="mt-1 form-check-inline float-right">
+					<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+						<input type="radio" name="radio">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+						<input type="radio" name="radio">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+						<input type="radio" name="radio">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+						<input type="radio" name="radio">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-12 form-group">
+				<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+					advance.</label>
+				<div class="form-check-inline float-right">
+					<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+						<input type="radio" name="radio1">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+						<input type="radio" name="radio1">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+						<input type="radio" name="radio1">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+						<input type="radio" name="radio1">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-12 form-group">
+				<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+					advance.</label>
+				<div class="form-check-inline float-right">
+					<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+						<input type="radio" name="radio2">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+						<input type="radio" name="radio2">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+						<input type="radio" name="radio2">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+						<input type="radio" name="radio2">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-12 form-group">
+				<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+					advance.</label>
+				<div class="form-check-inline float-right">
+					<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+						<input type="radio" name="radio3">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+						<input type="radio" name="radio3">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+						<input type="radio" name="radio3">
+						<span class="checkmark"></span>
+					</label>
+					<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+						<input type="radio" name="radio3">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+	</div>
+	
+	<div class="ques_group col-md-12">
+		<div class="col-md-12">
+			<h5 class="text-uppercase">my duties</h5>
+		</div>
+		<div class="col-md-12 form-group">
+			<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+				advance.</label>
+			<div class="mt-1 form-check-inline float-right">
+				<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+					<input type="radio" name="radio4">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+					<input type="radio" name="radio4">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+					<input type="radio" name="radio4">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+					<input type="radio" name="radio4">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+		<div class="col-md-12 form-group">
+			<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+				advance.</label>
+			<div class="form-check-inline float-right">
+				<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+					<input type="radio" name="radio11">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+					<input type="radio" name="radio11">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+					<input type="radio" name="radio11">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+					<input type="radio" name="radio11">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+		<div class="col-md-12 form-group">
+			<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+				advance.</label>
+			<div class="form-check-inline float-right">
+				<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+					<input type="radio" name="radio22">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+					<input type="radio" name="radio22">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+					<input type="radio" name="radio22">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+					<input type="radio" name="radio22">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+		<div class="col-md-12 form-group">
+			<label class="labeltext text-secondary p pl-2"><span>1.&nbsp;</span>Study the Lesson Plans well in
+				advance.</label>
+			<div class="form-check-inline float-right">
+				<label class="customradio mr-3"><span class="radiotextsty">SELDOM</span>
+					<input type="radio" name="radio33">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">OCASSIONALLY</span>
+					<input type="radio" name="radio33">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">FREQUENTLY</span>
+					<input type="radio" name="radio33">
+					<span class="checkmark"></span>
+				</label>
+				<label class="customradio mr-3"><span class="radiotextsty">ALWAYS</span>
+					<input type="radio" name="radio33">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+</div>
+		
+	<div class="col-md-12 mt-3">
+		<button class="btn btn-success float-right mb-5" (click)="submitPeerEvaluation($event.target.value)" type="button">Submit Now</button>
+	</div>
+	</div>
+</div>
+
+<div class="container mt-5" *ngIf="!principalFormDisplay">
+	<div class="jumbotron">
+		<h2 class="text-center font-eweight-bold mb-4">EVALUATION SUCCESSFULLY COMPLETED</h2></div>
+</div>

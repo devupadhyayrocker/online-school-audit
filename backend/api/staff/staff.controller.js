@@ -58,7 +58,7 @@ module.exports = {
                         staffEmail: staffDetails.staffEmail,
                         username: uname,
                         password: uname + '@' + cryptoRandomString({ length: 4 }),
-                        role: staffDetails.isTeaching ? 'teaching' : 'nonTeaching'
+                        role: staffDetails.isTeaching ? 'teaching' : 'nonteaching'
                     })
                     staff.save().then(data => {
                         return resolve({ success: true, message: 'Staff Added Successfully' })
@@ -192,7 +192,13 @@ module.exports = {
                     from: 'dev.upadhyay@jaipuria.edu.in',
                     to: mailDetails.staffEmail,
                     subject: `Online School Audit 2020 login credentials:`,
-                    html: `<h1>Your username is ${mailDetails.username} and password is ${mailDetails.password}</h1>`
+                    html: `<html>
+                    <head>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+                    </head>
+                    <body><p class="text-center text-info">Your username is ${mailDetails.username} and password is ${mailDetails.password}</p>
+                    </body>
+                    </html>`
                 };
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {

@@ -63,12 +63,12 @@ else{
   
 
   onStaffcategoryChange(event){
-console.log("stafftype",event);
-this.staffData = this.staffData.filter(item=>{
-  return item.teacherCategory == event
-})
+// console.log("stafftype",event);
+// this.staffData = this.staffData.filter(item=>{
+//   return item.teacherCategory == event
+// })
 
-console.log("dev",this.staffData,event);  
+// console.log("dev",this.staffData,event);  
 
 }
 
