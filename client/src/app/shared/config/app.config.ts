@@ -12,7 +12,7 @@ export class AppConfig {
     public static classList = ["Pre-Nursery/Nursery", "L.K.G./Nursery", "U.K.G./Prep", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"];
     public static section = ["A", "B", "C", "D", "E", "F"];
     public static principalFormList = ["Principal Evaluation Teaching","Principal Evaluation Non Teaching"]
-    public static TeachingFormList = ["Self Evaluation","Peer Evaluation"];
+    public static TeachingFormList = ["Self Evaluation","Peer Evaluation","Document Evaluation"];
     
     public static selectStaff = [{
         id: 1,
