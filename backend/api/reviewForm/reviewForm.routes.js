@@ -21,6 +21,21 @@ router.post('/addReviewForm', (req, res, next) => {
 
 });
 
+// get all review form details
+router.get('/getReviewForm', (req, res, next) => {
+    try {
+        formController.getAllFormDetails().then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 // get review form details
 router.post('/getReviewFormByStaffId', (req, res, next) => {
     const formDetails = req.body;

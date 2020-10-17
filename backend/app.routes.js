@@ -4,6 +4,7 @@ const apiRoutes = require('./api');
 
 // All routes used in application
 const useRoutes = function(app) {
+	app.use('/api/admin', apiRoutes.adminRoutes);
 	app.use('/api/commonList', apiRoutes.commonListRoutes);
 	app.use('/api/school',apiRoutes.schoolRoutes);
 	app.use('/api/staff',apiRoutes.staffRoutes);

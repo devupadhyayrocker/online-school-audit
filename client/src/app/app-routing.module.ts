@@ -1,5 +1,6 @@
+import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 import { NonTeachingComponent } from './shared/non-teaching/non-teaching.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddUserComponent } from './auth/add-user/add-user.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -23,6 +24,9 @@ import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-a
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'admin_login', component: AdminLoginComponent
+  },
   {
     path: 'add_user', component: AddUserComponent,
     data: { roles: ['admin'] },

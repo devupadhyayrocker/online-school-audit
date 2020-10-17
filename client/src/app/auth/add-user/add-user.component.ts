@@ -18,15 +18,16 @@ export class AddUserComponent implements OnInit {
     password: ''
   }
 
-
   combinedArray: any = [];
   rowIndex: number = -1;
   selectedArray: any = [];
   userData: any = [];
+  staffData:any =[];
 
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    this.getStaffList();
   }
 
   getPrincipalList() {
@@ -43,7 +44,7 @@ export class AddUserComponent implements OnInit {
   getStaffList() {
     this.commonService.getStaffList().subscribe(res => {
       if (res['data']) {
-        this.userData = res['data'];
+        this.staffData = res['data'];
       }
     }, err => {
       console.log("Erere", err);
@@ -53,9 +54,17 @@ export class AddUserComponent implements OnInit {
   onStaffSelect(val) {
     if (val == 'p') {
       this.getPrincipalList();
-    } else {
-      this.getStaffList();
+    } else if (val =='t'){
+      console.log("tea0",this.staffData);
+      this.userData = this.staffData.filter(item=>{
+        return item.teachingType === true
+      })
     }
+     else {
+       this.userData = this.staffData.filter(item=>{
+        return item.teachingType === false
+      })
+     }
   }
 
   onClick(index) {

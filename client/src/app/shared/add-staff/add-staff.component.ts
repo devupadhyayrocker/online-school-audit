@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppConfig } from "../config/app.config";
 import { CommonService } from '../services/common/common.service';
@@ -11,15 +9,13 @@ import { CommonService } from '../services/common/common.service';
 })
 export class AddStaffComponent implements OnInit {
   @ViewChild('closeBtn', { static: false }) closeBtn: ElementRef;
-  
-  staffType : boolean = null;
+
+  staffType: boolean = null;
 
   schoolData: any = [];
-  staffSubjectObj = {
-    subjectName: '',
-    className: '',
-    sectionName: ''
-  };
+  subjectName: any = [];
+  className: any = [];
+  sectionName: any = [];
   schoolName: string = "";
   staffData: any = [];
   isEdit: boolean = false;
@@ -75,37 +71,64 @@ export class AddStaffComponent implements OnInit {
   }
 
   onItemSelect(selected) {
-    this.staffSubjectObj.subjectName = selected;
+    this.subjectName.push(selected);
+    console.log("subname", selected);
 
 
-    console.log("ttt", this.staffSubjectObj);
   }
 
   onItemSelect2(selected) {
-    console.log("re", selected);
-    this.staffSubjectObj.className = selected;
-    console.log("Tttyt", this.staffSubjectObj);
+    this.className.push(selected);
+    console.log("classname", selected);
   }
 
   onItemSelect3(selected) {
-    this.staffSubjectObj.sectionName = selected;
-    console.log("re", selected);
+    this.sectionName.push(selected);
+    console.log("sectionname", selected);
 
   }
 
-  OnItemDeSelect(selected) {
-    this.staffSubjectObj.subjectName = '';
+  onSelectAllsubject(event) {
+    this.subjectName = this.dropdownList;
+    console.log("subselall", this.subjectName);
   }
 
-  OnItemDeSelect2(selected) {
-    this.staffSubjectObj.className = ''
-    console.log("d2");
+  onunselectAllsubject(event) {
+    this.subjectName = [];
+    console.log(this.subjectName);
   }
 
-  OnItemDeSelect3(selected) {
-    this.staffSubjectObj.sectionName = '';
-    console.log("d2", this.section);
+
+  onSelectAllclass(event) {
+    this.className = this.classList;
   }
+
+  onunselectAllclass(event) {
+    this.className = [];
+  }
+
+
+  onSelectAllsection(event) {
+    this.sectionName = this.section;
+  }
+
+
+  onunselectAllsection(event) {
+    this.sectionName = [];
+  }
+  // OnItemDeSelect(selected) {
+  //   this.staffSubjectObj.subjectName = '';
+  // }
+
+  // OnItemDeSelect2(selected) {
+  //   this.staffSubjectObj.className = ''
+  //   console.log("d2");
+  // }
+
+  // OnItemDeSelect3(selected) {
+  //   this.staffSubjectObj.sectionName = '';
+  //   console.log("d2", this.section);
+  // }
 
   getSchoolList() {
     this.commonService.getschoolList().subscribe(res => {
@@ -135,22 +158,26 @@ export class AddStaffComponent implements OnInit {
       teachingType: stForm.form.value.teacherType === 'Scholastic' ? 1 : 0,
       teacherCategory: stForm.form.value.teacherCategory,
       isClassTeacher: stForm.form.value.classTeacher === 'Yes' ? 1 : 0,
-      subjectDetails: this.staffSubjectObj,
+      subjectName: this.subjectName,
+      className: this.className,
+      sectionName: this.sectionName,
       name: stForm.form.value.staffName,
       contactNo: stForm.form.value.staffContact,
       schoolName: this.schoolName
     }
+    console.log("add_staff",staffData);
+
     this.commonService.addStaff(staffData).subscribe(res => {
       if (res['success']) {
         this.closeBtn.nativeElement.click();
         stForm.reset();
-        this.staffType = null;        
+        this.staffType = null;
         this.staffForm.classList = '';
         this.staffForm.staffType = '';
         this.staffForm.schools = '';
         this.staffForm.nonteachingArea = '';
         this.staffForm.teacherType = '',
-          this.staffForm.classTeacher = ''
+        this.staffForm.classTeacher = ''
         this.staffForm.teacherCategory = '';
         this.getStaffList();
       }
@@ -159,31 +186,31 @@ export class AddStaffComponent implements OnInit {
     })
   }
 
-  oenEditModal(staffData) {
-    console.log("sd",staffData);
-    this.staffForm ={
-      schools: staffData.schoolId,
-      staffType: '',
-      nonteachingArea: staffData.staffArea,
-      teacherType: staffData.isTeaching ? 'Scholastic':'Co-Scholastic',
-      teacherCategory: '',
-      classTeacher: staffData.isClassTeacher ? 'Yes' : 'No',
-      Subjects: staffData.subjectDetails.subjectName,
-      classList: staffData.subjectDetails.className,
-      section: staffData.subjectDetails.sectionName,
-      staffName: staffData.name,
-      staffEmail: staffData.staffEmail,
-      staffContact: staffData.contactNo
-    }
-    this.section.push(staffData.subjectDetails.sectionName);
-    this.selectedItems3.push(staffData.subjectDetails.sectionName);
-    this.isEdit = true;
-    console.log("staffForm",this.staffForm);
-  }
+  // oenEditModal(staffData) {
+  //   console.log("sd",staffData);
+  //   this.staffForm ={
+  //     schools: staffData.schoolId,
+  //     staffType: '',
+  //     nonteachingArea: staffData.staffArea,
+  //     teacherType: staffData.isTeaching ? 'Scholastic':'Co-Scholastic',
+  //     teacherCategory: '',
+  //     classTeacher: staffData.isClassTeacher ? 'Yes' : 'No',
+  //     Subjects: staffData.subjectDetails.subjectName,
+  //     classList: staffData.subjectDetails.className,
+  //     section: staffData.subjectDetails.sectionName,
+  //     staffName: staffData.name,
+  //     staffEmail: staffData.staffEmail,
+  //     staffContact: staffData.contactNo
+  //   }
+  //   this.section.push(staffData.subjectDetails.sectionName);
+  //   this.selectedItems3.push(staffData.subjectDetails.sectionName);
+  //   this.isEdit = true;
+  //   console.log("staffForm",this.staffForm);
+  // }
 
 
-  deleteStaff(staff){
-    let staffData ={
+  deleteStaff(staff) {
+    let staffData = {
       staffId: staff._id
     }
     this.commonService.deleteStaff(staffData).subscribe(res => {
@@ -194,15 +221,36 @@ export class AddStaffComponent implements OnInit {
       console.log("err", err);
     })
   }
-  
 
-  onstaffTypechange(event){
- this.staffType = event == 'Teaching' ? true : false
-    console.log("dev staff",event,this.staffType);
+
+  onstaffTypechange(event) {
+    this.staffType = event == 'Teaching' ? true : false
+    console.log("dev staff", event, this.staffType);
   }
 
-  openUpdateModal(staff){
+  openUpdateModal(staff) {
 
+  }
+
+
+  onteachcat(event) {
+    console.log("teachercate", event);
+    if (event === "N.T.") {
+      this.classList = AppConfig.nt_class;
+      this.dropdownList = AppConfig.nt_sub;
+    }
+    else if (event === "P.R.T.") {
+      this.classList = AppConfig.prt_class;
+      this.dropdownList = AppConfig.prt_sub;
+    }
+    else if (event === "T.G.T.") {
+      this.classList = AppConfig.tgt_class;
+      this.dropdownList = AppConfig.tgt_sub;
+    }
+    else {
+      this.classList = AppConfig.pgt_class;
+      this.dropdownList = AppConfig.pgt_sub;
+    }
   }
 
   // updateStaff(stForm) {
@@ -226,5 +274,5 @@ export class AddStaffComponent implements OnInit {
   //   this.isEdit = true;
   //   console.log("staffForm",this.staffForm);
   // }
-  
+
 }

@@ -83,7 +83,7 @@
 
   <!-- Table body -->
   <tbody>
-    <tr *ngFor="let staff of staffData; let i=index">
+    <tr *ngFor="let staff of filterStaffData; let i=index">
       <td>
         <div class="custom-control custom-checkbox">
           
@@ -95,9 +95,9 @@
         </div>
       </td>
       <td><div class="form-group mb-0">
-        <select class="form-control" [(ngModel)]="peeredStaffForm.teacherToPeer" name="teacherToPeer" required>
+        <select class="form-control" (click)="onSelectClick($event,staff._id)" [(ngModel)]="staff.contactNo" name="teacherToPeer{{i}}" required>
           <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
-          <option *ngFor="let staff of staffData" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
+          <option *ngFor="let staff of filterPeerList" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
         </select>
       </div>
     </td>

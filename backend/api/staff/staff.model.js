@@ -42,11 +42,12 @@ const StaffSchema = new Schema({
     teacherCategory: {  //N.T.  P.R.T.  T.G.T.
         type: String
     },
-    subjectDetails: {
-        subjectName: { type: String },
-        className: { type: String },
-        sectionName: { type: String }
-    },
+    subjectName: [],
+
+    className: [],
+
+    sectionName: [],
+
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"

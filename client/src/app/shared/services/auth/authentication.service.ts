@@ -15,6 +15,10 @@ commonUrl = AppConfig.commonurl
     return this.http.post(this.commonUrl + 'staff/login', loginDetails)
   }
 
+  getadminData(loginDetails){
+    return this.http.post(this.commonUrl + 'admin/login', loginDetails)
+  }
+
   getCurrentRole(){
     if(localStorage.getItem('role')){
       const role = localStorage.getItem('role');

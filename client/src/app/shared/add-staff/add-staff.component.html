@@ -32,13 +32,13 @@
         <th scope="row">{{i+1}}</th>
         <td>{{staff.schoolName}}</td>
         <td>{{staff.isTeaching == 1 ? 'Teaching':'Non-Teaching'}}</td>
-        <td>{{staff.staffArea}}</td>
+        <td>{{staff.staffArea? staff.staffArea : "__"}}</td>
         <td>{{staff.teachingType == 1 ? 'Scholastic':'Co-Scholastic'}}</td>
         <td>{{staff.teacherCategory}}</td>
         <td>{{staff.isClassTeacher == 1? "YES": "NO"}}</td>
-        <td>{{staff.subjectDetails.subjectName}}</td>
-        <td>{{staff.subjectDetails.className}}</td>
-        <td>{{staff.subjectDetails.sectionName}}</td>
+        <td>{{staff.subjectName.join(",")}}</td>
+        <td>{{staff.className.join(",")}}</td>
+        <td>{{staff.sectionName.join(",")}}</td>
         <td>{{staff.name}}</td>
         <td>{{staff.staffEmail}}</td>
         <td>{{staff.contactNo}}</td>
@@ -102,7 +102,7 @@
           </div>
           <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
-              <select class="form-control" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
+              <select class="form-control" (change)="onteachcat($event.target.value)" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
                 <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
                 <option *ngFor="let teacherCategory of teacherCategoryArr" class="dropdown-item"  value="{{teacherCategory}}">{{teacherCategory}}</option>
               </select>
@@ -119,21 +119,21 @@
           </div>
           <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
-              <ng-multiselect-dropdown  placeholder="Select Subject" [data]="dropdownList"
+              <ng-multiselect-dropdown  (onSelectAll)="onSelectAllsubject($event)" (onDeSelectAll)="onunselectAllsubject($event)" placeholder="Select Subject" [data]="dropdownList"
                 [(ngModel)]="selectedItems" name="selectedItems" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect($event)" (onSelect)="onItemSelect($event)">
               </ng-multiselect-dropdown>
             </div>
           </div>
           <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
-              <ng-multiselect-dropdown  placeholder="Select Class" [data]="classList"
+              <ng-multiselect-dropdown (onSelectAll)="onSelectAllclass($event)" (onDeSelectAll)="onunselectAllclass($event)" placeholder="Select Class" [data]="classList"
                   [(ngModel)]="selectedItems2" name="selectedItems2" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect2($event)" (onSelect)="onItemSelect2($event)">
                 </ng-multiselect-dropdown>
             </div>
           </div>
           <div class="col-md-6" *ngIf="staffType==true">
             <div class="form-group">
-              <ng-multiselect-dropdown placeholder="Select Section" [data]="section"
+              <ng-multiselect-dropdown (onSelectAll)="onSelectAllsection($event)" (onDeSelectAll)="onunselectAllsection($event)" placeholder="Select Section" [data]="section"
                   [(ngModel)]="selectedItems3" name="selectedItems3" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect3($event)" (onSelect)="onItemSelect3($event)">
                 </ng-multiselect-dropdown>
             </div>

@@ -45,6 +45,17 @@ module.exports = {
             }
         })
     },
+    getAllFormDetails: () => {
+        return new Promise((resolve, reject) => {
+                ReviewForm.find({}, (err, data) => {
+                    if (err) {
+                        return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                    }
+                    return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+                })
+            
+        })
+    },
     getFormDetailsByRole: (reviewDetails) => {
         return new Promise((resolve, reject) => {
             if (reviewDetails && reviewDetails.role) {

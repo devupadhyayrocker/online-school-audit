@@ -11,9 +11,16 @@ export class AppConfig {
     public static classTeacher = ["Yes", "No"];
     public static classList = ["Pre-Nursery/Nursery", "L.K.G./Nursery", "U.K.G./Prep", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"];
     public static section = ["A", "B", "C", "D", "E", "F"];
-    public static principalFormList = ["Principal Evaluation Teaching","Principal Evaluation Non Teaching"]
-    public static TeachingFormList = ["Self Evaluation","Peer Evaluation","Document Evaluation"];
-    
+    public static principalFormList = ["Principal Evaluation Teaching", "Principal Evaluation Non Teaching"]
+    public static TeachingFormList = ["Self Evaluation", "Peer Evaluation", "Document Evaluation"];
+    public static nt_class = ["Pre-Nursery/Nursery", "L.K.G./Nursery", "U.K.G./Prep"];
+    public static prt_class = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"];
+    public static tgt_class = ["Class 6", "Class 7", "Class 8"];
+    public static pgt_class = ["Class 9", "Class 10", "Class 11", "Class 12"];
+    public static nt_sub = ["English", "E.V.S.", "Hindi", "Mathematics"];
+    public static prt_sub = ["English", "E.V.S./Social Studies", "Hindi", "Mathematics","Science","Sanskrit","G.K.","Art","Computer"];
+    public static tgt_sub = ["English", "Hindi", "Mathematics", "Physics", "Chemistry", "Biology",  "Geography","History",  "French",  "German","Sanskrit"];
+    public static pgt_sub = ["English", "E.V.S."];
     public static selectStaff = [{
         id: 1,
         name: "Principal"
@@ -58,7 +65,7 @@ export class AppConfig {
         for: ["teaching"],
         values: [1, 2, 3, 4],
         key: 1,
-        matrixValue:"21"
+        matrixValue: "21"
     },
     {
 
@@ -69,7 +76,7 @@ export class AppConfig {
         for: ["teaching"],
         values: [1, 2, 3, 4],
         key: 2,
-        matrixValue:"22"
+        matrixValue: "22"
     },
     {
 
@@ -80,7 +87,7 @@ export class AppConfig {
         for: ["teaching"],
         values: [1, 2, -1],
         key: 3,
-        matrixValue:"25"
+        matrixValue: "25"
     },
     {
 
@@ -91,7 +98,7 @@ export class AppConfig {
         for: ["nonteaching"],
         values: [1, 2, 3, 4],
         key: 4,
-        matrixValue:"31"
+        matrixValue: "31"
     },
     {
 
@@ -102,7 +109,7 @@ export class AppConfig {
         for: ["nonteaching"],
         values: [1, 2, 3, 4],
         key: 5,
-        matrixValue:"32"
+        matrixValue: "32"
     },
     {
 
@@ -113,7 +120,7 @@ export class AppConfig {
         for: ["principal"],
         values: [1, 2, 3, 4],
         key: 6,
-        matrixValue:"13"
+        matrixValue: "13"
     },
     {
 
@@ -124,7 +131,7 @@ export class AppConfig {
         for: ["principal"],
         values: [1, 2, 3, 4],
         key: 7,
-        matrixValue:"14"
+        matrixValue: "14"
     },
     {
 
@@ -135,7 +142,9 @@ export class AppConfig {
         for: ["editor"],
         values: [1, 2, 3, 4, 5],
         key: 8,
-        matrixValue:"46"
+        matrixValue: "46"
     }];
+
+
 
 }

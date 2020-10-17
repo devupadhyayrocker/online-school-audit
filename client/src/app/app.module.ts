@@ -28,6 +28,7 @@ import { NonTeachingComponent } from './shared/non-teaching/non-teaching.compone
 import { NonTeachingSelfAssessmentComponent } from './shared/non-teaching-self-assessment/non-teaching-self-assessment.component';
 import { NonTeachingPeerAssessmentComponent } from './shared/non-teaching-peer-assessment/non-teaching-peer-assessment.component';
 import { CommonService } from './shared/services/common/common.service';
+import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { CommonService } from './shared/services/common/common.service';
     TeacherAcademicAssessmentComponent,
     NonTeachingComponent,
     NonTeachingSelfAssessmentComponent,
-    NonTeachingPeerAssessmentComponent
+    NonTeachingPeerAssessmentComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

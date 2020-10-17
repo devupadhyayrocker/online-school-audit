@@ -6,6 +6,7 @@
                     <option value="" disabled selected>Select User</option>
                     <option value="p">Principal</option>
                     <option value="t">Teachers</option>
+                    <option value="nt">Non Teachers</option>
                 </select>
             </div>
         </div>
@@ -33,6 +34,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
                 <th scope="col">Password</th>
+                <th scope="col">Staff Type</th>
                 <th scope="col">View/Edit/Delete</th>
             </tr>
         </thead>
@@ -52,6 +54,7 @@
                     <input *ngIf="i!==rowIndex || !isShow" type="password" readonly class="form-control-plaintext text-center" value="{{user.password}}">
                     <input *ngIf="i==rowIndex && isShow" type="text" readonly class="form-control-plaintext text-center" value="{{user.password}}">
                 </div></td>
+                <td>{{user.teachingType == true ? "Teacher" : "Administrative Staff"}}</td>
                 <td> 
                     <a class="btn btn-sm btn-outline-lightning rounded-0">
                         <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true" ></i>
