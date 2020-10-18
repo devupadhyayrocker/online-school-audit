@@ -56,6 +56,12 @@ export class CommonService {
   addreviewForm(reviewDetails){
     return this.http.post(this.commonUrl + 'review/addReviewForm',reviewDetails)
   }
+
+  updateReviewForm(reviewDetails){
+    return this.http.post(this.commonUrl + 'review/updateReviewForm',reviewDetails)
+  }
+
+
   getFormDetails(){
     return this.http.get(this.commonUrl + 'review/getReviewForm')
   }

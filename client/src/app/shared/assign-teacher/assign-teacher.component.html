@@ -16,10 +16,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let peerStaff of staffData; let i=index" class="text-center">
+      <tr *ngFor="let peerStaff of showPeerData; let i=index" class="text-center">
         <th scope="row">{{i+1}}</th>
-        <td>{{peerStaff.name}}</td>
-        <td>{{peerStaff.name}}</td>
+        <td>{{peerStaff.by}}</td>
+        <td>{{peerStaff.for}}</td>
       </tr>
     </tbody>
   </table>

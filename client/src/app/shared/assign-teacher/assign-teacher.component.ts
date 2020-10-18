@@ -8,7 +8,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 })
 export class AssignTeacherComponent implements OnInit {
 
-
+  showPeerData: any = [];
   staffTypeArr = AppConfig.staffType;
   staffCategoryArr: any = [];
   staffData: any = [];
@@ -38,16 +38,30 @@ export class AssignTeacherComponent implements OnInit {
   }
 
   addpeeredStaff(asteForm) {
+    let idData = this.reviewFormData.find(item => item.type === 2);
     let dbArr = this.peerUpdateArr.filter(item => item.isChecked === true);
     if (dbArr) {
       let peerArr = dbArr.map(item => {
         let peerObj = {
-           staffIdBy: item.staffIdBy,
-           staffIdFor: item.staffIdFor
+          staffIdBy: item.staffIdBy,
+          staffIdFor: item.staffIdFor,
+          reviewStatus: 'pending'
         }
         return peerObj
       })
-      console.log("pa",peerArr);
+      let dbObj = {
+        peerArr: peerArr,
+        id: idData._id
+      }
+      this.commonService.updateReviewForm(dbObj).subscribe(res => {
+        this.getFormList();
+        console.log("res", res);
+      }, err => {
+        console.log("Erere", err);
+      })
+
+      console.log("pa", peerArr);
+
     }
     // let peerStaffData = {
     //   teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
@@ -57,6 +71,9 @@ export class AssignTeacherComponent implements OnInit {
     // this.peerStaffData.push(peerStaffData);
     // asteForm.reset();
   }
+
+
+
 
   getStaffList() {
     this.commonService.getStaffList().subscribe(res => {
@@ -73,6 +90,14 @@ export class AssignTeacherComponent implements OnInit {
     this.commonService.getFormDetails().subscribe(res => {
       if (res['data']) {
         this.reviewFormData = res['data'];
+        let modData = this.reviewFormData.forEach(item => {
+          item.peerArr.forEach(it => {
+            let str = this.staffData.filter(i => i._id === it.staffIdBy);
+            let str1 = this.staffData.filter(i => i._id === it.staffIdFor);
+            this.showPeerData.push({ by: str[0].name, for: str1[0].name })
+          })
+        })
+        console.log("rd", this.reviewFormData);
       }
     }, err => {
       console.log("Erere", err);

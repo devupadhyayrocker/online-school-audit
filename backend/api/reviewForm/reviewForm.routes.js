@@ -21,6 +21,23 @@ router.post('/addReviewForm', (req, res, next) => {
 
 });
 
+// update Review Form
+router.post('/updateReviewForm', (req, res, next) => {
+    const formDetails = req.body;
+    try {
+        formController.updateForm(formDetails).then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            console.log("ttt", err);
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 // get all review form details
 router.get('/getReviewForm', (req, res, next) => {
     try {

@@ -9,6 +9,7 @@ var appRoutes = require('./app.routes');
 var config = require('./config/db.config');
 
 var app = express();
+app.use(express.static(path.join(__dirname, "dist")))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

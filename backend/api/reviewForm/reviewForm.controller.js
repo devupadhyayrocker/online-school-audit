@@ -16,7 +16,6 @@ module.exports = {
                 totalMarks: formDetails.totalMarks,
                 marksObtained: formDetails.marksObtained,
                 peerArr: formDetails.peerArr,
-                reviewStatus: formDetails.reviewStatus,
                 schoolId: formDetails.schoolId,
                 role: formDetails.role
             })
@@ -30,6 +29,28 @@ module.exports = {
         })
     },
 
+    updateForm: (formDetails) => {
+        return new Promise((resolve, reject) => {
+            if (formDetails) {
+                ReviewForm.update({ "_id": formDetails.id }, {
+                    $set: {
+                        "peerArr" : formDetails.peerArr
+                    }
+                }, (error, result) => {
+                    if (error) {
+                        return reject({ status: 400, message: errorConfig.BAD_REQUEST })
+                    }
+                     return resolve({ success: true, message: "Peer Updated Successfully" })
+                })
+
+            } else {
+                return reject({ status: 400, message: 'Invalid Current Password' })
+            }
+
+        })
+
+    },
+    
     getFormDetails: (reviewDetails) => {
         return new Promise((resolve, reject) => {
             if (reviewDetails && reviewDetails.staffId) {

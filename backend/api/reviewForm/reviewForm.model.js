@@ -19,12 +19,9 @@ const ReviewFormSchema = new Schema({
     },
     peerArr: [{
         staffIdBy: '',
-        staffIdFor: ''
+        staffIdFor: '',
+        reviewStatus:''
     }],
-    reviewStatus: {
-        type: String,
-        default: 'pending'
-    },
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "school"
