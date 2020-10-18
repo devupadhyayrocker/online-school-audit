@@ -12,11 +12,14 @@ export class AssignTeacherComponent implements OnInit {
   staffTypeArr = AppConfig.staffType;
   staffCategoryArr: any = [];
   staffData: any = [];
-  reviewFormData: any =[];
+  reviewFormData: any = [];
   filterStaffData: any = [];
-  filterPeerList:any=[];
+  filterPeerList: any = [];
+  peerUpdateArr: any[];
+  showSelect = false;
   isTeaching: boolean = null;
-  idArr = [];
+  idArr = {};
+  selIndex: any = -1;
 
   peeredStaffForm = {
     teacherWhoPeer: '',
@@ -29,33 +32,44 @@ export class AssignTeacherComponent implements OnInit {
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-
+    this.peerUpdateArr = [];
     this.getStaffList();
     this.getFormList();
   }
 
-  // addpeeredStaff(asteForm) {
-  //   let peerStaffData = {
-  //     teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
-  //     teacherToPeer: asteForm.form.value.teacherToPeer,
-  //   }
+  addpeeredStaff(asteForm) {
+    let dbArr = this.peerUpdateArr.filter(item => item.isChecked === true);
+    if (dbArr) {
+      let peerArr = dbArr.map(item => {
+        let peerObj = {
+           staffIdBy: item.staffIdBy,
+           staffIdFor: item.staffIdFor
+        }
+        return peerObj
+      })
+      console.log("pa",peerArr);
+    }
+    // let peerStaffData = {
+    //   teacherWhoPeer: asteForm.form.value.teacherWhoPeer,
+    //   teacherToPeer: asteForm.form.value.teacherToPeer,
+    // }
 
-  //   this.peerStaffData.push(peerStaffData);
-  //   asteForm.reset();
-  // }
+    // this.peerStaffData.push(peerStaffData);
+    // asteForm.reset();
+  }
 
   getStaffList() {
     this.commonService.getStaffList().subscribe(res => {
       if (res['data']) {
-        this.staffData = res['data'].filter(item => item.isPrincipal === false);
+        this.staffData = res['data'].filter(item => item.isPrincipal === false && item.isReviewing === false);
         this.filterPeerList = res['data'];
-         }
+      }
     }, err => {
       console.log("Erere", err);
     })
   }
 
-  getFormList(){
+  getFormList() {
     this.commonService.getFormDetails().subscribe(res => {
       if (res['data']) {
         this.reviewFormData = res['data'];
@@ -65,11 +79,28 @@ export class AssignTeacherComponent implements OnInit {
     })
   }
 
-  onSelectClick(ev,stid){
-    this.filterPeerList = this.filterStaffData.filter(item => item._id !== stid);
-    console.log("Ev",stid);
+  onSelectClick(stid, ind) {
+    this.selIndex = ind;
+    if (this.selIndex === ind) {
+      this.filterPeerList = this.filterStaffData.filter(item => item._id !== stid);
+    } else {
+
+    }
+
+    console.log("Ev", stid);
   }
-  
+
+  onSelectChange(ev, staffFor, index) {
+    let nameFor = this.filterStaffData.find(item => item._id === ev)
+    let peerObj = {
+      staffIdBy: staffFor,
+      staffIdFor: ev,
+      name: nameFor.name
+    }
+    this.peerUpdateArr[index] = peerObj;
+    console.log("ev", this.peerUpdateArr);
+  }
+
 
 
 
@@ -77,7 +108,7 @@ export class AssignTeacherComponent implements OnInit {
     console.log("teach", event);
     this.peeredStaffForm.staffCategory = '';
     if (event == "Teaching") {
-      this.isTeaching =true;
+      this.isTeaching = true;
       this.filterStaffData = this.staffData.filter(item => item.isTeaching === true);
       this.filterPeerList = this.filterStaffData;
       this.staffCategoryArr = AppConfig.teacherCategory;
@@ -93,11 +124,11 @@ export class AssignTeacherComponent implements OnInit {
 
 
   onStaffcategoryChange(event) {
-    if(this.isTeaching){
-    this.filterStaffData = this.staffData.filter(item => item.teacherCategory === event);
-    this.filterPeerList = this.filterStaffData;
+    if (this.isTeaching) {
+      this.filterStaffData = this.staffData.filter(item => item.teacherCategory === event);
+      this.filterPeerList = this.filterStaffData;
 
-    }else{
+    } else {
       this.filterStaffData = this.staffData.filter(item => item.staffArea === event);
       this.filterPeerList = this.filterStaffData;
     }
@@ -123,8 +154,13 @@ export class AssignTeacherComponent implements OnInit {
     //   }
   }
 
-  onstaffSelected(staff) {
-    console.log("staff", staff);
+  onstaffSelected(staff, index, st) {
+    if (this.peerUpdateArr[index] && this.peerUpdateArr[index].isChecked) {
+      this.peerUpdateArr[index].isChecked = false;
+    } else {
+      this.peerUpdateArr[index].isChecked = true;
+    }
+    console.log("staff", this.peerUpdateArr);
   }
 
 

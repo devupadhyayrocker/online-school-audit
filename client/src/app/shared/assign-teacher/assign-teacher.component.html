@@ -89,16 +89,39 @@
           
           <!-- <input type="checkbox" [(ngModel)]="staff.checked" (change)="onstaffSelected(staff,$event)"
             [value]="i" class="custom-control-input" id="{{i}}"> -->
-            <input type="checkbox" class="custom-control-input"
+            <input type="checkbox" (change)="onstaffSelected($event.target.value,i,staff)" class="custom-control-input"
             [value]="i"  id="customCheck" id="{{i}}">
           <label class="custom-control-label" for="{{i}}">{{staff.name}}</label>
         </div>
       </td>
       <td><div class="form-group mb-0">
-        <select class="form-control" (click)="onSelectClick($event,staff._id)" [(ngModel)]="staff.contactNo" name="teacherToPeer{{i}}" required>
+        <!-- <select *ngIf="i===selIndex && showSelect" class="form-control" (click)="onSelectClick($event,staff._id,i)"  [(ngModel)]="staff.contactNo" name="staff._id" required>
           <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
           <option *ngFor="let staff of filterPeerList" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
-        </select>
+        </select> -->
+        <div class="input-group">
+          <select *ngIf="i===selIndex && showSelect" (change)="onSelectChange($event.target.value,staff._id,i)" class="form-control" required>
+            <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+            <option *ngFor="let stff of filterPeerList" class="dropdown-item"  value="{{stff._id}}">{{stff.name}}</option>
+          </select>
+          <input *ngIf="i!=selIndex || !showSelect" type="text" class="form-control" readonly placeholder="Select Teacher" value="{{peerUpdateArr[i]? peerUpdateArr[i].name : ''}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button *ngIf="i!==selIndex || !showSelect" (click)="showSelect=true;selIndex=i;onSelectClick(staff._id,i)" class="btn btn-outline-secondary" type="button"><i class="far fa-edit"></i></button>
+            <button *ngIf="i===selIndex && showSelect" (click)="showSelect=false;" class="btn btn-outline-secondary" type="button"><i class="fa fa-check"></i></button>
+            <button class="btn btn-outline-secondary" type="button"><i class="far fa-trash-alt"></i></button>
+          </div>
+        </div>
+        <!-- <input *ngIf="i!=selIndex" type="text" readonly class="form-control-plaintext text-center" value="{{staff.name}}">
+        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+        <i class="far fa-edit"></i>
+      </a>
+      <a class="btn btn-sm btn-outline-lightning rounded-0">
+        <i  class="far fa-trash-alt"></i>
+      </a> -->
+        <!-- <select *ngIf="i!==selIndex" class="form-control" (click)="onSelectClick($event,staff._id,i)" [(ngModel)]="staff.contactNo" name="staff._id" required>
+          <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+          <option *ngFor="let staff of filterStaffData" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
+        </select> -->
       </div>
     </td>
       </tr>

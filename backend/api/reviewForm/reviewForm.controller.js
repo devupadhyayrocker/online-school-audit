@@ -15,8 +15,7 @@ module.exports = {
                 answers: formDetails.answers,
                 totalMarks: formDetails.totalMarks,
                 marksObtained: formDetails.marksObtained,
-                staffIdFor: "5f6f53379fea0e17ec4e89d8",
-                staffIdBy: "5f6f53379fea0e17ec4e89d8",
+                peerArr: formDetails.peerArr,
                 reviewStatus: formDetails.reviewStatus,
                 schoolId: formDetails.schoolId,
                 role: formDetails.role
