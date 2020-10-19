@@ -1,12 +1,9 @@
-<section class="login-block">
+<section class="login-block bg-dark">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 banner-sec">
-          <!-- <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt=""> -->
-        </div>
-  
-        <div class="col-md-4 login-sec">
-          <h2 class="text-center">Login Now</h2>
+        <div class="col-md-3"></div>
+        <div class="col-md-4 login-sec bg-white bg_border">
+          <h2 class="text-center">Admin Login</h2>
           <form class="login-form" #logForm="ngForm" id="Login">
             <div class="form-group">
               <label for="exampleInputEmail1" class="text-uppercase">Username</label>
@@ -22,16 +19,13 @@
   
   
             <div class="form-check">
-              <!-- <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                <small>Remember Me</small>
-              </label> -->
               <button type="submit" class="btn btn-login float-right" (click)="doLogin(logForm)">Login</button>
             </div>
   
           </form>
   
         </div>
+        <div class="col-md-5"></div>
       </div>
     </div>
   </section>
