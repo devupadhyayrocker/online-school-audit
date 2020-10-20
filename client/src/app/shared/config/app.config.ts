@@ -5,7 +5,7 @@ export class AppConfig {
         "Seth Anandram Jaipuria School, Sitarganj", "Seth Anandram Jaipuria School, Satna", "Seth Anandram Jaipuria School, Raebareli", "Seth Anandram Jaipuria School, Mirzapur",
         "Seth Anandram Jaipuria School, Dibiyapur"];
     public static staffType = ["Teaching", "Non-Teaching"];
-    public static nonteachingArea = ["Admin", "Accounts", "Academic Co-ordinator","Transport", "Maintenance", "Counsellor", "Back Office Executive", "M.E."];
+    public static nonteachingArea = ["Admin", "Accounts", "Admission Counsellor", "Academic Co-ordinator", "Transport", "Maintenance", "Counsellor", "Back Office Executive", "M.E."];
     public static teacherType = ["Scholastic", "Co-Scholastic"];
     public static teacherCategory = ["N.T.", "P.R.T.", "T.G.T.", "P.G.T."];
     public static classTeacher = ["Yes", "No"];
@@ -18,8 +18,8 @@ export class AppConfig {
     public static tgt_class = ["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"];
     public static pgt_class = ["Class 11", "Class 12"];
     public static nt_sub = ["English", "E.V.S.", "Hindi", "Mathematics", "Music", "Dance/Activity"];
-    public static prt_sub = ["English", "E.V.S./Social Studies", "Hindi", "Mathematics", "Science", "Sanskrit", "G.K.", "Art", "Computer"];
-    public static tgt_sub = ["English", "Hindi", "Mathematics", "Physics", "Chemistry", "Biology", "Science", "Social Studies", "Geography", "History", "French", "German", "Sanskrit"];
+    public static prt_sub = ["English", "E.V.S./Social Studies", "Physical Education", "Hindi", "Mathematics", "Science", "Sanskrit", "G.K.", "Art", "Computer"];
+    public static tgt_sub = ["English", "Hindi", "Computer", "Mathematics", "Physics", "Chemistry", "Biology", "Science", "Social Studies", "Geography", "History", "French", "Physical Education", "Library", "German", "Music", "Dance", "Art & Craft", "Sanskrit"];
     public static pgt_sub = ["English", "E.V.S."];
     public static selectStaff = [{
         id: 1,
