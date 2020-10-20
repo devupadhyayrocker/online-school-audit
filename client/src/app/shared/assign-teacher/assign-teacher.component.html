@@ -23,7 +23,7 @@
       </tr>
     </tbody>
   </table>
-  <div>                
+  <!-- <div>                
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
         <li class="page-item disabled">
@@ -36,7 +36,7 @@
           <a class="page-link" href="#">Next</a>
         </li>
       </ul>
-    </nav>    </div> 
+    </nav>    </div>  -->
 </div>
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -108,7 +108,7 @@
           <div class="input-group-append">
             <button *ngIf="i!==selIndex || !showSelect" (click)="showSelect=true;selIndex=i;onSelectClick(staff._id,i)" class="btn btn-outline-secondary" type="button"><i class="far fa-edit"></i></button>
             <button *ngIf="i===selIndex && showSelect" (click)="showSelect=false;" class="btn btn-outline-secondary" type="button"><i class="fa fa-check"></i></button>
-            <button class="btn btn-outline-secondary" type="button"><i class="far fa-trash-alt"></i></button>
+            <!-- <button class="btn btn-outline-secondary" type="button"><i class="far fa-trash-alt"></i></button> -->
           </div>
         </div>
         <!-- <input *ngIf="i!=selIndex" type="text" readonly class="form-control-plaintext text-center" value="{{staff.name}}">

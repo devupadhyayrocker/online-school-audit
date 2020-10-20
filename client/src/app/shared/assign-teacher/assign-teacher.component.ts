@@ -7,7 +7,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
   styleUrls: ['./assign-teacher.component.css']
 })
 export class AssignTeacherComponent implements OnInit {
-
+  isEdit: boolean = false;
   showPeerData: any = [];
   staffTypeArr = AppConfig.staffType;
   staffCategoryArr: any = [];
@@ -49,6 +49,7 @@ export class AssignTeacherComponent implements OnInit {
         }
         return peerObj
       })
+      console.log("iddata",idData);
       let dbObj = {
         peerArr: peerArr,
         id: idData._id

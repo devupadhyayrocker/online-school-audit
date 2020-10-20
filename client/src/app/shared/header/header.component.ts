@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
 isLoggedIn : boolean = false;
 
-
+currentUrl: string = "";
 
   constructor(
     private router: Router
