@@ -5,7 +5,7 @@ export class AppConfig {
         "Seth Anandram Jaipuria School, Sitarganj", "Seth Anandram Jaipuria School, Satna", "Seth Anandram Jaipuria School, Raebareli", "Seth Anandram Jaipuria School, Mirzapur",
         "Seth Anandram Jaipuria School, Dibiyapur"];
     public static staffType = ["Teaching", "Non-Teaching"];
-    public static nonteachingArea = ["Admin", "Accounts", "Transport", "Maintenance", "Counsellor", "Back Office Executive", "M.E."];
+    public static nonteachingArea = ["Admin", "Accounts", "Academic Co-ordinator","Transport", "Maintenance", "Counsellor", "Back Office Executive", "M.E."];
     public static teacherType = ["Scholastic", "Co-Scholastic"];
     public static teacherCategory = ["N.T.", "P.R.T.", "T.G.T.", "P.G.T."];
     public static classTeacher = ["Yes", "No"];
