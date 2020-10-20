@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppConfig } from "../config/app.config";
 import { CommonService } from '../services/common/common.service';
-
+import { ValidationConfig } from './../config/validation';
 @Component({
   selector: 'app-add-staff',
   templateUrl: './add-staff.component.html',
@@ -11,7 +11,8 @@ export class AddStaffComponent implements OnInit {
   @ViewChild('closeBtn', { static: false }) closeBtn: ElementRef;
 
   staffType: boolean = null;
-
+  emailPattern = ValidationConfig.EMAIL_PATTERN;
+  mobilePattern = ValidationConfig.MOB_NO_PATTERN;
   schoolData: any = [];
   subjectName: any = [];
   className: any = [];
@@ -116,19 +117,19 @@ export class AddStaffComponent implements OnInit {
   onunselectAllsection(event) {
     this.sectionName = [];
   }
-  // OnItemDeSelect(selected) {
-  //   this.staffSubjectObj.subjectName = '';
-  // }
 
-  // OnItemDeSelect2(selected) {
-  //   this.staffSubjectObj.className = ''
-  //   console.log("d2");
-  // }
 
-  // OnItemDeSelect3(selected) {
-  //   this.staffSubjectObj.sectionName = '';
-  //   console.log("d2", this.section);
-  // }
+  OnItemDeSelect(selected) {
+    
+  }
+
+  OnItemDeSelect2(selected) {
+    
+  }
+
+  OnItemDeSelect3(selected) {
+ 
+  }
 
   getSchoolList() {
     this.commonService.getschoolList().subscribe(res => {
@@ -253,26 +254,26 @@ export class AddStaffComponent implements OnInit {
     }
   }
 
-  // updateStaff(stForm) {
-  //   console.log("sd",staffData);
-  //   this.staffForm ={
-  //     schools: staffData.schoolId,
-  //     staffType: '',
-  //     nonteachingArea: staffData.staffArea,
-  //     teacherType: staffData.isTeaching ? 'Scholastic':'Co-Scholastic',
-  //     teacherCategory: '',
-  //     classTeacher: staffData.isClassTeacher ? 'Yes' : 'No',
-  //     Subjects: staffData.subjectDetails.subjectName,
-  //     classList: staffData.subjectDetails.className,
-  //     section: staffData.subjectDetails.sectionName,
-  //     staffName: staffData.name,
-  //     staffEmail: staffData.staffEmail,
-  //     staffContact: staffData.contactNo
-  //   }
-  //   this.section.push(staffData.subjectDetails.sectionName);
-  //   this.selectedItems3.push(staffData.subjectDetails.sectionName);
-  //   this.isEdit = true;
-  //   console.log("staffForm",this.staffForm);
-  // }
+  updateStaff(stForm) {
+    // console.log("sd",staffData);
+    // this.staffForm ={
+    //   schools: staffData.schoolId,
+    //   staffType: '',
+    //   nonteachingArea: staffData.staffArea,
+    //   teacherType: staffData.isTeaching ? 'Scholastic':'Co-Scholastic',
+    //   teacherCategory: '',
+    //   classTeacher: staffData.isClassTeacher ? 'Yes' : 'No',
+    //   Subjects: staffData.subjectDetails.subjectName,
+    //   classList: staffData.subjectDetails.className,
+    //   section: staffData.subjectDetails.sectionName,
+    //   staffName: staffData.name,
+    //   staffEmail: staffData.staffEmail,
+    //   staffContact: staffData.contactNo
+    // }
+    // this.section.push(staffData.subjectDetails.sectionName);
+    // this.selectedItems3.push(staffData.subjectDetails.sectionName);
+    // this.isEdit = true;
+    // console.log("staffForm",this.staffForm);
+  }
 
 }

@@ -13,9 +13,9 @@
         <div class="col-md-3 mt-5">
             <button class="mx-auto w-100 d-block btn btn-success" (click)="sending()">Email Password</button>
         </div>
-        <div class="col-md-3 mt-5">
+        <!-- <div class="col-md-3 mt-5">
             <button class="mx-auto w-100 d-block btn btn-primary" (click)="exportTable()">Download Users</button>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -26,9 +26,9 @@
                 <th scope="col">
                     <div class="custom-control custom-checkbox text-left">
                         <input type="checkbox" (click)="CheckAllOptions('customCheck')" class="custom-control-input"
-                          id="customCheck1">
+                            id="customCheck1">
                         <label class="custom-control-label" for="customCheck1">S. No.</label>
-                      </div>
+                    </div>
                 </th>
                 <th scope="col">Full Name</th>
                 <th scope="col">Email</th>
@@ -40,51 +40,56 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of userData; let i=index">
-                  <td>
+                <td>
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user,$event)"
-                        [value]="i" class="custom-control-input" id="{{i}}">
-                      <label class="custom-control-label" for="{{i}}">{{i+1}}</label>
+                        <!-- <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user,$event)"
+                            [value]="i" class="custom-control-input" id="{{i}}"> -->
+                        <label class="custom-control-label" for="{{i}}">{{i+1}}</label>
                     </div>
-                  </td>
+                </td>
                 <td>{{user.name}}</td>
                 <td>{{user.staffEmail}}</td>
                 <td>{{user.username}}</td>
-                <td><div class="form-group">
-                    <input *ngIf="i!==rowIndex || !isShow" type="password" readonly class="form-control-plaintext text-center" value="{{user.password}}">
-                    <input *ngIf="i==rowIndex && isShow" type="text" readonly class="form-control-plaintext text-center" value="{{user.password}}">
-                </div></td>
+                <td>
+                    <div class="form-group">
+                        <input *ngIf="i!==rowIndex || !isShow" type="password" readonly
+                            class="form-control-plaintext text-center" value="{{user.password}}">
+                        <input *ngIf="i==rowIndex && isShow" type="text" readonly
+                            class="form-control-plaintext text-center" value="{{user.password}}">
+                    </div>
+                </td>
                 <td>{{user.teachingType == true ? "Teacher" : "Administrative Staff"}}</td>
-                <td> 
+                <td>
                     <a class="btn btn-sm btn-outline-lightning rounded-0">
-                        <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true" ></i>
-                      </a>
-                  <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
-                    class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
-                    <i class="far fa-edit"></i>
-                  </a>
-                  <a class="btn btn-sm btn-outline-lightning rounded-0">
-                    <i  class="far fa-trash-alt"></i>
-                  </a>
-                </td> 
-              </tr>
+                        <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
+                        class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-outline-lightning rounded-0">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
-    
-  <div>                
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>    </div> 
+
+    <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
 
 <!-- Modal -->

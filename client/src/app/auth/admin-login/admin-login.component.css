@@ -18,11 +18,15 @@
 
 
 .banner-sec {
-	background: url(../../../assets/img/533.jpg) no-repeat left bottom;
+	background: url(../../../assets/img/japp.jpg) no-repeat left bottom;
 	background-size: cover;
 	min-height: 500px;
 	/* border-radius: 0 10px 10px 0; */
 	padding: 0;
+}
+
+.log_bord{
+	border-radius: 10px;
 }
 
 /* .container {

@@ -98,7 +98,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" #closeBtn data-dismiss="modal">Close</button>
         <button *ngIf="isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
-        (click)="updateSchool(scForm,schoolModal)">Update School</button>
+        (click)="updateSchool(scForm)">Update School</button>
         <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
           (click)="addSchool(scForm)">Add School</button>
       </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppConfig } from "../config/app.config";
 import { CommonService } from '../services/common/common.service';
-
+import { ValidationConfig } from './../config/validation';
 @Component({
   selector: 'app-add-principal',
   templateUrl: './add-principal.component.html',
@@ -26,6 +26,8 @@ export class AddPrincipalComponent implements OnInit {
   schoolId: string = "";
   locationValue: string = "";
 
+  emailPattern = ValidationConfig.EMAIL_PATTERN;
+  mobilePattern = ValidationConfig.MOB_NO_PATTERN;
 
   constructor(private commonService: CommonService) { }
 

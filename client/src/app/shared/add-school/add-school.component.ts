@@ -1,5 +1,7 @@
+import { ValidationConfig } from './../config/validation';
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { CommonService } from '../services/common/common.service';
+
 
 @Component({
   selector: 'app-add-school',
@@ -16,6 +18,8 @@ export class AddSchoolComponent implements OnInit {
   }
   isEdit: boolean = false;
   schoolId: string = "";
+  emailPattern = ValidationConfig.EMAIL_PATTERN;
+  mobilePattern = ValidationConfig.MOB_NO_PATTERN;
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
