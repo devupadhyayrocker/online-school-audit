@@ -46,7 +46,10 @@ export class CommonService {
   }
 
   getStaffList(){
-    return this.http.get(this.commonUrl + 'staff/getStaffList')
+    let schoolObj={
+      schoolId: localStorage.getItem('schoolId')
+    }
+    return this.http.post(this.commonUrl + 'staff/getStaffList',schoolObj)
   }
 
   addStaff(staffDetails){

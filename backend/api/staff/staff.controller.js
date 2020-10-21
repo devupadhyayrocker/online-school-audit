@@ -249,9 +249,9 @@ module.exports = {
             }
         })
     },
-    getStaffList: () => {
+    getStaffList: (schoolDetails) => {
         return new Promise((resolve, reject) => {
-            Staff.find({ "isPrincipal": 0 }, (err, data) => {
+            Staff.find({ "isPrincipal": 0 ,"schoolId": schoolDetails.schoolId}, (err, data) => {
                 if (err) {
                     return reject({ status: 500, message: messageConfig.BAD_REQUEST })
                 }

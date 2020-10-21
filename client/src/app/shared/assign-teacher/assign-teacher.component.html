@@ -90,7 +90,7 @@
           <!-- <input type="checkbox" [(ngModel)]="staff.checked" (change)="onstaffSelected(staff,$event)"
             [value]="i" class="custom-control-input" id="{{i}}"> -->
             <input type="checkbox" (change)="onstaffSelected($event.target.value,i,staff)" class="custom-control-input"
-            [value]="i"  id="customCheck" id="{{i}}">
+            [value]="i" [(ngModel)]="staff.checked"  [ngModelOptions]="{standalone: true}"  id="customCheck" id="{{i}}">
           <label class="custom-control-label" for="{{i}}">{{staff.name}}</label>
         </div>
       </td>

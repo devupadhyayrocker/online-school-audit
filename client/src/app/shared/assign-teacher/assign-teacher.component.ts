@@ -49,7 +49,7 @@ export class AssignTeacherComponent implements OnInit {
         }
         return peerObj
       })
-      console.log("iddata",idData);
+      console.log("iddata", idData);
       let dbObj = {
         peerArr: peerArr,
         id: idData._id
@@ -80,7 +80,7 @@ export class AssignTeacherComponent implements OnInit {
     this.commonService.getStaffList().subscribe(res => {
       if (res['data']) {
         this.staffData = res['data'].filter(item => item.isPrincipal === false && item.isReviewing === false);
-        this.filterPeerList = res['data'];
+        this.filterPeerList = this.staffData;
       }
     }, err => {
       console.log("Erere", err);
@@ -106,12 +106,36 @@ export class AssignTeacherComponent implements OnInit {
   }
 
   onSelectClick(stid, ind) {
-    this.selIndex = ind;
-    if (this.selIndex === ind) {
-      this.filterPeerList = this.filterStaffData.filter(item => item._id !== stid);
-    } else {
+    console.log("this", this.filterPeerList);
+    this.filterPeerList =[];
+    // this.selIndex = ind;
+    // this.filterPeerList = this.filterStaffData;
+ this.filterStaffData.forEach(item => {
+      let check = false;
+      this.peerUpdateArr.forEach(it => {
+        console.log("yyu",item._id, it.staffIdFor);
+        if (item._id == it.staffIdFor) {
+          check = true
+        }
+      
+      })
+      if(check == false){
+        this.filterPeerList.push(item);
+        // console.log("item",item);
+        // return item
+      }
 
-    }
+      check = false;
+    
+    })
+    // console.log("fpl", fpl);
+    
+    // this.dropdownList.filter(o => this.subjectArr.find(o2 => o['item_text'] == o2));
+    // if (this.selIndex === ind) {
+    //   this.filterPeerList = this.filterStaffData.filter(item => item._id !== stid);
+    // } else {
+
+    // }
 
     console.log("Ev", stid);
   }
@@ -191,12 +215,12 @@ export class AssignTeacherComponent implements OnInit {
 
 
   CheckAllOptions(optional) {
-    if (this.staffData.every(val => val.checked == true)) {
-      this.staffData.forEach(val => { val.checked = false });
+    if (this.filterStaffData.every(val => val.checked == true)) {
+      this.filterStaffData.forEach(val => { val.checked = false });
     }
 
     else {
-      this.staffData.forEach(val => { val.checked = true });
+      this.filterStaffData.forEach(val => { val.checked = true });
     }
 
   }

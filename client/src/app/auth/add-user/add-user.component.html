@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="mx-5">
+<div class="mx-5 table-responsive-sm">
     <table class="table table-bordered mt-3 text-center">
         <thead>
             <tr>
@@ -34,16 +34,16 @@
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
                 <th scope="col">Password</th>
-                <th scope="col">Staff Type</th>
-                <th scope="col">View/Edit/Delete</th>
+                <!-- <th scope="col">Staff Type</th> -->
+                <th scope="col">View Password</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of userData; let i=index">
                 <td>
                     <div class="custom-control custom-checkbox">
-                        <!-- <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user,$event)"
-                            [value]="i" class="custom-control-input" id="{{i}}"> -->
+                        <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user)"
+                            [value]="i" class="custom-control-input" id="{{i}}">
                         <label class="custom-control-label" for="{{i}}">{{i+1}}</label>
                     </div>
                 </td>
@@ -58,18 +58,18 @@
                             class="form-control-plaintext text-center" value="{{user.password}}">
                     </div>
                 </td>
-                <td>{{user.teachingType == true ? "Teacher" : "Administrative Staff"}}</td>
+                <!-- <td>{{user.teachingType == true ? "Teacher" : "Administrative Staff"}}</td> -->
                 <td>
                     <a class="btn btn-sm btn-outline-lightning rounded-0">
                         <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true"></i>
                     </a>
-                    <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
+                    <!-- <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
                         class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
                         <i class="far fa-edit"></i>
                     </a>
                     <a class="btn btn-sm btn-outline-lightning rounded-0">
                         <i class="far fa-trash-alt"></i>
-                    </a>
+                    </a> -->
                 </td>
             </tr>
         </tbody>

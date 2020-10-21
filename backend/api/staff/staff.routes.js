@@ -132,9 +132,10 @@ router.get('/getPrincipalList', (req, res, next) => {
 });
 
 //  get staff list
-router.get('/getStaffList', (req, res, next) => {
+router.post('/getStaffList', (req, res, next) => {
+    const staffDetails = req.body;
     try {
-        staffController.getStaffList().then(result => {
+        staffController.getStaffList(staffDetails).then(result => {
             return res.status(200).send(result);
         }, err => {
             return next(err)

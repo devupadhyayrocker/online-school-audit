@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       if (res['success']) {
         localStorage.setItem("token", res['token']);
         localStorage.setItem("userId", res['data'][0]._id);
+        localStorage.setItem("schoolId", res['data'][0].schoolId);
         localStorage.setItem("role",res['data'][0].role);
         if (res['data'][0].role=='editor'){
           this.router.navigate(['/editor_dashboard']);
