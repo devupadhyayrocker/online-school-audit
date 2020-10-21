@@ -147,6 +147,22 @@ router.post('/getStaffList', (req, res, next) => {
 
 });
 
+//  get admin staff list
+router.get('/getAdminStaffList', (req, res, next) => {
+
+    try {
+        staffController.getAdminStaffList().then(result => {
+            return res.status(200).send(result);
+        }, err => {
+            return next(err)
+        })
+    }
+    catch (err) {
+        return next(err)
+    }
+
+});
+
 //  send Mail
 router.post('/sendMail', (req, res, next) => {
     const mailDetails = req.body;

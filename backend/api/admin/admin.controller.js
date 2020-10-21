@@ -6,12 +6,12 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     addUser: (userDetails) => {
         return new Promise((resolve, reject) => {
-            Admin.findOne({email: userDetails.email}, (err, data) => {
+            Admin.findOne({username: userDetails.username}, (err, data) => {
                 if (err) {
                     return reject({ status: 500, message: messageConfig.BAD_REQUEST })
                 }
                 if(data){
-                    return reject({ status: 400, message: 'Email Already Exist' })
+                    return reject({ status: 400, message: 'Admin Already Exist' })
                 }else{
                let user = new Admin({
                    username: userDetails.username,
@@ -19,7 +19,7 @@ module.exports = {
                    role:userDetails.role
                })
                user.save().then(data => {
-                return resolve({ success: true, message: 'User Added Successfully' })
+                return resolve({ success: true, message: 'Admin Added Successfully' })
             }).catch(err => {
                 console.log("err",err);
                 return reject({ status: 500, message: messageConfig.BAD_REQUEST })
@@ -33,7 +33,7 @@ module.exports = {
     onLogin: (loginDetails) => {
         return new Promise((resolve, reject) => {
             if (loginDetails && loginDetails.username) {
-                Admin.find({ "username": loginDetails.username }, (err, data) => {
+                Admin.find({ "username": loginDetails.username, "password": loginDetails.password }, (err, data) => {
                     if (err) {
                         return reject({ status: 500, message: messageConfig.BAD_REQUEST })
                     }

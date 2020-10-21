@@ -28,7 +28,20 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.getStaffList();
+    this.getAdminStaffList();
   }
+
+  getAdminStaffList(){
+    this.commonService.getAdminStaffList().subscribe(res => {
+      if (res['data']) {
+        this.staffData = res['data'];
+      }
+    }, err => {
+      console.log("Erere", err);
+    })
+  }
+
+
 
   getPrincipalList() {
     this.commonService.getPrincipalList().subscribe(res => {

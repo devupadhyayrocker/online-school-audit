@@ -134,7 +134,7 @@ module.exports = {
             }
         })
     },
-    
+
     updateStaff: (staffDetails) => {
         return new Promise((resolve, reject) => {
             if (staffDetails && staffDetails.staffId) {
@@ -152,15 +152,15 @@ module.exports = {
                         schoolName: staffDetails.schoolName,
                         staffEmail: staffDetails.staffEmail
                     }
-                },(error, data) => {
-                    if(error){
+                }, (error, data) => {
+                    if (error) {
                         return reject({ status: 400, message: errorConfig.BAD_REQUEST })
                     }
-                    return resolve({ success: true, data:data,  message: 'Staff Updated Successfully' })
+                    return resolve({ success: true, data: data, message: 'Staff Updated Successfully' })
                 })
 
             } else {
-                return reject({ status: 400,message:'Staff Id is required' })
+                return reject({ status: 400, message: 'Staff Id is required' })
             }
         })
     },
@@ -251,7 +251,16 @@ module.exports = {
     },
     getStaffList: (schoolDetails) => {
         return new Promise((resolve, reject) => {
-            Staff.find({ "isPrincipal": 0 ,"schoolId": schoolDetails.schoolId}, (err, data) => {
+            Staff.find({ "isPrincipal": 0, "schoolId": schoolDetails.schoolId }, (err, data) => {
+                if (err) {
+                    return reject({ status: 500, message: messageConfig.BAD_REQUEST })
+                }
+                return resolve({ success: true, data: data, message: messageConfig.SUCCESS_MESSAGE })
+            })
+        })
+    }, getAdminStaffList: () => {
+        return new Promise((resolve, reject) => {
+            Staff.find({ "isPrincipal": 0 }, (err, data) => {
                 if (err) {
                     return reject({ status: 500, message: messageConfig.BAD_REQUEST })
                 }

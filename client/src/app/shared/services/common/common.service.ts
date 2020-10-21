@@ -7,78 +7,82 @@ export class CommonService {
   commonUrl = AppConfig.commonurl
   constructor(private http: HttpClient) { }
 
-  getschoolList(){
+  getschoolList() {
     return this.http.get(this.commonUrl + 'school/getAllSchool')
   }
 
 
-  addSchool(schoolDetails){
-    return this.http.post(this.commonUrl + 'school/addSchool',schoolDetails)
+  addSchool(schoolDetails) {
+    return this.http.post(this.commonUrl + 'school/addSchool', schoolDetails)
   }
 
-  updateSchool(schoolDetails){
-    return this.http.post(this.commonUrl + 'school/updateSchool',schoolDetails)
+  updateSchool(schoolDetails) {
+    return this.http.post(this.commonUrl + 'school/updateSchool', schoolDetails)
   }
 
-  deleteSchool(schoolDetails){
-    return this.http.post(this.commonUrl + 'school/deleteSchool',schoolDetails)
+  deleteSchool(schoolDetails) {
+    return this.http.post(this.commonUrl + 'school/deleteSchool', schoolDetails)
   }
 
-  addPrincipal(principalDetails){
-    return this.http.post(this.commonUrl + 'staff/addPrincipal',principalDetails)
+  addPrincipal(principalDetails) {
+    return this.http.post(this.commonUrl + 'staff/addPrincipal', principalDetails)
   }
 
-  updatePrincipal(principalDetails){
-    return this.http.post(this.commonUrl + 'staff/updatePrincipal',principalDetails)
+  updatePrincipal(principalDetails) {
+    return this.http.post(this.commonUrl + 'staff/updatePrincipal', principalDetails)
   }
 
-  updateStaff(staffDetails){
-    return this.http.post(this.commonUrl + 'staff/updateStaff',staffDetails)
+  updateStaff(staffDetails) {
+    return this.http.post(this.commonUrl + 'staff/updateStaff', staffDetails)
   }
 
 
-  deletePrincipal(principalDetails){
-    return this.http.post(this.commonUrl + 'staff/deletePrincipal',principalDetails)
+  deletePrincipal(principalDetails) {
+    return this.http.post(this.commonUrl + 'staff/deletePrincipal', principalDetails)
   }
 
-  getPrincipalList(){
+  getPrincipalList() {
     return this.http.get(this.commonUrl + 'staff/getPrincipalList')
   }
 
-  getStaffList(){
-    let schoolObj={
+  getStaffList() {
+    let schoolObj = {
       schoolId: localStorage.getItem('schoolId')
     }
-    return this.http.post(this.commonUrl + 'staff/getStaffList',schoolObj)
+    return this.http.post(this.commonUrl + 'staff/getStaffList', schoolObj)
   }
 
-  addStaff(staffDetails){
-    return this.http.post(this.commonUrl + 'staff/addStaff',staffDetails)
+  getAdminStaffList() {
+    return this.http.get(this.commonUrl + 'staff/getAdminStaffList')
   }
 
-  addreviewForm(reviewDetails){
-    return this.http.post(this.commonUrl + 'review/addReviewForm',reviewDetails)
+  addStaff(staffDetails) {
+    return this.http.post(this.commonUrl + 'staff/addStaff', staffDetails)
   }
 
-  updateReviewForm(reviewDetails){
-    return this.http.post(this.commonUrl + 'review/updateReviewForm',reviewDetails)
+  addreviewForm(reviewDetails) {
+    return this.http.post(this.commonUrl + 'review/addReviewForm', reviewDetails)
+  }
+
+  updateReviewForm(reviewDetails) {
+    return this.http.post(this.commonUrl + 'review/updateReviewForm', reviewDetails)
   }
 
 
-  getFormDetails(){
+  getFormDetails() {
     return this.http.get(this.commonUrl + 'review/getReviewForm')
   }
 
-  getFormDetailsByRole(){
+  getFormDetailsByRole() {
     return this.http.get(this.commonUrl + 'review/getFormDetailsByRole')
   }
-  sendMail(staffDetails){
-    return this.http.post(this.commonUrl + 'staff/sendMail',staffDetails)
+  sendMail(staffDetails) {
+    return this.http.post(this.commonUrl + 'staff/sendMail', staffDetails)
   }
 
-  
-  deleteStaff(staffDetails){
-    return this.http.post(this.commonUrl + 'staff/deleteStaff',staffDetails)
-  }  
+
+  deleteStaff(staffDetails) {
+    return this.http.post(this.commonUrl + 'staff/deleteStaff', staffDetails)
+  }
 
 }

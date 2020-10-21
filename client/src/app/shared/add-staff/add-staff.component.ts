@@ -59,6 +59,18 @@ export class AddStaffComponent implements OnInit {
   ngOnInit() {
     this.getSchoolList();
     this.getStaffList();
+    this.getAdminStaffList();
+  }
+
+
+  getAdminStaffList(){
+    this.commonService.getAdminStaffList().subscribe(res => {
+      if (res['data']) {
+        this.staffData = res['data'];
+      }
+    }, err => {
+      console.log("Erere", err);
+    })
   }
 
   getStaffList() {
