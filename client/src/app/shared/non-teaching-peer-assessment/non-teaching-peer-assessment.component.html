@@ -1,0 +1,88 @@
+<div class="container" *ngIf="peerFormDisplay">
+	<div class="row">
+		<div class="col-md-6">
+			<h2 class="text-center my-4 mob_form">PEER EVALUATION FORM</h2>
+			<table class="table table-striped mt-3">
+				<tbody>
+				  <tr>
+					<th scope="row">SELDOM</th>
+					<td>on only a few occasions; rarely</td>
+				  </tr>
+				  <tr>
+					<th scope="row">OCASSIONALLY</th>
+					<td>at times; from time to time</td>
+				  </tr>
+				  <tr>
+					<th scope="row">FREQUENTLY</th>
+					<td>often; many times</td>
+				  </tr>
+				  <tr>
+					<th scope="row">ALWAYS</th>
+					<td>every time; on every occasion</td>
+				  </tr>
+				</tbody>
+			  </table>
+		</div>
+		<div class="col-md-6">
+			<h4 class="text-center my-4 mob_form text-capitalize">Purpose of Peer Evaluation </h4>
+			<ol class="list-group list-group-flush">
+				<li class="list-group-item">To appreciate my peer and his/her qualities</li>
+				<li class="list-group-item">To evaluate the gaps which can make his/her work better</li>
+				<li class="list-group-item">To learn from peers what I can improve in my working</li>
+				<li class="list-group-item">To promote peer learning</li>
+			</ol>
+		</div>
+		<div class="col-md-12">
+			<h5 class="text-center my-4 mob_form"><span class="h4 font-weight-bold mr-3 text-uppercase text-danger">Peer's name</span>{{peerName}}</h5>
+			
+		</div>
+	</div>
+
+	<div class="row mb-5">
+		<div class="ques_group col-md-12">
+			<div *ngFor="let item of nonTeachingPeerForm.quesArr; let i=index">
+				<div class="col-md-12">
+					<hr>
+					<h5 class="text-uppercase mob_title">{{item.title}}</h5>
+				</div>
+				<div *ngFor="let ques of item.questions; let j=index" class="col-md-12 form-group">
+					<label class="labeltext text-secondary p pl-2 mob_ques" style="width: 55%;"><span
+							class="font-weight-bold">{{j+1}}.&nbsp;</span>{{ques}}</label>
+					<div class="mt-1 form-check-inline float-right mob_opt">
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">SELDOM</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,1)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">OCASSIONALLY</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,2)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">FREQUENTLY</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,3)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">ALWAYS</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,4)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 mt-3">
+				<button class="btn btn-success float-right mb-5" [disabled]="totalQuestions!=answers.length"
+					(click)="submitPeerEvaluation()" type="button">Submit Now</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container mt-5" *ngIf="!peerFormDisplay">
+	<div class="jumbotron">
+		<h3 class="text-center font-eweight-bold mb-4 mob_comp">“Thank You for participating in the Online Audit’ 2020.<br>You have successfully submitted the details.”</h3>
+		<button *ngIf="isLoggedIn" (click)="doLogOut()" type="button" class="btn btn-info mx-auto d-block">LOG OUT</button>
+	</div>
+</div>

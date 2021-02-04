@@ -1,0 +1,76 @@
+<div class="container" *ngIf="selfFormDisplay">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="text-center my-4 mob_form">SELF EVALUATION FORM</h2>
+			<table class="table table-striped">
+				<tbody>
+				  <tr>
+					<th scope="row">SELDOM</th>
+					<td>on only a few occasions; rarely</td>
+				  </tr>
+				  <tr>
+					<th scope="row">OCASSIONALLY</th>
+					<td>at times; from time to time</td>
+				  </tr>
+				  <tr>
+					<th scope="row">FREQUENTLY</th>
+					<td>often; many times</td>
+				  </tr>
+				  <tr>
+					<th scope="row">ALWAYS</th>
+					<td>every time; on every occasion</td>
+				  </tr>
+				</tbody>
+			  </table>
+		</div>
+	</div>
+
+	<div class="row mb-5">
+		<div class="ques_group col-md-12">
+			<div *ngFor="let item of TeacherSelfForm.quesArr; let i=index">
+				<div class="col-md-12">
+					<hr>
+					<h5 class="text-uppercase mob_title">{{item.title}}</h5>
+				</div>
+				<div *ngFor="let ques of item.questions; let j=index" class="col-md-12 form-group">
+					<label class="labeltext text-secondary p pl-2 mob_ques" style="width: 55%;"><span
+							class="font-weight-bold">{{j+1}}.&nbsp;</span>{{ques}}</label>
+					<div class="mt-1 form-check-inline float-right mob_opt">
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">SELDOM</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,1)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">OCASSIONALLY</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,2)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">FREQUENTLY</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,3)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">ALWAYS</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,4)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 mt-3">
+				<button class="btn btn-success float-right mb-5" [disabled]="totalQuestions!=answers.length"
+					(click)="submitSelfEvaluation()" type="button">Submit Now</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container mt-5" *ngIf="!selfFormDisplay">
+	<div class="jumbotron">
+		<h2 class="text-center font-eweight-bold mb-4 mob_comp">SELF EVALUATION SUBMISSION SUCCESSFULLY COMPLETED</h2>
+		<button type="button" class="btn btn-info mx-auto d-block" routerLink="/teacher_peer_assessment">Continue to
+			Peer Evaluation</button>
+	</div>
+</div>

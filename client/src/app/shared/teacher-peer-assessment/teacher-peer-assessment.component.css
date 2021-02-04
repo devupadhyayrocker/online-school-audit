@@ -1,0 +1,42 @@
+.mob_ques {
+    padding-left: 0px !important;
+    color: #4f69b4 !important;
+    font-weight: 600;
+}
+
+.mob_title{
+    font-size: 25px;
+    font-weight: 700;
+    color: #f58b3c;
+}
+@media screen and (max-width:768px){
+  
+
+    .mob_ques {
+        width: 100% !important;
+        padding-left: 0px !important;
+        color: #4f69b4 !important;
+        font-weight: 600;
+    }
+
+    .mob_opt {
+        margin-bottom: 15px !important;
+        float: unset !important;
+        display: block;
+        margin-left: 5px;
+    }
+
+    .mob_sel {
+        margin-bottom: 5px;
+    }
+
+    .mob_form {
+        font-size: 28px;
+    margin: 19px 0 0 !important;
+    }
+
+    .mob_comp {
+        font-size: 23px;
+    line-height: 35px;
+    }
+}

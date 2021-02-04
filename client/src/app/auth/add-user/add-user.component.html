@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 mt-5">
+            <div class="form-group d-block mx-auto">
+                <select (change)="onStaffSelect($event.target.value)" class="form-control" id="selectuser">
+                    <option value="" disabled selected>Select User</option>
+                    <option value="p">Principal</option>
+                    <option value="t">Teachers</option>
+                    <option value="nt">Non Teachers</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3 mt-5">
+            <button class="mx-auto w-100 d-block btn btn-success" (click)="sending()">Email Password</button>
+        </div>
+        <!-- <div class="col-md-3 mt-5">
+            <button class="mx-auto w-100 d-block btn btn-primary" (click)="exportTable()">Download Users</button>
+        </div> -->
+    </div>
+</div>
+
+<div class="mx-5 table-responsive-sm">
+    <div style="height: 520px; overflow-y: scroll;">
+    <table class="table table-bordered mt-3 text-center">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <div class="custom-control custom-checkbox text-left">
+                        <input type="checkbox" (click)="CheckAllOptions('customCheck')" class="custom-control-input"
+                            id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">S. No.</label>
+                    </div>
+                </th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <!-- <th scope="col">Staff Type</th> -->
+                <th scope="col">View Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userData; let i=index">
+                <td>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" [(ngModel)]="user.checked" (change)="onUserSelected(user)"
+                            [value]="i" class="custom-control-input" id="{{i}}">
+                        <label class="custom-control-label" for="{{i}}">{{i+1}}</label>
+                    </div>
+                </td>
+                <td>{{user.name}}</td>
+                <td>{{user.staffEmail}}</td>
+                <td>{{user.username}}</td>
+                <td>
+                    <div class="form-group">
+                        <input *ngIf="i!==rowIndex || !isShow" type="password" readonly
+                            class="form-control-plaintext text-center" value="{{user.password}}">
+                        <input *ngIf="i==rowIndex && isShow" type="text" readonly
+                            class="form-control-plaintext text-center" value="{{user.password}}">
+                    </div>
+                </td>
+                <!-- <td>{{user.teachingType == true ? "Teacher" : "Administrative Staff"}}</td> -->
+                <td>
+                    <a class="btn btn-sm btn-outline-lightning rounded-0">
+                        <i (click)="onClick(i)" class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <!-- <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
+                        class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-outline-lightning rounded-0">
+                        <i class="far fa-trash-alt"></i>
+                    </a> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <!-- <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div> -->
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">School Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="schoolname" placeholder="Enter School Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="location" placeholder="Enter School Location">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="schoolemail" placeholder="Enter email">
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

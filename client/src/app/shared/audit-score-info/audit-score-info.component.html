@@ -1,0 +1,224 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2  px-0 bg-dark">
+            <nav class="pt-0 navbar d-block px-0 navbar-light pr-0 mob_bg">
+                <hr class="bg-light mt-0">
+                <ul class="nav flex-column mt-1">
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="img-responsive img-rounded"
+                                src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                alt="User picture">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name text-white"><strong>Jaipuria School</strong>
+                            </span>
+                            <span class="user-role text-white">Overall Audit Report</span>
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span class="text-white">Online</span>
+                            </span>
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <hr class="bg-light mb-2"><a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/audit_score_info">School Info & School Score</a>
+                        <hr class="bg-white my-2 mob_hr">
+                    </li>
+                    <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/consolidate_school_report">Consolidate Score of School</a>
+                        <hr class="bg-white my-2">
+                    </li>
+                    <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/consolidate_cro_report">Consolidate CRO Report</a>
+                        <hr class="bg-white my-2">
+                    </li>
+                    <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/individual_audit_report">Individual Report</a>
+                        <hr class="bg-white my-2">
+                    </li>
+                    <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/observer_feedback_report">Observer Feedback Report</a>
+                        <hr class="bg-white my-2">
+                    </li>
+                    <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
+                            routerLink="/audit_recommendation">Audit Recommendation</a>
+                        <hr class="bg-white my-2">
+                    </li>
+                </ul>
+            </nav>
+            <button #openModal type="button" class="btn mt-4 btn-light d-none" data-toggle="modal"
+                data-target="#exampleModal">
+                Audit Intro
+            </button>
+        </div>
+        <div class="col-md-10 my-5 px-0">
+            <div class="container" style=" height: 550px; ">
+                <div class="row">
+                    <button type="button" class="btn btn-info mx-auto btn-lg w-50 d-block" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">SCHOOL INFORMATION & SCORE
+                    </button>
+
+
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document"
+                            style="max-width: 70%;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title h5 font-weight-bold text-uppercase text-danger" id="myLargeModalLabel">School Information &
+                                        score</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="row mt-4 p-3">
+                                    <div class="col-md-12">
+                                     <table class="table table-bordered">
+                                            <tbody class="text-center">
+                                                <tr>
+                                                    <td><b>School's Name</b></td>
+                                                    <td class="text-uppercase" colspan="5">{{scl_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Principal's Name</b></td>
+                                                    <td class="text-uppercase" colspan="5">{{princi_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Administrative Officer</b></td>
+                                                    <td class="text-uppercase" colspan="5">Administrative Ofiicer Name Here</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Total number of Teaching Staff audited</b></td>
+                                                    <td colspan="5">{{filteredTeachingData}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Total number of Non-Teaching Staff audited</b></td>
+                                                    <td colspan="5">{{filteredNonTeachingData}}</td>
+                                                </tr>
+                                                <!--tr>
+                                                    <td rowspan="2" class="align-middle"><b>Total Number of CROs
+                                                            audited</b></td>
+                                                    <td><b>Pre-Primary</b></td>
+                                                    <td><b>Class 1 to 5</b></td>
+                                                    <td><b>Class 6 to 8</b></td>
+                                                    <td><b>Class 9 to 12</b></td>
+                                                    <td><b>Co-Curricular</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>24</td>
+                                                    <td>26</td>
+                                                    <td>25</td>
+                                                    <td>16</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Average of Self Rating of entire Staff</b></td>
+                                                    <td colspan="5">9.4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Average of Peer Ratings of entire Staff</b></td>
+                                                    <td colspan="5">8.6</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Average of Principal's Ratings of the entire Staff</b></td>
+                                                    <td colspan="5">8.3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td
+                                                        class="table-danger font-weight-bold h5 align-middle text-uppercase">
+                                                        <b>Final Rating of the school audit 2020-21</b></td>
+                                                    <td class="table-danger font-weight-bold align-middle h3"
+                                                        colspan="5">08</td>
+                                                </tr-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-5 mt-5">
+                        <p class="font-weight-bold h6 text-danger">Overview</p>
+                        <p class="text-justify">The audits are an integral part of our “Improvement cycle” to stimulate
+                            quality work and to
+                            implement a quality review. It provides us with an opportunity of self assessment based on
+                            enhancement and realization of goals set by the CO. Therefore, it is a process of mentoring and
+                            not monitoring.</p>
+                        <p class="text-justify">With our team’s professional judgment, sufficient and appropriate audit
+                            procedures were completed and evidence gathered to support the accuracy of conclusions
+                            reached and contained in this report. The conclusions are based on a comparison of
+                            situations and assessments as they existed at the time of the audit with the established
+                            criteria.</p>
+                    </div>
+                    <div class="col-md-7 mt-5">
+                        <p class="font-weight-bold h6 text-danger">Objectives of the Audit</p>
+                        <ul class="text-justify">
+                            <li>To observe and analyze the school’s potential to deliver optimal learning experience
+                            </li>
+                            <li>To identify the learning strategies designed and executed during the classroom practices
+                                by the teachers</li>
+                            <li>To analyse the strength and weakness of the classroom instruction</li>
+                            <li>To observe the implementation of safe, fair and constructive classroom management</li>
+                            <li>To analyse the peer's understanding</li>
+                            <li>To analyse what Staff think about themselves</li>
+                            <li>To gauge the involvement of the teachers and Staff</li>
+                            <li>To observe that the implementation of the curriculum is not just in practice, but also in
+                                spirit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase font-weight-bold" id="exampleModalLabel">Audit Introduction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-justify text-dark ">I welcome you to the first of its kind - <span class="text-uppercase">school audit online platform</span> –
+                    <b>JAIPURIA AUDIT PLATFORM FOR PERFOMANCE</b>. During this pandemic when the travel has been
+                    restricted,
+                    Corporate Office in quick time conceptualized the platform. Audit is a process which enables the
+                    management of the school to check compliances and an opportunity to ensure that the people are
+                    engaged to implement the right processes.
+                </p>
+                <p class="text-justify text-dark "><b>Seth Anandram Jaipuria School Corporate office conducted a 360
+                        degree
+                        audit of the Staff for the session 2020-21</b>. The aim of this audit was to examine the school
+                    holistically and evaluate the
+                    processes in all departments. The audit processes have been created for assessing the effectiveness
+                    of
+                    curriculum implementation, ascertain Staff effectiveness, maintenance of routine academic and non
+                    academic processes and their behavioral aspects.</p>
+                <p class="text-justify text-dark ">Jaipuria Corporate office team thanks the school stakeholders for
+                    conducting the smooth audit and wish the best for overcoming the gaps with our recommendations and
+                    constant supervision in the
+                    coming years.</p>
+                <p class="text-justify text-dark ">You may go through the detailed analysis of the audit and download
+                    the reports for your records.</p>
+                <p class="text-right font-weight-bold text-dark ">Thank You,<br>
+                    Anirban Bhattacharya</p>
+            </div>
+        </div>
+    </div>
+</div>

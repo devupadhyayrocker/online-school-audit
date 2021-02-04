@@ -1,0 +1,93 @@
+<div class="container">
+	<h3 class="mt-4 text-center font-weight-bold text-info">TEACHERS ASSESSMENT</h3>
+	<div class="row mt-3 mx-5">
+
+		<div class="col-md-4">
+			<div class="form-group d-block mx-auto">
+				<select class="form-control" (change)="onStaffTypeChange($event.target.value)"
+					[(ngModel)]="principalAssessment.staffType" name="staffType" required>
+					<option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+					<option *ngFor="let staffType of staffTypeArr" class="dropdown-item" value="{{staffType}}">
+						{{staffType}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div *ngIf="showSelect" class="col-md-4">
+			<div class="form-group d-block mx-auto">
+				<select class="form-control" (change)="onStaffCategoryChange($event.target.value)"
+					[(ngModel)]="principalAssessment.staffCategory" name="staffCategory" required>
+					<option class="dropdown-item" value="" disabled selected>Staff Category</option>
+					<option *ngFor="let staffCategory of staffCategoryArr" class="dropdown-item"
+						value="{{staffCategory}}">{{staffCategory}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="d-block form-group  mx-auto">
+				<select class="form-control" (change)="onStaffSelect($event.target.value)"
+					[(ngModel)]="principalAssessment.teacherToAssess" name="teacherToAssess" required>
+					<option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+					<option *ngFor="let staff of staffData3" class="dropdown-item" value="{{staff._id}}">{{staff.name}}
+					</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+
+<div class="container" *ngIf="!principalteachingFormDisplay">
+	<div class="row mb-5">
+		<div class="col-md-12">
+			<h2 class="text-center my-4">PRINCIPAL EVALUATION FORM</h2>
+		</div>
+		<div class="ques_group col-md-12">
+			<div *ngFor="let item of PrincipalEvaluationForm.quesArr; let i=index">
+				<div class="col-md-12">
+					<hr>
+					<h5 class="text-uppercase mob_title">{{item.title}}</h5>
+				</div>
+				<div *ngFor="let ques of item.questions; let j=index" class="col-md-11 form-group">
+					<label class="labeltext text-secondary p pl-2 mob_ques"><span
+							class="font-weight-bold">{{j+1}}.&nbsp;</span>{{ques}}</label>
+					<div class="mt-1 form-check-inline float-right mob_opt">
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">SOMEWHAT DISATISSFIED</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,1)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">NEITHER DISATISSFIED</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,2)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">SOMEWHAT SATISSFIED</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,3)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">EXTREMELY SATISSFIED</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,4)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10 mt-3">
+				<button class="btn btn-success float-right mb-5" [disabled]="totalQuestions!=answers.length"
+					(click)="principalEvaluation()" type="button">Submit Now</button>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="container mt-5" *ngIf="!principalFormDisplay">
+	<div class="jumbotron">
+		<h2 class="text-center font-eweight-bold mb-4">EVALUATION SUCCESSFULLY COMPLETED</h2>
+	</div>
+</div>
+<!-- [disabled]="totalQuestions!=answers.length" -->

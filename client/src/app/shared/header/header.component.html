@@ -1,0 +1,28 @@
+<!-- Just an image -->
+<div [ngClass]=" currentUrl === '/login' ? 'd-none' : 'd-block'">
+        <div class="container-fluid px-0">
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-6">
+                                <nav class="navbar navbar-light bg-light py-1">
+
+                                        <div class="col-lg-2 col-md-5 col-sm-6"><img class="img-fluid d-block mx-auto"
+                                                        src="./assets/img/logo.png" width="225" height="auto" alt="">
+                                        </div>
+                                        <div class="col-lg-10 col-md-7 col-sm-6">
+                                                <span *ngIf="isLoggedIn"
+                                                        class="mob_logout float-right text-center h5 pointer text-dark mr-3 font-weight-bold text-decoration-none"
+                                                        (click)="doLogOut()"><i class="fa fa-sign-out"
+                                                                aria-hidden="true"></i>&nbsp;LOG OUT</span>
+                                                                <span class="mob_add float-right text-center h5 mr-3 text-dark font-weight-bold">D-196,
+                                                        D Block, Sector 63, Noida, Uttar Pradesh 201307</span>
+                                                
+                                        </div>
+
+
+
+
+                                </nav>
+                        </div>
+                </div>
+        </div>
+</div>

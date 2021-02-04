@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 mt-4 mb-2">
+      <div class="form-group mx-auto">
+        <select (change)="OnSelectStaff($event.target.value)" [(ngModel)]="assessmentObj.staffType" name="staffType"
+          class="form-control" id="staffType">
+          <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+          <option class="dropdown-item" *ngFor="let selectStaff of selectStaffArr" value="{{selectStaff.id}}">
+            {{selectStaff.name}}</option>
+
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-3 mt-4">
+      <div class="form-group mx-auto">
+        <select (change)="OnSelectAssessment($event.target.value)" [(ngModel)]="assessmentObj.assessmentType"
+          class="form-control" id="assessmentType">
+          <option class="dropdown-item" value="" disabled selected>Select Assessment</option>
+          <option class="dropdown-item" *ngFor="let selectAssessment of selectAssessmentArr"
+            value="{{selectAssessment}}">{{selectAssessment}}</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <h2 class="font-weight-bold text-center mb-4 mt-3">{{formTitle}}</h2>
+  <div class="row mb-5">
+    
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-2">
+      <button [disabled]="!enableQuesForm" (click)="addTitle()" class="btn btn-primary d-block w-100">New Title</button>
+    </div>
+    <div class="col-md-2">
+      <button [disabled]="!enableQuesForm" (click)="addQuestion()" class="btn btn-success d-block w-100">New Question</button>
+    </div>
+    <div class="col-md-2">
+      <button [disabled]="!enableQuesForm" class="btn btn-danger d-block" (click)="saveToDB()"  id="savequestions">Add Form</button>
+    </div>
+    <div class="col-md-3">
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group d-flex mb-1" *ngIf="showTitle">
+        <div class="col-md-3 pl-0"><span class="d-inline-flex p-2 h5 font-weight-bold">Enter Title</span></div>
+          <div class="col-md-6 pl-0"><input type="text" class="ml-1 form-control d-inline" #title='ngModel' name="title" [(ngModel)]="questionObj.title"
+          placeholder="Enter Title" id="qTitle" required></div>
+          <div class="col-md-3 pl-0"><button [disabled]="!enableQuesForm" (click)="saveTitle()" class="btn btn-info w-100">Add Title</button></div>
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
+          <div *ngIf="title.errors.required">
+             Title is required
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="showQues" class="col-md-12">
+      <div class="form-group d-flex mb-0">
+        <div class="col-md-2 pl-0"><span class="d-inline-flex p-2 h5 font-weight-bold">Enter Question</span></div>
+        <div class="col-md-8 pl-0"><input type="text" class="form-control d-inline" #question='ngModel' name="question" [(ngModel)]="questionObj.question"
+          placeholder="Enter Question" required></div>
+          <div class="col-md-2 pl-0"><a class="btn btn-secondary w-100" (click)="addQuestionToArr()" id="addquestions">Add Question</a></div>
+        <div *ngIf="question.invalid && (question.dirty || question.touched)" class="text-danger">
+          <!-- <div *ngIf="question.errors.required">
+            Question is required
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

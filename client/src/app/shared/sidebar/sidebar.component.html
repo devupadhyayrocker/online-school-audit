@@ -1,0 +1,167 @@
+<div class="row vh-100 mob_sidebar">
+  <nav [ngClass]=" currentUrl === '/login' ? 'd-none' : 'd-block'"
+    class="pt-0 col-md-2 navbar navbar-dark bg-dark pr-0 mob_bg">
+    <hr class="bg-secondary mt-0">
+    <ul *ngIf="currentRole=='admin'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded"
+            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Dev
+            <strong>Upadhyay</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light" href="#"
+          routerLink="/admin_dashboard"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;Admin Dashboard</a>
+        <hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_school"><i class="fa fa-building"
+            aria-hidden="true"></i>&nbsp;Add School</a>
+        <hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_principal"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Principal</a>
+        <hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_staff"><i class="fa fa-users"
+            aria-hidden="true"></i>&nbsp;Add Staff</a>
+        <hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_assessment"><i
+            class="fa fa-file-text" aria-hidden="true"></i>&nbsp;Add Assessment</a>
+        <hr class="bg-white my-2">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-light" href="#" routerLink="/add_user"><i class="fa fa-user-plus"
+            aria-hidden="true"></i>&nbsp;User Management</a>
+        <hr class="bg-white my-2">
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='principal'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded"
+            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name mt-2"><strong>{{pr_name}}</strong>
+          </span>
+          <!-- <span class="user-role">Principal</span> -->
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light mob_txt" href="#"
+          routerLink="/principal_dashboard"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Instructions<span
+            class="mt-1 float-right badge badge-pill badge-info">Read Now</span></a>
+        <hr class="bg-white my-2 mob_hr">
+      </li>
+      <!-- <li class="nav-item mob_menu">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/assign_teacher"><i
+            class="fa fa-hand-o-up" aria-hidden="true"></i>&nbsp;Assign Teacher<span
+            class="mt-1 float-right badge badge-pill badge-success">1</span></a>
+        <hr class="bg-white my-2">
+      </li> -->
+      <li class="nav-item mob_menu">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/principal_assessment"><i
+            class="fa fa-users" aria-hidden="true"></i>&nbsp;Staff's Assessment<!--span
+            class="mt-1 float-right badge badge-pill badge-warning">2</span--></a>
+        <hr class="bg-white my-2">
+      </li>
+    </ul>
+
+    <ul *ngIf="currentRole=='teaching'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded"
+            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name"><strong>{{pr_name}}</strong>
+          </span>
+          <span class="user-role">Teacher</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+        <span *ngIf="isLoggedIn"
+          class="mob_log float-right text-center h5 pointer text-dark mr-3 font-weight-bold text-decoration-none"
+          (click)="doLogOut()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;LOG OUT</span>
+      </div>
+      <li class="nav-item">
+        <hr class="bg-secondary mb-2">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/teacher_dashboard"><i
+            class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Instructions<span
+            class="mt-1 float-right badge badge-pill badge-info">Read
+            Now</span></a>
+        <hr class="bg-white my-2 mob_hr">
+      </li>
+      <!-- <li class="nav-item mob_menu">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/teacher_self_assessment"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Self Assessment<span class="mt-1 float-right badge badge-pill badge-success">1</span></a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item mob_menu"  [ngStyle]="isTeachingSelfReviewed ? {}: {'pointer-events': 'none', 'cursor': 'not-allowed'}">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/teacher_peer_assessment"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Peer Assessment<span class="mt-1 float-right badge badge-pill badge-warning">2</span></a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item mob_menu"  [ngStyle]="{'pointer-events': isTeachingPeerReviewed ? 'default': 'none'}">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/teacher_other_assessment"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;Document Assessment<span class="mt-1 float-right badge badge-pill badge-danger">3</span></a><hr class="bg-white my-2">
+      </li> -->
+    </ul>
+
+    <ul *ngIf="currentRole=='nonteaching'" class="nav flex-column mt-1">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded"
+            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name"><strong>{{pr_name}}</strong>
+          </span>
+          <span class="user-role">Non Teaching Staff</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <li class="nav-item">
+        <hr class="bg-secondary mb-2"><a class="nav-link text-white font-weight-light mob_txt" href="#"
+          routerLink="/nonteaching_dashboard"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Instructions<span
+            class="mt-1 float-right badge badge-pill badge-info">Read Now</span></a>
+        <hr class="bg-white my-2 mob_hr">
+      </li>
+      <!-- <li class="nav-item mob_menu">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/nonteaching_self_assessment"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Self Assessment<span class="mt-1 float-right badge badge-pill badge-success">1</span></a><hr class="bg-white my-2">
+      </li>
+      <li class="nav-item mob_menu">
+        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/nonteaching_peer_assessment"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Peer Assessment<span class="mt-1 float-right badge badge-pill badge-danger">2</span></a><hr class="bg-white my-2">
+      </li> -->
+    </ul>
+  </nav>
+
+
+  <div [ngClass]=" currentUrl === '/login' ? 'px-0 col-md-12' : 'px-0 col-md-10'">
+    <router-outlet></router-outlet>
+  </div>
+</div>

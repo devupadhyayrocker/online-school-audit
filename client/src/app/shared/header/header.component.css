@@ -1,0 +1,17 @@
+.navbar {
+    z-index: 999;
+}
+
+.pointer {cursor: pointer;}
+
+
+@media screen and (max-width:768px){
+    
+.mob_logout {
+    display: none;
+}
+
+.mob_add {
+    display: none;
+}
+}

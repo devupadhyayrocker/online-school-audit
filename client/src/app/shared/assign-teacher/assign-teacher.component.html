@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4 mb-2">
+          <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Assign Teacher</a>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="w-50 d-block mx-auto">
+  <div style="height: 550px; overflow-y: scroll;">
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">S.No</th>
+        <th scope="col">Name of the staff member</th>
+        <th scope="col">Name of the peer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let peerStaff of showPeerData; let i=index" class="text-center">
+        <th scope="row">{{i+1}}</th>
+        <td>{{peerStaff.by}}</td>
+        <td>{{peerStaff.for}}</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mr-5" id="exampleModalLabel">Teacher Assessment</h5>
+        <div class="form-group mb-0 mr-4 ">
+          <select class="form-control" (change)="onStaffTypeChange($event.target.value)" [(ngModel)]="peeredStaffForm.staffType" name="staffType" required>
+            <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+            <option *ngFor="let staffType of staffTypeArr" class="dropdown-item"  value="{{staffType}}">{{staffType}}</option>
+          </select>
+        </div>
+        <div *ngIf="isTeaching" class="form-group mb-0">
+          <select class="form-control" (change)="onStaffcategoryChange($event.target.value)" [(ngModel)]="peeredStaffForm.staffCategory" name="staffCategory" required>
+            <option class="dropdown-item" value="" disabled selected>Staff Category</option>
+            <option *ngFor="let staffCategory of staffCategoryArr" class="dropdown-item"  value="{{staffCategory}}">{{staffCategory}}</option>
+          </select>
+        </div>
+        <button type="button" class="close" #closeBtn data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #asteForm='ngForm'>
+          <div class="row mx-5">
+
+            <!-- Table  -->
+<table class="table table-bordered">
+  <!-- Table head -->
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">
+                    <div class="custom-control custom-checkbox text-left">
+                        <input type="checkbox" (click)="CheckAllOptions('customCheck')" class="custom-control-input"
+                          id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Name of the Staff Member</label>
+                      </div>
+                </th>
+      <th>Name of the peer</th>
+    </tr>
+  </thead>
+  <!-- Table head -->
+
+  <!-- Table body -->
+  <tbody>
+    <tr *ngFor="let staff of filterStaffData; let i=index">
+      <td>{{i+1}}</td>
+      <td>
+        <div class="custom-control custom-checkbox">
+          
+          <!-- <input type="checkbox" [(ngModel)]="staff.checked" (change)="onstaffSelected(staff,$event)"
+            [value]="i" class="custom-control-input" id="{{i}}"> -->
+            <input type="checkbox" (change)="onstaffSelected($event.target.value,i,staff)" class="custom-control-input"
+            [value]="i" [(ngModel)]="staff.checked"  [ngModelOptions]="{standalone: true}"  id="customCheck" id="{{i}}">
+          <label class="custom-control-label" for="{{i}}">{{staff.name}}</label>
+        </div>
+      </td>
+      <td><div class="form-group mb-0">
+        <!-- <select *ngIf="i===selIndex && showSelect" class="form-control" (click)="onSelectClick($event,staff._id,i)"  [(ngModel)]="staff.contactNo" name="staff._id" required>
+          <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+          <option *ngFor="let staff of filterPeerList" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
+        </select> -->
+        <div class="input-group">
+          <select *ngIf="i===selIndex && showSelect" (change)="onSelectChange($event.target.value,staff._id,i)" class="form-control" required>
+            <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+            <option *ngFor="let stff of filterPeerList" class="dropdown-item"  value="{{stff._id}}">{{stff.name}}</option>
+          </select>
+          <input *ngIf="i!=selIndex || !showSelect" type="text" class="form-control" readonly placeholder="Select Teacher" value="{{peerUpdateArr[i]? peerUpdateArr[i].name : ''}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button *ngIf="i!==selIndex || !showSelect" (click)="showSelect=true;selIndex=i;onSelectClick(staff._id,i)" class="btn btn-outline-secondary" type="button"><i class="far fa-edit"></i></button>
+            <button *ngIf="i===selIndex && showSelect" (click)="showSelect=false;" class="btn btn-outline-secondary" type="button"><i class="fa fa-check"></i></button>
+            <!-- <button class="btn btn-outline-secondary" type="button"><i class="far fa-trash-alt"></i></button> -->
+          </div>
+        </div>
+        <!-- <input *ngIf="i!=selIndex" type="text" readonly class="form-control-plaintext text-center" value="{{staff.name}}">
+        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+        <i class="far fa-edit"></i>
+      </a>
+      <a class="btn btn-sm btn-outline-lightning rounded-0">
+        <i  class="far fa-trash-alt"></i>
+      </a> -->
+        <!-- <select *ngIf="i!==selIndex" class="form-control" (click)="onSelectClick($event,staff._id,i)" [(ngModel)]="staff.contactNo" name="staff._id" required>
+          <option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+          <option *ngFor="let staff of filterStaffData" class="dropdown-item"  value="{{staff}}">{{staff.name}}</option>
+        </select> -->
+      </div>
+    </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClose()" data-dismiss="modal">Close</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="asteForm.invalid" (click)="addpeeredStaff(asteForm)">Add Staff</button>
+      </div>
+    </div>
+  </div>
+</div>

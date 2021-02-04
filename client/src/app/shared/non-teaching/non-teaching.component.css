@@ -1,0 +1,11 @@
+@media screen and (max-width:768px){
+    .mob_head {
+        font-size: 23px;
+        margin: 16px 8px 5px !important;
+    }
+
+    .mob_inst {
+        width: 90% !important;
+        margin-top: 0px !important;
+    }
+}

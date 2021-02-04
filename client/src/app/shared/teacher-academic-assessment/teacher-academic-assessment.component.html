@@ -1,0 +1,138 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="text-center font-weight-bold text-info my-4 mob_form">CRO EVALUATION FORM</h2>
+
+		</div>
+	</div>
+	<div class="row mt-3 mx-5">
+		<div class="col-md-3">
+			<div class="form-group d-block mx-auto">
+				<select class="form-control" (change)="onSchoolChange($event.target.value)"
+					[(ngModel)]="CroFormDetails.schoolName" #schoolName='ngModel' name="schoolName" required>
+					<option class="dropdown-item" value="" disabled selected>Select School</option>
+					<option *ngFor="let school of schoolData" class="dropdown-item" value="{{school.schoolName}}">
+						{{school.schoolName}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="d-block form-group  mx-auto">
+				<select class="form-control" (change)="onStaffSelect($event.target.value)"
+					[(ngModel)]="CroFormDetails.StaffName" name="StaffName" required>
+					<option class="dropdown-item" value="" disabled selected>Select Teacher</option>
+					<option *ngFor="let staff of sortedStaff;let i = index" class="dropdown-item" value="{{staff._id}}">
+						{{i+1}}&nbsp;{{staff.name}}
+					</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group d-block mx-auto">
+				<select class="form-control" (change)="onClassChange($event.target.value)"
+					[(ngModel)]="CroFormDetails.class" name="class" required>
+					<option class="dropdown-item" value="" disabled selected>Class</option>
+					<option *ngFor="let class of sortedClass" class="dropdown-item" value="{{class}}">{{class}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="d-block form-group  mx-auto">
+				<select class="form-control" (change)="onSubjectSelect($event.target.value)"
+					[(ngModel)]="CroFormDetails.subject" name="subject" required>
+					<option class="dropdown-item" value="" disabled selected>Subject</option>
+					<option *ngFor="let subject of sortedSubject" class="dropdown-item" value="{{subject}}">{{subject}}
+					</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="d-block form-group  mx-auto">
+				<input class="form-control" type="text" [(ngModel)]="CroFormDetails.teacherType" name="teacherType"
+					placeholder="Teacher Type" readonly>
+				</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group">
+				<input class="form-control" type="date" placeholder="CRO Date" [(ngModel)]="CroFormDetails.CroDate"
+					name="CroDate" (change)="onDateSelected($event.target.value)" #CroDate="ngModel">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<select class="form-control" [(ngModel)]="CroFormDetails.observedBy" name="observedBy"
+					(change)="onObserverSelect($event.target.value)" required>
+					<option class="dropdown-item" value="" disabled selected>Observed By</option>
+					<option *ngFor="let observedBy of observedByArr" class="dropdown-item" value="{{observedBy}}">
+						{{observedBy}}
+					</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" *ngIf="CroFormDisplay">
+	<div class="row mb-5">
+		<div class="ques_group col-md-12">
+			<div *ngFor="let item of EditorCroForm.quesArr; let i=index">
+				<div class="col-md-12">
+					<hr>
+					<h5 class="text-uppercase mob_title">{{item.title}}</h5>
+				</div>
+				<div *ngFor="let ques of item.questions; let j=index" class="col-md-12 form-group">
+					<label class="labeltext text-secondary p pl-2 mob_ques" style="width: 70%;"><span
+							class="font-weight-bold">{{j+1}}.&nbsp;</span>{{ques}}</label>
+					<div class="mt-1 form-check-inline float-right mob_opt">
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">1</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,1)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">2</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,2)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">3</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,3)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">4</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,4)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+						<label class="customradio mr-3 mob_sel"><span class="radiotextsty">5</span>
+							<input type="radio" (change)="mark1($event.target.value,j,i,5)" name={{i}}{{j}}
+								id={{i}}{{j}}>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1"
+					class="text-danger font-weight-bold h4 text-uppercase">Observer's Remarks</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+					placeholder="Type Your Remarks Here" [(ngModel)]="CroFormDetails.ObserverRemarks"
+					name="ObserverRemarks" #ObserverRemarks="ngModel" required></textarea>
+			</div>
+		</div>
+		<div class="col-md-12 mt-3">
+			<button class="btn btn-success float-right mb-5" [disabled]="totalQuestions!=answers.length || req_class || req_sub || ObserverRemarks.invalid || req_obsBy || CroDate.invalid" (click)="submitCroEvaluation()" type="button">Submit
+				Now</button>
+		</div>
+	</div>
+</div>
+
+<div class="container mt-5" *ngIf="CroSubmitDisplay">
+	<div class="jumbotron">
+		<h2 class="text-center font-eweight-bold mb-4 mob_comp">CRO EVALUATION SUBMISSION SUCCESSFULLY COMPLETED</h2>
+	</div>
+</div>
+<!-- [disabled]="totalQuestions!=answers.length" -->

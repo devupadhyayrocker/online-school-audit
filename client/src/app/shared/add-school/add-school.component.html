@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4 mb-2">
+      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#schoolModal">Add New
+        School</a>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="mx-5">
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">S. No.</th>
+        <th scope="col">School Name</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Location</th>
+        <th scope="col">Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let school of schoolData; let i=index" class="text-center">
+        <th scope="row">{{i+1}}</th>
+        <td>{{school.schoolName}}</td>
+        <td>{{school.schoolEmail}}</td>
+        <td>{{school.location}}</td>
+        <td>
+          <a data-toggle="modal" data-backdrop="static" data-target="#schoolModal"
+            class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+            <i  (click)="openEditForm(school)" class="far fa-edit"></i>
+          </a>
+          <a class="btn btn-sm btn-outline-lightning rounded-0">
+            <i (click)="deleteSchool(school)" class="far fa-trash-alt"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="schoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="schoolModalLabel">School Details</h5>
+        <button type="button" class="close" (click)="scForm.reset();" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #scForm='ngForm'>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" #schoolName='ngModel' name="schoolName"
+                  [(ngModel)]="schoolForm.schoolName" placeholder="Enter School Name" id="scname" required>
+                <div *ngIf="schoolName.invalid && (schoolName.dirty || schoolName.touched)" class="text-danger">
+                  <div *ngIf="schoolName.errors.required">
+                    School Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" #location='ngModel' name="location"
+                  [(ngModel)]="schoolForm.location" placeholder="Enter School Location" id="location" required>
+                <div *ngIf="location.invalid && (location.dirty || location.touched)" class="text-danger">
+                  <div *ngIf="location.errors.required">
+                    Location is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="email" #staffEmail='ngModel' name="staffEmail" [(ngModel)]="schoolForm.staffEmail"
+                  [pattern]="emailPattern" class="form-control" id="e-Mail" placeholder="Enter School Email" required>
+                <div *ngIf="staffEmail.invalid && (staffEmail.dirty || staffEmail.touched)" class="text-danger">
+                  <div *ngIf="staffEmail.errors.required">
+                    Email is required
+                  </div>
+                  <div *ngIf="staffEmail.errors.pattern">
+                    Enter valid Email
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" #closeBtn data-dismiss="modal">Close</button>
+        <button *ngIf="isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
+        (click)="updateSchool(scForm)">Update School</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="scForm.invalid"
+          (click)="addSchool(scForm)">Add School</button>
+      </div>
+    </div>
+  </div>
+</div>

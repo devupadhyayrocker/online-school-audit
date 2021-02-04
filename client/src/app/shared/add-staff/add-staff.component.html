@@ -1,0 +1,220 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4 mb-2">
+      <a href="#" class="w-25 mx-auto d-block btn btn-primary" data-toggle="modal" data-target="#staffModal">Add New
+        Staff</a>
+      </div>
+  </div>
+</div>
+<hr>
+<div style="width: 95%;" class="d-block mx-auto table-responsive-sm">
+  <div style="height: 520px; overflow-y: scroll;">
+  <table class="table table-sm table-bordered mt-2">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">S. No.</th>
+        <th scope="col">School Name</th>
+        <th scope="col">Staff Type</th>
+        <th scope="col">Non Teaching Area</th>
+        <th scope="col">Teacher Type</th>
+        <th scope="col">Teacher Category</th>
+        <th scope="col">Class Teacher</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Class</th>
+        <th scope="col">Section</th>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Staff E-mail</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let staff of staffData; let i=index" class="text-center">
+        <th scope="row">{{i+1}}</th>
+        <td>{{staff.schoolName}}</td>
+        <td>{{staff.isTeaching == 1 ? 'Teaching':'Non-Teaching'}}</td>
+        <td>{{staff.staffArea? staff.staffArea : "__"}}</td>
+        <td>{{staff.teachingType == 1 ? 'Scholastic':'Co-Scholastic'}}</td>
+        <td>{{staff.teacherCategory}}</td>
+        <td>{{staff.isClassTeacher == 1? "YES": "NO"}}</td>
+        <td>{{staff.subjectName.join(",")}}</td>
+        <td>{{staff.className.join(",")}}</td>
+        <td>{{staff.sectionName.join(",")}}</td>
+        <td>{{staff.name}}</td>
+        <td>{{staff.staffEmail}}</td>
+        <td>{{staff.contactNo}}</td>
+        <td>
+          <!-- <a (click)="openUpdateModal(staff)" data-toggle="modal" data-backdrop="static" data-target="#staffModal" class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+            <i (click)="oenEditModal(staff)" class="far fa-edit"></i>
+          </a> -->
+          <a class="btn btn-sm btn-outline-lightning rounded-0">
+            <i (click)="deleteStaff(staff)" class="far fa-trash-alt"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table></div>
+  <!-- <div>                
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>    </div>  -->
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="staffModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staffModal">Staff Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #stForm='ngForm'>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" (change)="OnSchoolChange($event.target.value)" [(ngModel)]="staffForm.schools" name="schools" required>
+                <option class="dropdown-item" value="" disabled selected>Select School</option>
+                <option *ngFor="let school of schoolData" class="dropdown-item"  value="{{school._id}}">{{school.schoolName}}</option>
+              </select>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" (change)="onstaffTypechange($event.target.value)" [(ngModel)]="staffForm.staffType" name="staffType" required>
+                <option class="dropdown-item" value="" disabled selected>Type of Staff</option>
+                <option *ngFor="let staffType of staffTypeArr" class="dropdown-item"  value="{{staffType}}">{{staffType}}</option>
+              </select>
+              </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==false">
+            <div class="form-group">
+              <select class="form-control" [(ngModel)]="staffForm.nonteachingArea" name="nonteachingArea" required>
+                <option class="dropdown-item" value="" disabled selected>Staff Area</option>
+                <option *ngFor="let nonteachingArea of nonteachingAreaArr" class="dropdown-item"  value="{{nonteachingArea}}">{{nonteachingArea}}</option>
+              </select>
+              </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <select class="form-control" [(ngModel)]="staffForm.teacherType" name="teacherType" required>
+                <option class="dropdown-item" value="" disabled selected>Type of Teacher</option>
+                <option *ngFor="let teacherType of teacherTypeArr" class="dropdown-item"  value="{{teacherType}}">{{teacherType}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <select class="form-control" (change)="onteachcat($event.target.value)" [(ngModel)]="staffForm.teacherCategory" name="teacherCategory" required>
+                <option class="dropdown-item" value="" disabled selected>Teaching Category</option>
+                <option *ngFor="let teacherCategory of teacherCategoryArr" class="dropdown-item"  value="{{teacherCategory}}">{{teacherCategory}}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <select class="form-control"  [(ngModel)]="staffForm.classTeacher" name="classTeacher" required>
+                <option class="dropdown-item" value="" disabled selected>Class Teacher</option>
+                <option *ngFor="let classTeacher of classTeacherArr" class="dropdown-item"  value="{{classTeacher}}">{{classTeacher}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <ng-multiselect-dropdown  (onSelectAll)="onSelectAllsubject($event)" (onDeSelectAll)="onunselectAllsubject($event)" placeholder="Select Subject" [data]="dropdownList"
+                [(ngModel)]="selectedItems" name="selectedItems" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect($event)" (onSelect)="onItemSelect($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <ng-multiselect-dropdown (onSelectAll)="onSelectAllclass($event)" (onDeSelectAll)="onunselectAllclass($event)" placeholder="Select Class" [data]="classList"
+                  [(ngModel)]="selectedItems2" name="selectedItems2" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect2($event)" (onSelect)="onItemSelect2($event)">
+                </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="staffType==true">
+            <div class="form-group">
+              <ng-multiselect-dropdown (onSelectAll)="onSelectAllsection($event)" (onDeSelectAll)="onunselectAllsection($event)" placeholder="Select Section" [data]="section"
+                  [(ngModel)]="selectedItems3" name="selectedItems3" [settings]="dropdownSettings"  (onDeSelect)="OnItemDeSelect3($event)" (onSelect)="onItemSelect3($event)">
+                </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" #staffName='ngModel' name="staffName"
+                [(ngModel)]="staffForm.staffName" placeholder="Staff Name" id="stname" required>
+              <div *ngIf="staffName.invalid && (staffName.dirty || staffName.touched)" class="text-danger">
+                <div *ngIf="staffName.errors.required">
+                  Staff Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" #staffEmail='ngModel' name="staffEmail" [(ngModel)]="staffForm.staffEmail" [pattern]="emailPattern"
+                class="form-control" placeholder="Staff Email" id="e-Mail" required>
+              <div *ngIf="staffEmail.invalid && (staffEmail.dirty || staffEmail.touched)" class="text-danger">
+                <div *ngIf="staffEmail.errors.required">
+                  Email is required
+                </div>
+                <div *ngIf="staffEmail.errors.pattern">
+                  Enter valid Email
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="number" class="form-control" #staffContact='ngModel' [pattern]="mobilePattern" name="staffContact"
+              [(ngModel)]="staffForm.staffContact" placeholder="Staff Mobile" id="mNo" required>
+            <div *ngIf="staffContact.invalid && (staffContact.dirty || staffContact.touched)" class="text-danger">
+              <div *ngIf="staffContact.errors.required">
+                Mobile No is required
+              </div>
+              <div *ngIf="staffContact.errors.pattern">
+                Enter valid Mobile No
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-12 my-3">
+            <h4 class="text-center">FOR BULK UPLOADING</h4>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <p class="text-right text-danger font-weight-bold">Upload Excel Only (.xlsx)</p>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" #closeBtn data-dismiss="modal">Close</button>
+        <button *ngIf="isEdit" type="button" class="btn btn-primary" [disabled]="stForm.invalid" (click)="updateStaff(stForm)">Update Staff</button>
+        <button *ngIf="!isEdit" type="button" class="btn btn-primary" [disabled]="stForm.invalid" (click)="addStaff(stForm)">Add Staff</button>
+      </div>
+    </div>
+  </div>
+</div>
