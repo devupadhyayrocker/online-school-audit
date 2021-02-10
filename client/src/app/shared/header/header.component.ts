@@ -31,7 +31,7 @@ currentUrl: string = "";
   doLogOut(){
     this.isLoggedIn = false;
     localStorage.clear();
-    this.router.navigate(['/login'])
+    this.router.navigate(['/promoter_login'])
   }
 
 }

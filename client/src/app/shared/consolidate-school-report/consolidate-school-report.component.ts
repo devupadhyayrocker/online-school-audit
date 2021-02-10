@@ -21,125 +21,59 @@ export class ConsolidateSchoolReportComponent implements OnInit {
   rangeSelfTeachers = [0, 0, 0, 0];
   rangePrincipal = [0, 0, 0, 0];
   rangePeerTeachers = [0, 0, 0, 0];
+  rangeDocTeachers = [0, 0, 0, 0];
   selfChartDisplay: boolean = true;
   peerChartDisplay: boolean = true;
   docChartDisplay: boolean = true;
   princiChartDisplay: boolean = true;
-
+  scl_name: string = "";
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     this.getStaffList();
     this.getPrincipalBySchoolId();
-
-    
+    if (localStorage.getItem('name')) {
+      this.scl_name = localStorage.getItem('name');
+    }
   }
 
-  
+
 
   getPrincipalBySchoolId() {
     this.commonService.getPrincipalBySchoolId().subscribe(res => {
       if (res['data']) {
         this.principalData = res['data'][0]['PrincipalStaffDetails'];
-        let count1 = 0;
-        let count2 = 0;
-        let count3 = 0;
-        let count4 = 0;
+        let count01 = 0;
+        let count02 = 0;
+        let count03 = 0;
+        let count04 = 0;
         this.principalData.forEach(item => {
           let isExist = this.staffData.find(it => it._id == item.staffId);
           let ToTMarks = isExist.isTeaching ? 80 : 108;
           let prRating = (item.totalMarks / ToTMarks) * 10;
           if (prRating < 6.0 && prRating > 0) {
-            count1 = count1 + 1;
-            this.rangePrincipal[0] = count1;
+            count01 = count01 + 1;
+            this.rangePrincipal[0] = count01;
           } else if (prRating < 7.5 && prRating > 6.0) {
-            count2 = count2 + 1;
-            this.rangePrincipal[1] = count2;
+            count02 = count02 + 1;
+            this.rangePrincipal[1] = count02;
           }
           else if (prRating < 9.0 && prRating > 7.5) {
-            count3 = count3 + 1;
-            this.rangePrincipal[2] = count3;
+            count03 = count03 + 1;
+            this.rangePrincipal[2] = count03;
           } else {
-            count4 = count4 + 1;
-            this.rangePrincipal[3] = count4;
+            count04 = count04 + 1;
+            this.rangePrincipal[3] = count04;
           }
+          this.showPrinciGraph();
         });
-        this.showPrinciGraph();
+
         console.log("princi", res['data']);
       }
     }, err => { })
   }
 
-  showPrinciGraph() {
-
-    this.Chart = new Chart("PrincipalEvaluationChart", {
-      type: 'bar',
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Principal Assessment Scoring'
-        },
-        legend: {
-          display: false,
-          position: 'right',
-        }, animation: {
-          animateScale: true,
-          animateRotate: true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 10
-            },
-            stacked: true
-          }],
-          xAxes: [{
-            gridLines: {
-              offsetGridLines: true
-            },
-            ticks: {
-              maxTicksLimit: 5
-            }
-          }]
-        }
-      },
-      data: {
-        labels: ['0.0 - 6.0', '6.1 - 7.4', '7.5 - 9.0', '9.1 - 10.0'],
-        datasets: [{
-          label: 'No. of Teachers',
-          data: this.rangePrincipal,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1,
-          hoverBorderWidth: 3,
-          hoverBorderColor: ['rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'],
-          hoverBackgroundColor: ['rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'],
-          barThickness: 20,
-          barPercentage: 0.5
-        }]
-      }
-    })
-  }
+  
   getStaffList() {
     this.commonService.getStaffList().subscribe(res => {
       if (res['data']) {
@@ -193,15 +127,41 @@ export class ConsolidateSchoolReportComponent implements OnInit {
               count8 = count8 + 1;
               this.rangePeerTeachers[3] = count8;
             }
+            this.showPeerGraph();
           }
         })
-        this.showPeerGraph();
+        let count9 = 0;
+        let count10 = 0;
+        let count11 = 0;
+        let count12 = 0;
+        this.staffData.forEach(item => {
+          if (item.isDocSubmitted) {
+            let staffMarks = item.totalMarks.teacherDocMarks;
+            let ToTMarks = item.totalMarks.teacherDocMarks = 60;
+            let staffRating = (staffMarks / ToTMarks) * 10;
+            if (staffRating < 6.0 && staffRating > 0) {
+              count9 = count9 + 1;
+              this.rangeDocTeachers[0] = count9;
+            } else if (staffRating < 7.5 && staffRating > 6.0) {
+              count10 = count10 + 1;
+              this.rangeDocTeachers[1] = count10;
+            }
+            else if (staffRating < 9.0 && staffRating > 7.5) {
+              count11 = count11 + 1;
+              this.rangeDocTeachers[2] = count11;
+            } else {
+              count12 = count12 + 1;
+              this.rangeDocTeachers[3] = count12;
+            }
+            this.showDocGraph();
+          }
+        })
       }
     }, err => { })
   }
 
   showSelfGraph() {
-    
+
     this.Chart = new Chart("selfEvaluationChart", {
       type: 'bar',
       options: {
@@ -342,6 +302,146 @@ export class ConsolidateSchoolReportComponent implements OnInit {
     })
   }
 
+  showDocGraph() {
+    this.Chart = new Chart("DocumentEvaluationChart", {
+      type: 'bar',
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Document Evaluation Scoring'
+        },
+        legend: {
+          display: false,
+          position: 'right',
+        }, animation: {
+          animateScale: true,
+          animateRotate: true
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 10
+            },
+            stacked: true
+          }],
+          xAxes: [{
+            gridLines: {
+              offsetGridLines: true
+            },
+            ticks: {
+              maxTicksLimit: 5
+            }
+          }]
+        }
+      },
+      data: {
+        labels: ['0.0 - 6.0', '6.1 - 7.4', '7.5 - 9.0', '9.1 - 10.0'],
+        datasets: [{
+          label: 'No. of Teachers',
+          data: this.rangeDocTeachers,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1,
+          hoverBorderWidth: 3,
+          hoverBorderColor: ['rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'],
+          hoverBackgroundColor: ['rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'],
+          barThickness: 20,
+          barPercentage: 0.5
+        }]
+      }
+    })
+  }
+  
+  showPrinciGraph() {
+
+    this.Chart = new Chart("PrincipalEvaluationChart", {
+      type: 'bar',
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Principal Assessment Scoring'
+        },
+        legend: {
+          display: false,
+          position: 'right',
+        }, animation: {
+          animateScale: true,
+          animateRotate: true
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 10
+            },
+            stacked: true
+          }],
+          xAxes: [{
+            gridLines: {
+              offsetGridLines: true
+            },
+            ticks: {
+              maxTicksLimit: 5
+            }
+          }]
+        }
+      },
+      data: {
+        labels: ['0.0 - 6.0', '6.1 - 7.4', '7.5 - 9.0', '9.1 - 10.0'],
+        datasets: [{
+          label: 'No. of Teachers',
+          data: this.rangePrincipal,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1,
+          hoverBorderWidth: 3,
+          hoverBorderColor: ['rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'],
+          hoverBackgroundColor: ['rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'],
+          barThickness: 20,
+          barPercentage: 0.5
+        }]
+      }
+    })
+  }
   onChartChange(event) {
     if (event == "Self Assessment") {
       this.selfChartDisplay = false;
@@ -353,7 +453,7 @@ export class ConsolidateSchoolReportComponent implements OnInit {
       this.peerChartDisplay = false;
       this.docChartDisplay = true;
       this.princiChartDisplay = true;
-    }else if (event == "Document Assessment") {
+    } else if (event == "Document Assessment") {
       this.selfChartDisplay = true;
       this.peerChartDisplay = true;
       this.docChartDisplay = false;

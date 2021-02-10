@@ -4,19 +4,19 @@
             <hr class="bg-light mt-0">        
             <ul class="nav flex-column mt-1">
               <div class="sidebar-header">
-                <div class="user-pic">
+                <!-- <div class="user-pic">
                   <img class="img-responsive img-rounded"
                     src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                     alt="User picture">
-                </div>
+                </div> -->
                 <div class="user-info">
-                  <span class="user-name text-white"><strong>Jaipuria School</strong>
+                  <span class="user-name text-white text-capitalize"><strong>{{scl_name}}</strong>
                   </span>
                   <span class="user-role text-white">Overall Audit Report</span>
-                  <span class="user-status">
+                  <!-- <span class="user-status">
                     <i class="fa fa-circle"></i>
                     <span class="text-white">Online</span>
-                  </span>
+                  </span> -->
                 </div>
               </div>
               <li class="nav-item">
@@ -24,31 +24,31 @@
                 <hr class="bg-white my-2 mob_hr">
               </li>
               <li class="nav-item mob_menu">
-                <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_school_report">Consolidate Score of School</a><hr class="bg-white my-2">
-              </li>
-              <li class="nav-item mob_menu">
-                <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_cro_report">Consolidate CRO Report</a><hr class="bg-white my-2">
-              </li>
-              <li class="nav-item mob_menu">
                 <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/individual_audit_report">Individual Report</a><hr class="bg-white my-2">
               </li>
               <li class="nav-item mob_menu">
+                <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_school_report">Consolidate Score of School</a><hr class="bg-white my-2">
+              </li>
+              <!-- <li class="nav-item mob_menu">
+                <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_cro_report">Consolidate CRO Report</a><hr class="bg-white my-2">
+              </li> -->
+              <!-- <li class="nav-item mob_menu">
                 <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/observer_feedback_report">Observer Feedback Report</a><hr class="bg-white my-2">
               </li>
               <li class="nav-item mob_menu">
                 <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/audit_recommendation">Audit Recommendation</a><hr class="bg-white my-2">
-              </li>
+              </li> -->
             </ul>
           </nav>
         </div>
         <div class="col-md-10 mb-5">
           
             <div class="container-fluid px-0">
-              <div class="row ">
+              <!-- <div class="row ">
                 <div class="col-md-12  mt-2">
                     <button class="btn btn-primary d-block w-25 float-right" printSectionId="print-section" ngxPrint>Print Report</button> 
                 </div>
-            </div>
+            </div> -->
               <div id="print-section" class="row pb-4">
                 <!-- <select class="custom-select bg-warning font-weight-bold text-danger" (change)="onChartChange($event.target.value)">
                   <option selected>Select Assessment</option>

@@ -5,51 +5,40 @@
                 <hr class="bg-light mt-0">
                 <ul class="nav flex-column mt-1">
                     <div class="sidebar-header">
-                        <div class="user-pic">
+                        <!-- <div class="user-pic">
                             <img class="img-responsive img-rounded"
                                 src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                                 alt="User picture">
-                        </div>
+                        </div> -->
                         <div class="user-info">
-                            <span class="user-name text-white"><strong>Jaipuria School</strong>
+                            <span class="user-name text-white text-capitalize"><strong>{{scl_name}}</strong>
                             </span>
                             <span class="user-role text-white">Overall Audit Report</span>
-                            <span class="user-status">
+                            <!-- <span class="user-status">
                                 <i class="fa fa-circle"></i>
                                 <span class="text-white">Online</span>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                     <li class="nav-item">
-                        <hr class="bg-light mb-2"><a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/audit_score_info">School Info & School Score</a>
+                        <hr class="bg-light mb-2"><a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/audit_score_info">School Info & School Score</a>
                         <hr class="bg-white my-2 mob_hr">
-                    </li>
-                    <li class="nav-item mob_menu">
-                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/consolidate_school_report">Consolidate Score of School</a>
-                        <hr class="bg-white my-2">
-                    </li>
-                    <li class="nav-item mob_menu">
-                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/consolidate_cro_report">Consolidate CRO Report</a>
-                        <hr class="bg-white my-2">
-                    </li>
-                    <li class="nav-item mob_menu">
-                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/individual_audit_report">Individual Report</a>
-                        <hr class="bg-white my-2">
-                    </li>
-                    <li class="nav-item mob_menu">
-                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/observer_feedback_report">Observer Feedback Report</a>
-                        <hr class="bg-white my-2">
-                    </li>
-                    <li class="nav-item mob_menu">
-                        <a class="nav-link text-white font-weight-light mob_txt" href="#"
-                            routerLink="/audit_recommendation">Audit Recommendation</a>
-                        <hr class="bg-white my-2">
-                    </li>
+                      </li>
+                      <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/individual_audit_report">Individual Report</a><hr class="bg-white my-2">
+                      </li>
+                      <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_school_report">Consolidate Score of School</a><hr class="bg-white my-2">
+                      </li>
+                      <!-- <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/consolidate_cro_report">Consolidate CRO Report</a><hr class="bg-white my-2">
+                      </li> -->
+                      <!-- <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/observer_feedback_report">Observer Feedback Report</a><hr class="bg-white my-2">
+                      </li>
+                      <li class="nav-item mob_menu">
+                        <a class="nav-link text-white font-weight-light mob_txt" href="#" routerLink="/audit_recommendation">Audit Recommendation</a><hr class="bg-white my-2">
+                      </li> -->
                 </ul>
             </nav>
             <button #openModal type="button" class="btn mt-4 btn-light d-none" data-toggle="modal"
@@ -57,9 +46,9 @@
                 Audit Intro
             </button>
         </div>
-        <div class="col-md-10 my-5 px-0">
+        <div class="col-md-10 mb-5 px-0">
             <div class="container" style=" height: 550px; ">
-                <div class="row">
+                <!-- <div class="row">
                     <button type="button" class="btn btn-info mx-auto btn-lg w-50 d-block" data-toggle="modal"
                         data-target=".bd-example-modal-lg">SCHOOL INFORMATION & SCORE
                     </button>
@@ -81,18 +70,12 @@
                                     <div class="col-md-12">
                                      <table class="table table-bordered">
                                             <tbody class="text-center">
-                                                <tr>
-                                                    <td><b>School's Name</b></td>
-                                                    <td class="text-uppercase" colspan="5">{{scl_name}}</td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <td><b>Principal's Name</b></td>
                                                     <td class="text-uppercase" colspan="5">{{princi_name}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td><b>Administrative Officer</b></td>
-                                                    <td class="text-uppercase" colspan="5">Administrative Ofiicer Name Here</td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <td><b>Total number of Teaching Staff audited</b></td>
                                                     <td colspan="5">{{filteredTeachingData}}</td>
@@ -101,7 +84,7 @@
                                                     <td><b>Total number of Non-Teaching Staff audited</b></td>
                                                     <td colspan="5">{{filteredNonTeachingData}}</td>
                                                 </tr>
-                                                <!--tr>
+                                                <tr>
                                                     <td rowspan="2" class="align-middle"><b>Total Number of CROs
                                                             audited</b></td>
                                                     <td><b>Pre-Primary</b></td>
@@ -135,7 +118,7 @@
                                                         <b>Final Rating of the school audit 2020-21</b></td>
                                                     <td class="table-danger font-weight-bold align-middle h3"
                                                         colspan="5">08</td>
-                                                </tr-->
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -143,9 +126,31 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <div class="row p-3">
+                    <div class="col-md-12">
+                     <table class="table table-bordered">
+                            <tbody class="text-center">
+                                
+                                <tr>
+                                    <td><b>Principal's Name</b></td>
+                                    <td class="text-uppercase" colspan="5">{{princi_name}}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><b>Total number of Teaching Staff audited</b></td>
+                                    <td colspan="5">{{filteredTeachingData}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total number of Non-Teaching Staff audited</b></td>
+                                    <td colspan="5">{{filteredNonTeachingData}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-md-5 mt-5">
+                <div class="row">
+                    <div class="col-md-5">
                         <p class="font-weight-bold h6 text-danger">Overview</p>
                         <p class="text-justify">The audits are an integral part of our “Improvement cycle” to stimulate
                             quality work and to
@@ -158,7 +163,7 @@
                             situations and assessments as they existed at the time of the audit with the established
                             criteria.</p>
                     </div>
-                    <div class="col-md-7 mt-5">
+                    <div class="col-md-7">
                         <p class="font-weight-bold h6 text-danger">Objectives of the Audit</p>
                         <ul class="text-justify">
                             <li>To observe and analyze the school’s potential to deliver optimal learning experience

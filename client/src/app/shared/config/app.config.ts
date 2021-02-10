@@ -97,8 +97,8 @@ export class AppConfig {
     {
 
         formName: "Non Teaching Self Evaluation Form",
-        totalMarks: 100,
-        QuesNo: 25,
+        totalMarks: 104,
+        QuesNo: 26,
         maxMarks: 4,
         for: ["nonteaching"],
         values: [1, 2, 3, 4],
